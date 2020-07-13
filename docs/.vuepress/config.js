@@ -1,31 +1,48 @@
 module.exports = {
     title: '大芒果',
-    description: '大芒果',
+    description: '大芒的博客果',
     themeConfig: {
       displayAllHeaders: true,
       logo: '/assets/img/logo.jpeg',
       nav: [
-        { text: 'Home', link: '/' },
-        { text: 'External', link: 'https://google.com' },
+        { text: '主页', link: '/' },
+        { text: '前端', link: '/fronted/' },
+        { text: '后端', link: '/backend/' },
         {
-            text: 'Languages',
+            text: '计算机',
             ariaLabel: 'Language Menu',
             items: [
-              { text: 'Chinese', link: '/language/chinese/' },
-              { text: 'Japanese', link: '/language/japanese/' }
+              { text: '计算机组成原理', link: '/language/chinese/' },
+              { text: '操作系统', link: '/language/japanese/' }
             ]
-          }
+        }
       ],
-      sidebar: [
-        {
-            title: 'Group 1',   // 必要的
-            path: '/foo/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-            collapsable: false, // 可选的, 默认值是 true,
-            sidebarDepth: 1,    // 可选的, 默认值是 1
+      sidebar: {
+        '/backend/': [
+          {
+            title: 'node',
             children: [
-              '/',
+              '/backend/node/nvm',
             ]
           },
-      ]
+        ],
+        '/fronted/': [
+          {
+            title: 'javascript',
+            children: [
+              '/fronted/js/函数式编程',
+              '/fronted/js/如何发布npm包',
+            ]
+          },
+          {
+            title: 'css',
+            children: [
+              '/fronted/css/两栏布局',
+              '/fronted/css/居中方案'
+            ]
+          },
+        ]
+      },
+      sidebarDepth: 0
     }
   }
