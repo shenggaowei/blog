@@ -1,6 +1,6 @@
 module.exports = {
     title: '大芒果',
-    description: '大芒果的博客',
+    description: '大芒果',
     themeConfig: {
       displayAllHeaders: true,
       logo: '/assets/img/logo.jpeg',
