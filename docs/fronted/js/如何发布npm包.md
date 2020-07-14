@@ -32,7 +32,7 @@ npm install webpack webpack-ci -D
 同时，一个强大的包应该支持多种方式导入，例如es module的import,commonjs的require以及amd的古老方式。
 为做到以上两点，选择了webpack作为构建工具。虽然用webpack个人感觉稍微有点重，但是它可扩展性强，日后利用loader以及plugin可以实现更多的编译以及优化需求。
 #### 3.3 梳理项目目录
-![](media/15909176345966/15909328330064.jpg)
+![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909328330064.jpg)
 src下的index.js对应着包的内容。
 最外层index.js为所暴露的出口文件。
 dist目录存放webpack打包后的文件。
@@ -113,12 +113,12 @@ npm publish
 然后在npm官网上搜索一下，便可以找到你发布的包了。开心。
 
 ## 四 遇到的问题
-###4.1 在服务端渲染(ssr)的项目中引入该包时，会报错误 ”window is not defined“
+### 4.1 在服务端渲染(ssr)的项目中引入该包时，会报错误 ”window is not defined“
 本以为是包中代码逻辑错误，把项目中所有引入到window的地方全都用typeof兼容了一遍，本想完事大吉，结果还是报这个错误。上网搜索各种帖子无效之后，我感觉是webpack编译打包后出了问题，于是报着试一试的心态去看编译后的未压缩版本代码，果然发现了问题。
-![](media/15909176345966/15909384148354.jpg)
+![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909384148354.jpg)
 如图所示，打包后的文件为一个自运行匿名函数，函数第一个实参竟然是window。
 于是去webpack官网查看相关文档，看其是否能配置。果然找到了
-![-w728](media/15909176345966/15909386807183.jpg)
+![-w728](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909386807183.jpg)
 修改globalObject属性，将第一个参数设置为this，解决问题。
 
 

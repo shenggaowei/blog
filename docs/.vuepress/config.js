@@ -3,7 +3,7 @@ module.exports = {
     description: '大芒的博客果',
     themeConfig: {
       displayAllHeaders: true,
-      logo: '/assets/img/logo.jpeg',
+      logo: 'https://shenggao.oss-cn-beijing.aliyuncs.com/info/avatar.jpeg',
       nav: [
         { text: '主页', link: '/' },
         { text: '前端', link: '/fronted/' },
@@ -32,6 +32,7 @@ module.exports = {
             children: [
               '/fronted/js/函数式编程',
               '/fronted/js/如何发布npm包',
+              '/fronted/js/数组去重',
             ]
           },
           {

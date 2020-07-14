@@ -8,7 +8,7 @@ http.createServer(function (req, res) {
     res.end('请求错误')
   })
 }).listen(8088, function(){
-    console.log('server已经启动')
+    console.log('server已经启动');
 })
 
 handler.on('error', function (err) {
