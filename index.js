@@ -1,10 +1,11 @@
 var http = require('http')
 var createHandler = require('github-webhook-handler')
-var handler = createHandler({ path: '/', secret: 'my_blog' })
+var handler = createHandler({ path: '/webhook', secret: 'root' })
 
 http.createServer(function (req, res) {
   handler(req, res, function (err) {
-    res.statusCode = 404
+      console.log(err);
+    res.statusCode = 200
     res.end('no such location')
   })
 }).listen(8088, function(){
