@@ -20,11 +20,6 @@ handler.on('push', function (event) {
 })
 
 handler.on('issues', function (event) {
-  console.log('Received an issue event for %s action=%s: #%d %s',
-    event.payload.repository.name,
-    event.payload.action,
-    event.payload.issue.number,
-    event.payload.issue.title)
 })
 
 function runCmd (cmd, args, callback) {
