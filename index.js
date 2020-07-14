@@ -4,9 +4,8 @@ var handler = createHandler({ path: '/webhook', secret: 'root' })
 
 http.createServer(function (req, res) {
   handler(req, res, function (err) {
-      console.log(err);
-    res.statusCode = 200
-    res.end('no such location')
+    res.statusCode = 500
+    res.end('请求错误')
   })
 }).listen(8088, function(){
     console.log('server已经启动')
@@ -18,9 +17,7 @@ handler.on('error', function (err) {
 })
 
 handler.on('push', function (event) {
-  console.log('Received a push event for %s to %s',
-    event.payload.repository.name,
-    event.payload.ref)
+    runCmd('sh', ['./deploy.sh', event.payload.repository.name], function (text) { console.log(text) })
 })
 
 handler.on('issues', function (event) {
@@ -30,3 +27,15 @@ handler.on('issues', function (event) {
     event.payload.issue.number,
     event.payload.issue.title)
 })
+
+function runCmd (cmd, args, callback) {
+    var spawn = require('child_process').spawn
+    var child = spawn(cmd, args)
+    var resp = ''
+    child.stdout.on('data', function (buffer) {
+      resp += buffer.toString()
+    })
+    child.stdout.on('end', function () {
+      callback(resp)
+    })
+  }
