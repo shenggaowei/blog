@@ -34,6 +34,7 @@ module.exports = {
               '/fronted/js/如何发布npm包',
               '/fronted/js/数组去重',
               '/fronted/js/bind、call和apply实现',
+              '/fronted/js/拖拽实现',
             ]
           },
           {
