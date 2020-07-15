@@ -9,7 +9,7 @@ http.createServer(function (req, res) {
   })
 }).listen(8088, function(){
     console.log('server已经启动');
-})
+}) 
 
 handler.on('error', function (err) {
   console.error('Error:', err.message)
