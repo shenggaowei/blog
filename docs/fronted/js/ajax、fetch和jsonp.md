@@ -39,7 +39,6 @@ function JSONP(options) {
         })
         oHead.removeChild(oS);
     }, timeout || 8000)
-
 }
 
 ```
