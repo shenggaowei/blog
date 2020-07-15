@@ -36,7 +36,8 @@ module.exports = {
               '/fronted/js/bind、call和apply实现',
               '/fronted/js/拖拽实现',
               '/fronted/js/数据类型检测',
-              '/fronted/js/ajax、fetch和jsonp.md',
+              '/fronted/js/ajax、fetch和jsonp',
+              '/fronted/js/正则表达式',
             ]
           },
           {
