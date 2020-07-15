@@ -38,6 +38,7 @@ module.exports = {
               '/fronted/js/数据类型检测',
               '/fronted/js/ajax、fetch和jsonp',
               '/fronted/js/正则表达式',
+              '/fronted/js/h5新增事件',
             ]
           },
           {
