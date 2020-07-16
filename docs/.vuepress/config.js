@@ -39,6 +39,7 @@ module.exports = {
               '/fronted/js/ajax、fetch和jsonp',
               '/fronted/js/正则表达式',
               '/fronted/js/h5新增事件',
+              '/fronted/js/react框架key的作用',
             ]
           },
           {
