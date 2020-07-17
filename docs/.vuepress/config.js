@@ -1,9 +1,12 @@
 module.exports = {
     title: '大芒果',
     description: '大芒的博客果',
+    head: [
+      ['link', { rel: 'icon', href: 'https://shenggao.oss-cn-beijing.aliyuncs.com/info/head.jpg' }]
+    ],
     themeConfig: {
       displayAllHeaders: true,
-      logo: 'https://shenggao.oss-cn-beijing.aliyuncs.com/info/avatar.jpeg',
+      logo: 'https://shenggao.oss-cn-beijing.aliyuncs.com/info/head.jpg',
       nav: [
         { text: '主页', link: '/' },
         { text: '前端', link: '/fronted/' },
