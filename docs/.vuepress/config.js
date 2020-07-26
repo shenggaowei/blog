@@ -1,3 +1,8 @@
+const css = require('./catalog/fronted/css');
+const js = require('./catalog/fronted/js');
+const webpack = require('./catalog/fronted/webpack');
+const node = require('./catalog/backend/node');
+
 module.exports = {
     title: '大芒果',
     description: '大芒的博客果',
@@ -24,33 +29,21 @@ module.exports = {
         '/backend/': [
           {
             title: 'node',
-            children: [
-              '/backend/node/nvm',
-            ]
+            children: node
           },
         ],
         '/fronted/': [
           {
             title: 'javascript',
-            children: [
-              '/fronted/js/函数式编程',
-              '/fronted/js/如何发布npm包',
-              '/fronted/js/数组去重',
-              '/fronted/js/bind、call和apply实现',
-              '/fronted/js/拖拽实现',
-              '/fronted/js/数据类型检测',
-              '/fronted/js/ajax、fetch和jsonp',
-              '/fronted/js/正则表达式',
-              '/fronted/js/h5新增事件',
-              '/fronted/js/react框架key的作用',
-            ]
+            children: js,
           },
           {
             title: 'css',
-            children: [
-              '/fronted/css/两栏布局',
-              '/fronted/css/居中方案'
-            ]
+            children: css,
+          },
+          {
+            title: 'webpack',
+            children: webpack
           },
         ]
       },
