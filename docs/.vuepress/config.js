@@ -17,7 +17,6 @@ module.exports = {
         { text: '主页', link: '/' },
         { text: '前端', link: '/fronted/' },
         { text: '后端', link: '/backend/' },
-        { text: '随笔', link: '/life/' },
         {
             text: '计算机',
             ariaLabel: 'Language Menu',
@@ -46,12 +45,6 @@ module.exports = {
           {
             title: 'webpack',
             children: webpack
-          },
-        ],
-        '/life/': [
-          {
-            title: 'note',
-            children: note
           },
         ],
       },
