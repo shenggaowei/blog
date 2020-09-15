@@ -22,3 +22,7 @@ interface NotOkay {
 ```
 
 因为number类型的索引必须是string类型的子类型，所以number的索引必须是string索引的子类型。而此处animal是父类，dog是子类。animal不是dog的子类。
+
+**类类型**
+
+哈哈哈哈
