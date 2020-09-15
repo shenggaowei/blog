@@ -3,7 +3,8 @@ const js = require('./catalog/fronted/js');
 const rn = require('./catalog/fronted/rn');
 const webpack = require('./catalog/fronted/webpack');
 const node = require('./catalog/backend/node');
-const note = require('./catalog/life/note');
+const pm2 = require('./catalog/backend/pm2');
+const nginx = require('./catalog/backend/nginx');
 
 module.exports = {
   title: '大芒果',
@@ -32,6 +33,14 @@ module.exports = {
         {
           title: 'node',
           children: node
+        },
+        {
+          title: 'nginx',
+          children: nginx
+        },
+        {
+          title: 'pm2',
+          children: pm2
         },
       ],
       '/fronted/': [
