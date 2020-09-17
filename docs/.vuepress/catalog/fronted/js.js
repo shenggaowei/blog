@@ -13,7 +13,8 @@ const data = [
   'h5新增事件',
   'react框架key的作用',
   'reactHook问题总结',
-  'ts学习'
+  'ts学习',
+  '事件循环'
 ]
 
 module.exports = parsedArticleName(prefix, data);
