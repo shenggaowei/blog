@@ -14,7 +14,8 @@ const data = [
   'react框架key的作用',
   'reactHook问题总结',
   'ts学习',
-  '事件循环'
+  '事件循环',
+  '前端本地缓存之PWA篇'
 ]
 
 module.exports = parsedArticleName(prefix, data);
