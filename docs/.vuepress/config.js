@@ -64,5 +64,5 @@ module.exports = {
     },
     sidebarDepth: 0
   },
-    base: '/_blog/'
+    base: '/blog/'
 }
