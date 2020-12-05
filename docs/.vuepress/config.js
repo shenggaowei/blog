@@ -64,5 +64,5 @@ module.exports = {
     },
     sidebarDepth: 0
   },
-  base: '/gao_blog/'
+    base: '/_blog/'
 }
