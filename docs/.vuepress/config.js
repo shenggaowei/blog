@@ -5,6 +5,9 @@ const webpack = require('./catalog/fronted/webpack');
 const node = require('./catalog/backend/node');
 const pm2 = require('./catalog/backend/pm2');
 const nginx = require('./catalog/backend/nginx');
+const tool = require('./catalog/tool/vim');
+
+
 
 module.exports = {
   title: '大芒果',
@@ -26,7 +29,9 @@ module.exports = {
           { text: '计算机组成原理', link: '/language/chinese/' },
           { text: '操作系统', link: '/language/japanese/' }
         ]
-      }
+      },
+      { text: '工具', link: '/tool/' },
+
     ],
     sidebar: {
       '/backend/': [
@@ -60,7 +65,14 @@ module.exports = {
           title: 'react-native',
           children: rn
         },
+
       ],
+      '/tool/': [
+         {
+          title: 'vim',
+          children: tool
+          }
+       ]
     },
     sidebarDepth: 0
   },
