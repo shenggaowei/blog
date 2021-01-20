@@ -15,7 +15,8 @@ const data = [
   'reactHook问题总结',
   'ts学习',
   '事件循环',
-  'pwa'
+  'pwa',
+  'taro问题总结'
 ]
 
 module.exports = parsedArticleName(prefix, data);
