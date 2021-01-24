@@ -1,27 +1,35 @@
 # 前端本地缓存之PWA篇
 
 <a name="e05dce83"></a>
+
 ## PWA简介
 
 PWA，全称Progressive Web App , (渐进式增强 WEB 应用) 简称 PWA ，是提升WebApp的体验的一种新方法，能给用户原生应用的体验。PWA 设想本质上是 Web App ，借助一些新技术也具备了Native App的一些特性，兼具 Web App和Native App的优点。<br />那么既然提到了“web app”，那么它到底具备什么功能敢用这个名词？其实说起来，PWA并不是一个api，而是集结了N个新兴html5 api技术的组合体，其中主要api包含：<br />
 
 <a name="413gP"></a>
+
 #### 1、App Manifest
+
 Manifest本质是一个JSON格式的文件，你可以把它理解为一个指定了Web App桌面图标、名称、开屏图标、运行模式等一系列资源的一个清单，通过html层<link rel="manifest" href="/manifest.json">引用。其目的是将Web应用程序安装到设备的主屏幕，为用户提供更快的访问和更丰富的体验。<br />
 
 <a name="WKKVG"></a>
+
 #### 2、Push & Notification
+
 Push API 和 Notification API其实是两个独立的技术（功能实现，需要借助后文中的service worker），完全可以分开使用；不过Push API 和 Notification API相结合是一个常见的模式。其中Push主要链路为：浏览器发起订阅至服务端，服务端存储相关信息，如有消息推送，则项浏览器push service发起请求，浏览器push service将信息传递给浏览。Notification则比较简介直接，显示使用Notification.requestPermission()询问授权，之后调用registration.showNotification()进行显示。<br />
 
 <a name="QuskO"></a>
+
 #### 3、Service Worker
+
 以上几项更偏向使浏览器访问app化，而实际开发过程中，serveice worker更多是用在解决本地离线缓存问题，这也是我们本篇文章主题。当然了service worker也是个很大的api生态，除了对上文中的push、Notification功能进行支持外，还具备有其它几个功能：比如cache和background sync（即：缓存和后台同步），我们今天主要讲的是cache部分，Push / Notification / background sync部分我们另行发文介绍。
 
-
 <a name="YZfD0"></a>
+
 ## Service Worker
 
 <a name="00Uou"></a>
+
 #### 简介
 
 浏览器中的 javaScript 都是运行在一个单一主线程上的，在同一时间内只能做一件事情。随着 Web 业务不断复杂，我们逐渐在 js 中加了很多耗资源、耗时间的复杂运算过程，这些过程导致的性能问题在 WebApp 的复杂化过程中更加凸显出来。
@@ -35,6 +43,7 @@ W3C 组织在 2014 年 5 月就提出过 Service Worker 这样的一个 HTML5 AP
 当然在 Service Worker 之前也有在 HTML5 上做离线缓存的 API 叫 AppCache, 但是 AppCache 存在很多不能忍受的缺点。W3C 决定 AppCache 仍然保留在 HTML 5.0 Recommendation 中，在 HTML 后续版本中移除。
 
 #### 工作流程
+
 ![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/serviceworker/sw_process.jpg)
 
 #### 特性
@@ -55,6 +64,7 @@ W3C 组织在 2014 年 5 月就提出过 Service Worker 这样的一个 HTML5 AP
 <a name="qtOW9"></a>
 
 ### 使用方法
+
 #### 1 注册
 
  使用 ServiceWorkerContainer.register() 方法首次注册service worker。为不影响页面的性能，一般在页面的 onLoad 事件中进行注册。
@@ -101,6 +111,7 @@ Service Worker 激活成功, 会转入active 状态, 此时的 worker 已在控�
 --
 **废弃 ( redundant )**
 Service Worker在满足下面条件之一时, 会转入redundant状态：
+
 * 激活失败
 * 安装失败
 * 被新的Service Worker取代
@@ -118,73 +129,79 @@ Service Worker 出于安全性和其实现原理，在使用的时候有一定�
 5. 缓存机制依赖 [HTML5 Cache API](https://developer.mozilla.org/zh-CN/docs/Web/API/Cache)；
 
 <a name="hYp4X"></a>
+
 #### 2、Service注册
 
 上文我们提过，Service Worker本质是一个“线程”，我们要使用其功能，首先是需要在主线程进行 Service Worker 注册，也就是启动一个子进程，后续的 Service Worker 安装/激活等等业务都由该子进程完成。
 
-```javascript
+``` javascript
 // 注册 Service Worker
-    window.addEventListener('load', function (event) {
-        if ('serviceWorker' in window.navigator) {
-          navigator.serviceWorker.register('sw.js', { scope: '/' }).then(function (registration) {
+window.addEventListener('load', function(event) {
+    if ('serviceWorker' in window.navigator) {
+        navigator.serviceWorker.register('sw.js', {
+            scope: '/'
+        }).then(function(registration) {
             if (registration) {
-              console.log('serviceWorker register with scope: ', registration.scope)
+                console.log('serviceWorker register with scope: ', registration.scope)
             } else {
-              console.log('serviceWorker 注册失败')
+                console.log('serviceWorker 注册失败')
             }
-          })
-        }
-    })
+        })
+    }
+})
 ```
 
 scope 参数是选填的，可以被用来指定你想让 service worker 控制的内容的子目录。
 
-如果不指定 scope ,scope 默认为当前 ServiceWorker 脚本所在的父级作用域下。**不能越域**
+如果不指定 scope , scope 默认为当前 ServiceWorker 脚本所在的父级作用域下。**不能越域**
 
 ![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/serviceworker/scope.jpg)
 
 #### 3、Service注销
 
-```javascript
+``` javascript
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistration('/sw.js',{scope: '/'}).then(function (registration) {
-        if (registration && registration.unregister) {
-            registration.unregister().then(function (isUnRegistered) {
-                if (isUnRegistered) {
-                    console.log('[SW]: ServiceWorker注销成功');
-                } else {
-                    console.log('[SW]: ServiceWorker注销失败');
-                }
-            });
-        }
-    ).catch(function (error) {
-        console.log('[SW]: ServiceWorker注销失败 : ' + error);
-    });
-}
+    navigator.serviceWorker.getRegistration('/sw.js', {
+        scope: '/'
+    }).then(function(registration) {
+            if (registration && registration.unregister) {
+                registration.unregister().then(function(isUnRegistered) {
+                    if (isUnRegistered) {
+                        console.log('[SW]: ServiceWorker注销成功');
+                    } else {
+                        console.log('[SW]: ServiceWorker注销失败');
+                    }
+                });
+            }
+        ).catch(function(error) {
+            console.log('[SW]: ServiceWorker注销失败 : ' + error);
+        });
+    }
 ```
+
 #### 4、Service Worker脚本
 
 通过 register 方法，注册 Service Worker 脚本后，就可以通过监听 Service Worker提供的生命周期方法来实现我们自己的业务逻辑了。如下的代码实现了一个简单的功能：监听Service Worker的 install 事件、activate 事件和 fetch 事件。结合上面的生命周期部分，我们可以完整实现本地缓存与相关匹配机制，从而完成页面性能优化。
 
-```javascript
+``` javascript
 // 生命周期事件监听  #sw.js
 const VERSION = 'V2';
 const CACHE_NAME = 'CACHE_' + VERSION
 
 const cacheUrls = [
-  '/',
-  '/api/data',
-  '/css/index.css',
-  '/js/index.js',
-  '/js/request.js',
+    '/',
+    '/api/data',
+    '/css/index.css',
+    '/js/index.js',
+    '/js/request.js',
 ]
 
 // 监听 service worker 的 install 事件，注册成功后被触发
-self.addEventListener('install', function (event) {
+self.addEventListener('install', function(event) {
     console.log('[SW]: 安装 service worker');
     event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
-          return cache.addAll(cacheUrls)
+        caches.open(CACHE_NAME).then(function(cache) {
+            return cache.addAll(cacheUrls)
         }).then(self.skipWaiting)
     );
 });
@@ -202,34 +219,34 @@ addAll() 方法接受一个 URL 数组，检索它们，并将生成的 response
 
 add()方法接受一个 URL 作为参数，请求参数指定的 URL，并将返回的 response 对象添加到给定的cache中。
 
-```javascript
+``` javascript
 caches.open(CACHE_NAME).then(cache => {
-  cacheUrls.forEach(item => {
-     cache.add(item).catch(error => {
-  		console.log("缓存添加失败")
-  });
-})  
+            cacheUrls.forEach(item => {
+                cache.add(item).catch(error => {
+                    console.log("缓存添加失败")
+                });
+            })
 ```
 
 <br />如果 promise 被 rejected，安装就会失败，这个 worker 不会做任何事情。在下次注册发生的时候，会进行再次尝试。
 
 当安装成功完成之后，Service Worker 就会激活。在第一次你的 Service Worker 注册／激活时，这并不会有什么不同。但是当 Service Worker 更新的时候 ，就不太一样了。
 
-```javascript
+``` javascript
 //activate事件监听，install完成后，进入wating，需要满足特定条件，activate事件被触发
-self.addEventListener('activate', function (event) {
-  event.waitUntil(
-    Promise.all(
-      caches.keys().then(cacheList => {
-        cacheList.forEach(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            caches.delete(cacheName)
-          }
-        })
-      }),
-      self.clients.clam()
+self.addEventListener('activate', function(event) {
+    event.waitUntil(
+        Promise.all(
+            caches.keys().then(cacheList => {
+                cacheList.forEach(cacheName => {
+                    if (cacheName !== CACHE_NAME) {
+                        caches.delete(cacheName)
+                    }
+                })
+            }),
+            self.clients.clam()
+        )
     )
-  )
 })
 ```
 
@@ -239,36 +256,34 @@ self.addEventListener('activate', function (event) {
 
 这就用到了“fetch”事件，严格来说这个过程是Service Worker功能核心之二：匹配处理。我们通常做法是给 Service Worker 添加一个 fetch 的事件监听器，接着调用 event 上的 respondWith() 方法来劫持浏览器 HTTP 请求，然后你可以用特定逻辑处理相关相应。
 
-```javascript
-
-
+``` javascript
 //网络请求监听，activate成功完成后，此时worker可以控制页面行为，有请求发送，则事件被触发
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function(event) {
     console.log(`[SW]:「判断是否在缓存序列中」：${event.request.url}`);
     event.respondWith(
         caches.match(event.request)
-        .then(function (response) {
+        .then(function(response) {
             // 检测是否已经缓存过
             if (response) {
-              // 确定缓存过，读取资源
-              return response;
+                // 确定缓存过，读取资源
+                return response;
             }
 
             const fetchRequest = event.request；
 
             //.url,{mode: 'cors'} 无缓存，进行 fetch 请求
             return fetch(fetchRequest).then(
-                function (response) {
+                function(response) {
                     // 检测请求是否有效
                     if (!response || response.status !== 200) { // || response.type !== 'basic'
                         console.log(`[SW]:「请求不完全成功，直接response」：${event.request.url}`);
                         return response;
                     }
-                    
+
                     const responseToCache = response.clone();
                     // fetch 成功，存入缓存库。
                     caches.open(CACHE_NAME)
-                        .then(function (cache) {
+                        .then(function(cache) {
                             cache.put(event.request, responseToCache);
                         });
                     return response;
@@ -297,6 +312,7 @@ on fetch 的优点是无需更改编译过程，也不会产生额外的流量�
 #### 5、Service更新
 
 使用Service Worker作为缓存系统的一个核心优势之一，就是它的细粒度可控性；但这意味着我们需要自己处理缓存的版本管理问题。cacheStorage为此提供了简单的API，方便我们遍历所有的cache、找出过期的cache并删除：
+
 1. 方法一。如果 /sw.js 内容有更新，当访问网站页面时浏览器获取了新的文件，逐字节比对 /sw.js 文件发现不同时它会认为有更新启动 更新算法，于是会安装新的文件并触发 install 事件。但是此时已经处于激活状态的旧的 Service Worker 还在运行，新的 Service Worker 完成安装后会进入 waiting 状态。直到所有已打开的页面都关闭，旧的 Service Worker 自动停止，新的 Service Worker 才会在接下来重新打开的页面里生效。
 2. 方法二。可以在 install 事件中执行 self.skipWaiting() 方法，跳过 waiting 状态，然后会直接进入 activate 阶段。接着在 activate 事件发生时，通过执行 self.clients.claim() 方法，强制更新客户端上的 Service Worker。
 
@@ -307,19 +323,18 @@ on fetch 的优点是无需更改编译过程，也不会产生额外的流量�
 Web 服务器可以下行数据时在response的header对象中添加 Expires 或者 Cache-Control 来通知浏览器，它可以使用资源的当前副本，直到指定的“过期时间”，期间无需再次发送请求。反过来，浏览器可以缓存此资源，并且只有在有效期满后才会再次检查新版本。<br />
 <br />那么，我们根据两种原理可以得出，Service Worker并不会影响http缓存。当http缓存，也就是“memory cache / disk cache”过期前，浏览器发出请求，经过浏览器层比对直接读取http缓存资源，该过程中，请求并没有真正发出。因而Service Worker的fetch事件监听也将不会被触发，结果是请求正常呈现，二者互不干扰。需要指出的是：实际上浏览器请求过程中，http缓存效率比Service Worker缓存要快得多。<br />
 
-
 <br />接着说，Service Worker通过监听fetch事件进行比对处理，那么我们原理篇中讲过的“[304缓存](https://yuque.antfin-inc.com/ykvip_fed/fe_tech_share/oyzbnz#bPAcF)”可就与Service Worker“撞车”了。因为304是在没有http缓存，或者http缓存过期的情况下，本身response-header中又有Etag字段，浏览器再次发送请求，服务端接到请求比对Etag，进而判断是返回200/新资源，还是304/空响应体，这个过程请求是肯定会发出的，发出请求也就会触发fetch事件，如果返回304则意味着response为空，那么fetch事件函数中奖response存储到环境及返回到浏览器呈现都出错。<br />
 
-```javascript
+``` javascript
 //为了防止返回304，请求时加时间戳；存储时照常使用event.request
-fetch(event.request.url + '?d=' + +new Date())  //fetch
-  .then(res => {
-  if (res.ok){
-    cache.put(event.request, res.clone());
-    return res
-  }
-})
-  .catch() //离线(offline)
+fetch(event.request.url + '?d=' + +new Date()) //fetch
+    .then(res => {
+        if (res.ok) {
+            cache.put(event.request, res.clone());
+            return res
+        }
+    })
+    .catch() //离线(offline)
 })
 ```
 
