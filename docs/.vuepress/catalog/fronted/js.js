@@ -16,7 +16,7 @@ const data = [
   'ts学习',
   '事件循环',
   'pwa',
-  'taro问题总结'
+  'taro开发问题总结'
 ]
 
 module.exports = parsedArticleName(prefix, data);
