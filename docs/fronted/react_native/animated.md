@@ -102,6 +102,105 @@ export default class extends React.PureComponent {
 interpolate 为强大的插值运算函数，当动画数值被 setValue(0.5) 时，对于以上代码的输出 ['0deg', '360deg'], 会被映射到 180deg。当然支持，多区段映射。
 interpolate 一般使用情况为一个 animated.value 被应用到多个动画上。只要在属性里面设置好映射的值，就可以用一个动画变量来控制他们了。
 
+stagger 函数会在指定的延迟时间后执行动画，但是也有可能会同时执行动画
+笔者测试，当时间设置为800ms时，前两个动画会同时进行。当设置为2000ms时，会按照延迟时间一个一个的进行。
+```jsx
+import React from 'react';
+import { View, Animated, StyleSheet, Easing } from 'react-native';
+
+const styles = StyleSheet.create({
+  box: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  list: {
+    width: 100,
+    height: 50,
+    marginBottom: 50,
+    transform: [
+      {
+        translateX: 0
+      }
+    ]
+  },
+  list1: {
+    backgroundColor: 'orange'
+  },
+  list2: {
+    backgroundColor: 'purple'
+  },
+  list3: {
+    backgroundColor: 'pink'
+  }
+});
+
+export default class extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      anims: [1, 2, 3].map(() => new Animated.Value(0))
+    };
+  }
+
+  componentDidMount() {
+    const { anims } = this.state;
+    // stagger 会在指定的延迟时间后执行，其中的多个动画可能会同时执行。
+    Animated.loop(
+      Animated.stagger(800,
+        anims.map((anim) => {
+          return Animated.timing(anim, {
+            toValue: 1,
+            easing: Easing.linear,
+            useNativeDriver: true
+          });
+        }).concat(
+          anims.map((anim) => {
+            return Animated.timing(anim, {
+              toValue: 0,
+              easing: Easing.linear,
+              useNativeDriver: true
+            });
+          }).reverse()
+        )
+      )
+    ).start();
+  }
+
+  render() {
+    return (
+      <View style={styles.box}>
+        {
+          this.state.anims.map((anim, index) => {
+            return (
+              <Animated.View
+                style={
+                  [
+                    styles.list,
+                    styles[`list${index + 1}`],
+                    {
+                      transform: [
+                        {
+                          translateX: anim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 80],
+                          })
+                        }
+                      ]
+                    }
+                  ]
+              }
+              />
+            );
+          })
+        }
+      </View>
+    );
+  }
+}
+
+```
+
 ### 2 启用原生动画驱动
 
 在动画开始之前将所有动画的内容发送到原生代码，从而使用原生代码在ui线程上执行动画，不阻塞。
