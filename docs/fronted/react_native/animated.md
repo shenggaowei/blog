@@ -9,6 +9,7 @@ Animated旨在以声明的形式来定义动画的输入与输出，在其中建
 4. 通过 Animated.timing 等函数设定动画参数。
 5. 通过 start 函数开启动画。（重要，否则动画开不了）。
 
+
 ```jsx
 import React from 'react';
 import { View, Animated, StyleSheet, Easing } from 'react-native';
@@ -99,6 +100,7 @@ export default class extends React.PureComponent {
 
 ```
 interpolate 为强大的插值运算函数，当动画数值被 setValue(0.5) 时，对于以上代码的输出 ['0deg', '360deg'], 会被映射到 180deg。当然支持，多区段映射。
+interpolate 一般使用情况为一个 animated.value 被应用到多个动画上。只要在属性里面设置好映射的值，就可以用一个动画变量来控制他们了。
 
 ### 2 启用原生动画驱动
 
