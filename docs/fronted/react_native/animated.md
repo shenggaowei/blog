@@ -104,6 +104,7 @@ interpolate 一般使用情况为一个 animated.value 被应用到多个动画�
 
 stagger 函数会在指定的延迟时间后执行动画，但是也有可能会同时执行动画
 笔者测试，当时间设置为800ms时，前两个动画会同时进行。当设置为2000ms时，会按照延迟时间一个一个的进行。
+
 ```jsx
 import React from 'react';
 import { View, Animated, StyleSheet, Easing } from 'react-native';
@@ -198,6 +199,76 @@ export default class extends React.PureComponent {
     );
   }
 }
+
+```
+
+手势跟随动画
+
+通过 animated.event 进行手势的跟随，panresponder 手势识别系统
+```jsx
+import React, { Component } from 'react';
+import { Animated, View, StyleSheet, PanResponder, Text } from 'react-native';
+
+export default class App extends Component {
+  pan = new Animated.ValueXY()
+
+  panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      console.log('手势开始了呀呀呀');
+      // 用户开始点击手势时的事件触发
+      this.pan.setOffset({
+        x: this.pan.x._value,
+        y: this.pan.y._value
+      });
+    },
+    // 手势移动 event 执行映射
+    onPanResponderMove: Animated.event([
+      null,
+      { dx: this.pan.x, dy: this.pan.y }
+    ]),
+    // 用户手势松开
+    onPanResponderRelease: () => {
+      console.log('手势结束了');
+      this.pan.flattenOffset();
+    }
+  });
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titleText}>Drag this box!</Text>
+        <Animated.View
+          style={{
+            transform: [{ translateX: this.pan.x }, { translateY: this.pan.y }]
+          }}
+          {...this.panResponder.panHandlers}
+        >
+          <View style={styles.box} />
+        </Animated.View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  titleText: {
+    fontSize: 14,
+    lineHeight: 24,
+    fontWeight: 'bold'
+  },
+  box: {
+    height: 150,
+    width: 150,
+    backgroundColor: 'blue',
+    borderRadius: 5
+  }
+});
 
 ```
 
