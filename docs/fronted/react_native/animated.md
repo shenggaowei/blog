@@ -2,18 +2,275 @@
 
 Animated旨在以声明的形式来定义动画的输入与输出，在其中建立一个可配置的变化函数，然后使用start/stop方法来控制动画按顺序执行。
 
-用法： 将animated.value的数值映射到动画组件的属性中。
-
-
-## 注意点
-1. 只对非布局的样式有用，像transform和opacity，flexbox和position属性不会。
-2. animated.event,它只直接工作与直接的事件并且不会作用域冒泡事件。这意味着PanResponder不会有效果，但是会工作与scrollview的onscroll事件
-3. 当动画在运行的时候，它会阻止列表组件的渲染。当用户在滚动滚动条时需要运行一个长并且循环的动画，可以设置 isInteraction: false 在animation的config属性中
-4. 当运行rotateY, rotateX以及一些其他的transform属性的时候，需要添加perspective属性。
-
 ### 1 动画的使用
+1. 使用基本的 animated 组件，如 animated.View 组件或者自定义的动画组件。（重要，否则自己就算瞪大眼睛看动画配置信息，也不会发现问题）
+2. 使用 animated.value 初始化一个或者多个动画值。
+3. 将初始动画值绑定到目标动画的属性上。
+4. 通过 Animated.timing 等函数设定动画参数。
+5. 通过 start 函数开启动画。（重要，否则动画开不了）。
 
-start 启动动画。回调函数判断动画是否完成
+
+```jsx
+import React from 'react';
+import { View, Animated, StyleSheet, Easing } from 'react-native';
+
+const styles = StyleSheet.create({
+  box: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  container: {
+    backgroundColor: 'orange',
+    width: 200,
+    height: 50
+  },
+  text: {
+    fontSize: 30,
+    textAlign: 'center',
+    lineHeight: 50
+  }
+});
+
+export default class extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fadeInOpacity: new Animated.Value(0),
+      rotation: new Animated.Value(0),
+      fontSize: new Animated.Value(0)
+    };
+  }
+
+  componentDidMount() {
+    const properties = ['rotation', 'fontSize', 'fadeInOpacity'];
+    Animated.parallel(
+      properties.map((property) => {
+        return Animated.timing(this.state[property], {
+          toValue: 1,
+          duration: 1000,
+          easing: Easing.linear,
+          useNativeDriver: property !== 'fontSize'
+        });
+      })
+    ).start();
+  }
+
+  render() {
+    const { fadeInOpacity, rotation, fontSize } = this.state;
+    return (
+      <View style={styles.box}>
+        <Animated.View
+          style={
+          [
+            styles.container,
+            {
+              opacity: fadeInOpacity,
+              transform: [
+                {
+                  rotateZ: rotation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0deg', '360deg']
+                  })
+                }
+              ]
+            }
+          ]
+        }
+        >
+          <Animated.Text style={
+          [
+            styles.text,
+            {
+              fontSize: fontSize.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 30]
+              })
+            }
+          ]
+        }
+          >
+            我是升高啊
+          </Animated.Text>
+        </Animated.View>
+      </View>
+    );
+  }
+}
+
+```
+interpolate 为强大的插值运算函数，当动画数值被 setValue(0.5) 时，对于以上代码的输出 ['0deg', '360deg'], 会被映射到 180deg。当然支持，多区段映射。
+interpolate 一般使用情况为一个 animated.value 被应用到多个动画上。只要在属性里面设置好映射的值，就可以用一个动画变量来控制他们了。
+
+stagger 函数会在指定的延迟时间后执行动画，但是也有可能会同时执行动画
+笔者测试，当时间设置为800ms时，前两个动画会同时进行。当设置为2000ms时，会按照延迟时间一个一个的进行。
+
+```jsx
+import React from 'react';
+import { View, Animated, StyleSheet, Easing } from 'react-native';
+
+const styles = StyleSheet.create({
+  box: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  list: {
+    width: 100,
+    height: 50,
+    marginBottom: 50,
+    transform: [
+      {
+        translateX: 0
+      }
+    ]
+  },
+  list1: {
+    backgroundColor: 'orange'
+  },
+  list2: {
+    backgroundColor: 'purple'
+  },
+  list3: {
+    backgroundColor: 'pink'
+  }
+});
+
+export default class extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      anims: [1, 2, 3].map(() => new Animated.Value(0))
+    };
+  }
+
+  componentDidMount() {
+    const { anims } = this.state;
+    // stagger 会在指定的延迟时间后执行，其中的多个动画可能会同时执行。
+    Animated.loop(
+      Animated.stagger(800,
+        anims.map((anim) => {
+          return Animated.timing(anim, {
+            toValue: 1,
+            easing: Easing.linear,
+            useNativeDriver: true
+          });
+        }).concat(
+          anims.map((anim) => {
+            return Animated.timing(anim, {
+              toValue: 0,
+              easing: Easing.linear,
+              useNativeDriver: true
+            });
+          }).reverse()
+        )
+      )
+    ).start();
+  }
+
+  render() {
+    return (
+      <View style={styles.box}>
+        {
+          this.state.anims.map((anim, index) => {
+            return (
+              <Animated.View
+                style={
+                  [
+                    styles.list,
+                    styles[`list${index + 1}`],
+                    {
+                      transform: [
+                        {
+                          translateX: anim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 80],
+                          })
+                        }
+                      ]
+                    }
+                  ]
+              }
+              />
+            );
+          })
+        }
+      </View>
+    );
+  }
+}
+
+```
+
+手势跟随动画
+
+通过 animated.event 进行手势的跟随，panresponder 手势识别系统
+```jsx
+import React, { Component } from 'react';
+import { Animated, View, StyleSheet, PanResponder, Text } from 'react-native';
+
+export default class App extends Component {
+  pan = new Animated.ValueXY()
+
+  panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      console.log('手势开始了呀呀呀');
+      // 用户开始点击手势时的事件触发
+      this.pan.setOffset({
+        x: this.pan.x._value,
+        y: this.pan.y._value
+      });
+    },
+    // 手势移动 event 执行映射
+    onPanResponderMove: Animated.event([
+      null,
+      { dx: this.pan.x, dy: this.pan.y }
+    ]),
+    // 用户手势松开
+    onPanResponderRelease: () => {
+      console.log('手势结束了');
+      this.pan.flattenOffset();
+    }
+  });
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titleText}>Drag this box!</Text>
+        <Animated.View
+          style={{
+            transform: [{ translateX: this.pan.x }, { translateY: this.pan.y }]
+          }}
+          {...this.panResponder.panHandlers}
+        >
+          <View style={styles.box} />
+        </Animated.View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  titleText: {
+    fontSize: 14,
+    lineHeight: 24,
+    fontWeight: 'bold'
+  },
+  box: {
+    height: 150,
+    width: 150,
+    backgroundColor: 'blue',
+    borderRadius: 5
+  }
+});
+
+```
 
 ### 2 启用原生动画驱动
 
@@ -21,6 +278,8 @@ start 启动动画。回调函数判断动画是否完成
 
 注意点：
 1. 动画值在不同的驱动方式之间是不能兼容的。因此如果你在某个动画中启用了原生驱动，那么所有和此动画依赖相同动画值的其他动画也必须启用原生驱动。
+2. 只适用于一些和布局无关的属性，像 transform 和 opacity。不支持作用于 position 的坐标属性。应用会报错提示。
+   1. 位移运动通过 transform 来实现，不要通过 position，position 无法启动原声动画驱动，动画运行会有些许卡顿。
 
 ### 3 自定义动画组件
 
@@ -84,7 +343,7 @@ f(x)为定义在区间 [a,b]上的函数。为[a,b]上n个互不相同的点， 
 
 用法：这是通过结构化映射语法完成的，以便可以从复杂的事件对象中提取值。
 
-例如，在使用水平滚动手势时，为了将event.nativeEvent.contentOffset.x映射到scrollX（Animated.Value)
+例如，在使用水平滚动手势时，为了将 event.nativeEvent.contentOffset.x 映射到 scrollX（Animated.Value),然后调用 scrollX 的 setValue 方法
 ```js
  onScroll={Animated.event(
    // scrollX = e.nativeEvent.contentOffset.x
@@ -102,3 +361,5 @@ f(x)为定义在区间 [a,b]上的函数。为[a,b]上n个互不相同的点， 
 spring.stopAnimation(callback) 动画结束后调用，方便处理手势动画
 spring.addListener(callback) 动画执行过程中持续调用 （谨慎使用，未来可能会有性能问题）
 ```
+
+### us
