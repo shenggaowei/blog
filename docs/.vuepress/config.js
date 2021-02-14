@@ -6,8 +6,8 @@ const node = require('./catalog/backend/node');
 const pm2 = require('./catalog/backend/pm2');
 const nginx = require('./catalog/backend/nginx');
 const tool = require('./catalog/tool/vim');
-
-
+const note = require('./catalog/read_travel/note');
+const travel = require('./catalog/read_travel/travel')
 
 module.exports = {
   title: '大芒果',
@@ -23,14 +23,14 @@ module.exports = {
       { text: '前端', link: '/fronted/' },
       { text: '后端', link: '/backend/' },
       {
-        text: '计算机',
-        ariaLabel: 'Language Menu',
-        items: [
-          { text: '计算机组成原理', link: '/language/chinese/' },
-          { text: '操作系统', link: '/language/japanese/' }
-        ]
+        text: '读书&旅行',
+        link: '/note/'
       },
       { text: '工具', link: '/tool/' },
+      {
+        text: '计算机',
+        link: '/computer'
+      },
 
     ],
     sidebar: {
@@ -68,13 +68,23 @@ module.exports = {
 
       ],
       '/tool/': [
-         {
+        {
           title: 'vim',
           children: tool
-          }
-       ]
+        }
+      ],
+      '/note/': [
+        {
+          title: '读书笔记',
+          children: note
+        },
+        {
+          title: '旅行游记',
+          children: travel
+        }
+      ],
     },
     sidebarDepth: 0
   },
-    base: '/blog/'
+  base: '/blog/'
 }
