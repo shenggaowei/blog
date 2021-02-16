@@ -1,6 +1,7 @@
 const css = require('./catalog/fronted/css');
 const js = require('./catalog/fronted/js');
 const rn = require('./catalog/fronted/rn');
+const h5 = require('./catalog/fronted/h5');
 const webpack = require('./catalog/fronted/webpack');
 const node = require('./catalog/backend/node');
 const pm2 = require('./catalog/backend/pm2');
@@ -65,7 +66,10 @@ module.exports = {
           title: 'react-native',
           children: rn
         },
-
+        {
+          title: 'h5',
+          children: h5
+        },
       ],
       '/tool/': [
         {
