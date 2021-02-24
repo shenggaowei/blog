@@ -9,7 +9,7 @@ Animated旨在以声明的形式来定义动画的输入与输出，在其中建
 4. 通过 Animated.timing 等函数设定动画参数。
 5. 通过 start 函数开启动画。（重要，否则动画开不了）。
 
-animated.value 可以定义一个动画值。如果需要实现类似元素的坐标变化等需求，可使用 animated.valueXY 进行初始化。
+animated.Value 可以定义一个动画值。如果需要实现类似元素的坐标变化等需求，可使用 animated.ValueXY 进行初始化。
 
 ### 1.1 自定义动画组件
 
