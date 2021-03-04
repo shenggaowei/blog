@@ -1,7 +1,18 @@
 # nginx基础
 
+## 概述
+
+### nginx 配置文件位置
+
+``` shell
+/usr/local/nginx/conf,
+/etc/nginx,
+/usr/local/etc/nginx
+```
+
 ## 1 常用语法
-```shell
+
+``` shell
 # 格式
 nginx -s reload
 
