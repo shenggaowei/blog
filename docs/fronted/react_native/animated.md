@@ -50,7 +50,29 @@ interpolate 所支持的功能
 1. 支持自定义多区间段落，常用来定义静止区间。
 2. 支持映射到字符串。（角度的变化，例如: '90deg'）
 3. 支持渐变函数
-### 2 stagger
+
+### 2 loop
+
+> 无限循环一个指定的动画，从头到尾周而复始。如果此循环的子动画设置了useNativeDriver: true则不会阻塞 JS 线程的执行。
+
+#### 问题 如果不用 loop,该如何实现一个 loop 函数呢？
+
+思路：当一次动画完成之后，在回调函数中再次执行动画函数。
+
+```js
+  function loop() {
+    const animatedValue = new Animated.Value(5);
+    Animated.timing(animatedValue, {
+      toValue: 10,
+      easing: Easing.linear,
+      duration: 1000,
+      useNativeDriver: true
+    }).start((finished) => {
+      finished && loop();
+    });
+  }
+```
+### 3 stagger
 
 stagger 函数会在指定的延迟时间后执行动画，但是也有可能会同时执行动画。
 笔者测试，当时间设置为800ms时，前两个动画会同时进行。当设置为2000ms时，会按照延迟时间一个一个的进行。
@@ -328,3 +350,9 @@ const styles = StyleSheet.create({
 注意点：
 1. 动画值在不同的驱动方式之间是不能兼容的。因此如果你在某个动画中启用了原生驱动，那么所有和此动画依赖相同动画值的其他动画也必须启用原生驱动。
 2. 只适用于一些和布局无关的属性，像 transform 和 opacity。不支持作用于 position 的坐标属性。应用会报错提示。所以，位移运动应该尽量通过 transform 来实现，因为它可以通过启用原声动画驱动来提高动画性能。
+
+## 问题
+
+### 1 如何阻止动画的执行？
+
+通过在动画值上调用 start 方法，可以开启一个动画。同理，通过在动画值上调用 stop 方法，可停止当前这个动画。
