@@ -8,7 +8,8 @@ const pm2 = require('./catalog/backend/pm2');
 const nginx = require('./catalog/backend/nginx');
 const tool = require('./catalog/tool/vim');
 const note = require('./catalog/read_travel/note');
-const travel = require('./catalog/read_travel/travel')
+const travel = require('./catalog/read_travel/travel');
+const data_struct = require('./catalog/science/data_struct');
 
 module.exports = {
   title: '大芒果',
@@ -30,7 +31,10 @@ module.exports = {
       { text: '工具', link: '/tool/' },
       {
         text: '计算机',
-        link: '/computer'
+        link: '/science/',
+        items: [
+          { text: '数据结构与算法', link: '/science/data_struct/' },
+        ]
       },
 
     ],
@@ -86,6 +90,12 @@ module.exports = {
           title: '旅行游记',
           children: travel
         }
+      ],
+      '/science/': [
+        {
+          title: '数据结构与算法',
+          children: data_struct
+        },
       ],
     },
     sidebarDepth: 0
