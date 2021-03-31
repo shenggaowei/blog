@@ -18,7 +18,7 @@ export default {
       owner: "shenggaogao",
       admin: ["shenggaogao"],
       labels: ["gittalk"],
-      id: location.href.slice(0, 30),
+      id: location.pathname.slice(0, 50),
       name: "大芒果的博客",
     };
     const gitalk = new Gitalk(commentConfig);
