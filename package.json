@@ -1,5 +1,5 @@
 {
-  "homepage": "https://bestshenggao.github.io/blog",
+  "homepage": "https://shengaogao.github.io/blog",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
