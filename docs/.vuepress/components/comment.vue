@@ -17,8 +17,9 @@ export default {
       repo: "blog",
       owner: "shenggaogao",
       admin: ["shenggaogao"],
-      id: window.location.pathname,
-      title: location.pathname,
+      labels: ["gittalk"],
+      id: Math.random() * 100 + "",
+      name: "大芒果的博客",
     };
     const gitalk = new Gitalk(commentConfig);
     gitalk.render("gitalk-container");
