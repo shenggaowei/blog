@@ -29,7 +29,7 @@ export default {
       repo: "blog",
       owner: "shenggaogao",
       admin: ["shenggaogao"],
-      labels: ["gittalk", title.replace(/\s+/g, "")],
+      labels: ["gittalk"],
       id: title.replace(/\s+/g, ""),
       name: "大芒果的博客",
     };
