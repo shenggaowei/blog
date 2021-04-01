@@ -3,7 +3,7 @@
     <slot name="top" />
     <div class="theme-default-content">
       <Content />
-      <Comment />
+      <Comment v-if="ifShowComment" />
     </div>
     <PageEdit />
     <PageNav v-bind="{ sidebarItems }" />
@@ -17,8 +17,33 @@ import PageNav from "@parent-theme/components/PageNav.vue";
 import Comment from "@theme/components/comment.vue";
 
 export default {
+  data() {
+    return {
+      ifShowComment: false,
+    };
+  },
   components: { PageEdit, PageNav, Comment },
   props: ["sidebarItems"],
+  methods: {
+    showComment(path) {
+      const noShowPage = ["/"];
+      this.ifShowComment = noShowPage.indexOf(path) === -1;
+    },
+  },
+  watch: {
+    $route(value) {
+      const { path } = this.$page;
+      this.ifShowComment = false;
+      // comment需要先卸载再加载，才会重新刷新
+      setTimeout(() => {
+        this.showComment(path);
+      }, 500);
+    },
+  },
+  mounted() {
+    const { path } = this.$page;
+    this.showComment(path);
+  },
 };
 </script>
 
