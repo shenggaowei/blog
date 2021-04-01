@@ -1,8 +1,10 @@
 <template>
   <main class="page">
     <slot name="top" />
-    <Content class="theme-default-content" />
-    <Comment />
+    <div class="theme-default-content">
+      <Content />
+      <Comment />
+    </div>
     <PageEdit />
     <PageNav v-bind="{ sidebarItems }" />
     <slot name="bottom" />
