@@ -88,5 +88,3 @@
   + v motion :w filename 可将当前可视模式下选中的内容保存到文件 filename 中
   + :r filename 可将 filename 文件的内容提取出来并插入到当前文件的光标位置的后面
   + :r !ls 可以读取 ls 命令的输入并将其放置到当前文件的光标后面
-
-<comment />
