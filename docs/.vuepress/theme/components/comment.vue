@@ -23,10 +23,6 @@ export default {
   },
   mounted() {
     const { title = "", path } = this.$page;
-    const ifShowComment = this.showComment(path);
-    if (!ifShowComment) {
-      return;
-    }
     const commentConfig = {
       clientID: "1b4d138c1587ac0bc41d",
       clientSecret: "4fd806e27db852913534fe03b83cd58644ecd609",
@@ -39,6 +35,7 @@ export default {
     };
     const gitalk = new Gitalk(commentConfig);
     gitalk.render("gitalk-container");
+    this.showComment(path);
   },
   methods: {
     showComment(path) {
