@@ -18,6 +18,7 @@ export default {
   },
   methods: {
     initGitTalk() {
+      const { title = "" } = this.$page;
       const commentConfig = {
         clientID: "1b4d138c1587ac0bc41d",
         clientSecret: "4fd806e27db852913534fe03b83cd58644ecd609",
