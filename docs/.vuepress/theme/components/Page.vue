@@ -26,8 +26,9 @@ export default {
   props: ["sidebarItems"],
   methods: {
     showComment(path) {
-      const noShowPage = ["/"];
-      this.ifShowComment = noShowPage.indexOf(path) === -1;
+      const reg = /\.html$/;
+      const showComment = reg.test(path);
+      this.ifShowComment = showComment;
     },
   },
   watch: {
