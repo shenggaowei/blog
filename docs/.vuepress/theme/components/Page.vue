@@ -14,7 +14,7 @@
 <script>
 import PageEdit from "@parent-theme/components/PageEdit.vue";
 import PageNav from "@parent-theme/components/PageNav.vue";
-import { Comment } from "@vuepress/plugin-blog/lib/client/components";
+import Comment from "@theme/components/comment.vue";
 
 export default {
   data() {

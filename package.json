@@ -6,9 +6,9 @@
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
-    "@vuepress/plugin-blog": "^1.9.4",
     "@vuepress/plugin-medium-zoom": "^1.8.2",
     "@vuepress/plugin-nprogress": "^1.8.2",
+    "gitalk": "^1.7.2",
     "github-webhook-handler": "^1.0.0",
     "vuepress": "^1.5.2",
     "vuepress-plugin-reading-progress": "^1.0.10"
