@@ -33,6 +33,5 @@ function getType(data) {
 }
 ```
 
-### constructor![vim](/Users/weishenggao/Desktop/vim.png
+### constructor
 > 判断实例的直接构造函数属性。适用于原生构造函数或者开发人员自定义的构造函数。
-
