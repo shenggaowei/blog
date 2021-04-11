@@ -1,6 +1,6 @@
-# c loneDeep 
+# cloneDeep 
 
-```js
+``` js
 function getType(data) {
     return Object.prototype.toString.call(data).slice(8, -1);
 }
@@ -25,7 +25,13 @@ function cloneDeep(data) {
     }
 }
 
-let a = { a: 2, b: { c: 3 }, d: [1, 2, 3] }
+let a = {
+    a: 2,
+    b: {
+        c: 3
+    },
+    d: [1, 2, 3]
+}
 let b = cloneDeep(a);
 console.log(a, b);
 a.b.c = 4;

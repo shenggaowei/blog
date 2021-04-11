@@ -11,7 +11,7 @@ node 版本管理工具还有一个是 TJ大神的 n 命令，n 命令是作为�
 ### OS X/Linux 安装
 * 可以用 X-Code 的命令行工具 xcode-select --install
 * 远程下载 install.sh 脚本并执行。
- 
+
  ```shell
  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
  ```

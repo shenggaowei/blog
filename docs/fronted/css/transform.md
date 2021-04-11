@@ -1,4 +1,5 @@
-## transform 变形
+# transform变形
+
 > 所有变形都是相对元素自己的参照系实施的。
 
 1. 变形函数一次只处理一个，从第一个开始，到最后一个结束。
@@ -8,11 +9,12 @@
 4. 针对同一个元素，同时设置了两次变形函数，是不会叠加的。
 
 ### 平移函数 translate
+
 * translateX(x) 正值向左 负值向右
 * translateY(y) 正值向下 负值向上
 * translateZ(z) 正值向前 负值向后
-* translate(x,y)
-* translate3d(x,y,z)
+* translate(x, y)
+* translate3d(x, y, z)
 
 1. translateX 和 translateY 被称为 2D 平移函数。
 2. 函数的取值和单位
@@ -25,12 +27,14 @@
     2. translate3d 函数参数少于三个，没有默认值，浏览器会将函数视为无效。
 
     
+
 ### 缩放函数 scale
+
 * scaleX(a) 宽度 * a
 * scaleY(a) 高度 * a 
 * scaleZ(a)
-* scale(a,a)
-* scale3d(a,a,a)
+* scale(a, a)
+* scale3d(a, a, a)
 
 1. 函数参数是无单位的实数。而且始终未整数。**不能使用百分比**
 2. scale 接收两个参数，如果只传一个参数，默认指在 x 和 y 缩放同样的比列。
@@ -38,6 +42,7 @@
 4. scale3d 的三个数必须是有效的。如若不然，无效的 scale3d 将导致所属的整个变形值无效。
 
 ### 旋转函数 rotate
+
 * rotate()
 * rotateX(11deg) 绕着 x 轴顺时针旋转 11 度 
 * rotateY() 绕着 y 轴旋转
@@ -46,7 +51,9 @@
 1. 函数的参数都接受一个值，即角度。角度值以一个数字（可正可负）和一个有效的角度单位（deg，grad,rad和turn）表示。如果数字超出了相应单位的常规范围，将化为有效范围的值。
 
 ### 倾斜函数 skew
+
 将函数沿着 X 轴和 Y 轴倾斜元素。
+
 * skewX()
 * skewY()
 * skew()
@@ -54,17 +61,22 @@
 1. 函数的参数都接受一个值，即角度。
 
 ### 视域函数 perspective
+
 1. 值必须是整数。
+
     值越小，相当于距离物体越近，就像在元素跟前通过鱼眼镜头看一样。
        值越大，看到的越广，就像从远处通过变焦镜头看元素一样。
+
 2. perspective 函数必须放到首位。
 
 ### 矩阵函数 matrix
 
 ## 修改视域
+
 perspective 属性与 perspective() 函数之间重要的区别，前者创建的 3d 空间为所有子元素共有，而后者只针对目标元素有效。而且，为了让 3d 空间中的变形有视觉效果，要把 perspective（） 函数放在函数列表的开头或前部。
 
 ## 处理背面
+
 backface-visibility: visible | hidden
 使用场景：翻转效果。当使用 rotate 函数进行 180 度大翻转时，会看到所翻转元素的背面。设置为 hidden 可以让元素的背面朝向我们时不渲染背面。
-**需要给元素或其父元素添加属性 transform-style: preserve-3d;否则看不见效果**
+**需要给元素或其父元素添加属性 transform-style: preserve-3d; 否则看不见效果**

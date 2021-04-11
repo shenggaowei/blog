@@ -1,6 +1,9 @@
 # 修改元素的显示方式
+
 ## 块级框
+
 ### **box-sizing : content-box (默认) | padding-box | border-box; 适用于能设定width和height的所有元素。**
+
 1. content-box
     1. content = width
 2. border-box 
@@ -8,32 +11,35 @@
 3. padding-box
 
 ### **常规流动方式下块级框各组成部分的横向尺寸始终等于容纳框的宽度**
+
     1. 块级框的宽度始终等于容纳块的宽度。
 
 ### **横向格式化属性**
+
 margin width 可设置为auto
 border padding 只能设置具体值或者默认 0
 
 ### **使用auto**
 
-```html
+``` html
     <style>
-      div {
-        width: 500px;
-      }
-      p {
-        margin-left: 100px;
-        margin-right: 100px;
-        width: 100px;
-        background: orange;
-        height: 30px
-      }
+        div {
+            width: 500px;
+        }
+
+        p {
+            margin-left: 100px;
+            margin-right: 100px;
+            width: 100px;
+            background: orange;
+            height: 30px
+        }
     </style>
-    
+
     <body>
-      <div>
-        <p></p>
-      </div>
+        <div>
+            <p></p>
+        </div>
     </body>
 ```
 
@@ -51,62 +57,78 @@ border padding 只能设置具体值或者默认 0
 可利用此特点设置两边定宽，中间自适应居中的布局。
 
 ### **负外边距**
+
 设置父外边距后，需要满足公式。
-marginLeft + borderLeft + paddingLeft + width + paddingRight + borderRight + marginRight = ParentWidth;
+marginLeft + borderLeft + paddingLeft + width + paddingRight + borderRight + marginRight = ParentWidth; 
 结果:
+
 1. 会造成子元素比父元素宽。
 2. 如果子元素 width >父元素 width，margin 为 auto 的一边会形成负值。
 
 ### **百分数**
+
 宽度，内边距和外边距设置为百分数时，上述规则仍然适用。其百分比为容纳块的百分比。
 注意：
+
 1. 边框不接受百分数，只能为长度值。因为只使用百分数无法创建完全弹性的元素，除非不添加边框，或者使用某种实验性的方案，例如弹性布局。
 
 ### **置换元素**
+
 width 为 auto 时，置换元素的宽度为内容自身的宽度。
 如果置换元素的宽度与自身宽度不同，height 的值会按照自身比例进行变化，除非明确设定 height 的值。反之亦然。
 
 ### **纵向格式化** 
+
 * 元素的内容决定元素的默认高度
 * 如果元素的内容比框体高，浏览器的具体行为取决为 overflow 属性。
-* height 默认定义内容区的高度，而不是元素框可见区域的高度。元素框的 padding、border、margin在高度的基础上增加,除非 box-sizing 的属性值不是 content-box。
+* height 默认定义内容区的高度，而不是元素框可见区域的高度。元素框的 padding、border、margin在高度的基础上增加, 除非 box-sizing 的属性值不是 content-box。
 
 ### **纵向格式化属性**
->  与横向格式化一样，纵向格式化设计七个属性：margin-top、border-top、padding-top、height、padding-bottom、border-bottom 和margin-bottom。
+
+> 与横向格式化一样，纵向格式化设计七个属性：margin-top、border-top、padding-top、height、padding-bottom、border-bottom 和margin-bottom。
 
 * 这七个属性的值加在一起必须等于块级框的高度。通常，**这是块级框父元素的height值（因为块级元素的父元素几乎都是块级元素）**
 * 元素的高度和上下外边距可设置为 auto。其他必须设置具体的值，否则取默认值0（假设没声明边框样式）。
-* 在常规流动模式下，margin-top 和 margin-bottom 设为 auto,二者都自动计算为 0。所以，常规流动模式下的元素无法轻易在容纳块中纵向居中。
-* height 的属性要么设置为 auto,要么设为某种类型的非负值。
+* 在常规流动模式下，margin-top 和 margin-bottom 设为 auto, 二者都自动计算为 0。所以，常规流动模式下的元素无法轻易在容纳块中纵向居中。
+* height 的属性要么设置为 auto, 要么设为某种类型的非负值。
 
 ### **百分数高度**
+
 * 常规流动下，如果把块级框的高度设置为百分数，百分数是相对框体的容纳快的高度而言的。
 * 常规流动下，如果未明确声明容纳块的高度，那么子元素百分数高度将被重置为 auto。
 
 ### **自动调整高度**
+
 常规流动模式下，声明 height:auto 的块级框是最简单的，此时，框体的高度恰好能放得下里面的内容。
+
 * 常规模式下的块级框如果高度是自动调整的，而且子代都是块级元素，那么默认高度是从最上面的那个块级子元素的 border-top 至最下面的那个块级子元素的 border-bottom 之间的距离。margin 是在父元素的外部。
-* 常规流动模式下，如果父块级元素有 padding-top 或者 padding-bottom,或者 border-top 或者 border-bottom。那么其父元素的高度是最上面子元素的 margin-top 到最下面子元素的 margin-bottom 之间的距离。
+* 常规流动模式下，如果父块级元素有 padding-top 或者 padding-bottom, 或者 border-top 或者 border-bottom。那么其父元素的高度是最上面子元素的 margin-top 到最下面子元素的 margin-bottom 之间的距离。
 
 ### **折叠纵向外边距**
+
 > 纵向格式化的另一个重要特征是，相邻的纵向外边距 margin 会折叠。padding 和 border 绝不与任何区域折叠或者重叠。
 > 即较小的外边距会被较大的外边距抵消。
 
 发生折叠的情况：
+
 1. 相邻子元素的 margin-top 和 margin-bottom
 2. 父元素的 margin-top 和第一个子元素的 margin-top
 3. 父元素的 margin-bottom 和最后一个子元素的 margin-bottom
 
 ### **负外边距和折叠**
+
 * 如果两个相邻的外边距都是负值，浏览器取其中绝对值较大的那个，然后从正边距中减去他的绝对值。
 
 ### **列表项目**
+
 > 列表项如 li 前面通常有个记号，例如小圆点或者数字，但这个记号通常不在列表项目的内容区域中。
 
 list-style-position : 记号的位置。可放在内容区的外部、行间内容或者内容区的开头。不管如何调整列表的样式，记号与内容区间之间的距离始终不变。有时，记号甚至可能超出列表元素本身
 
 # 行内元素
+
 基本概念
+
 1. 匿名文本 不在任何行内元素中的字符串。
 2. 字体框 font-size
 3. 内容区 
@@ -119,17 +141,23 @@ list-style-position : 记号的位置。可放在内容区的外部、行间内�
 6. 行框 过一行中各个行内框最高点和最低点的方框。
 
 ### 行内格式化
+
 不管有没有显示声明，所有元素都有 line-height 值。这个值很大程度上影响着行内元素的显示。
+
 * 一行的高度（行框的高度）由其内部的元素及其他内容（例如文本）的高度决定。注意，line-height 影响行内元素和其他内容，**但不影响块级元素**，至少没有直接影响。块级元素可以设置 line-height 值，但是只对块级元素中的行内内容有视觉影响。
-* 行内元素（内联元素）居中不能用 margin:0 auto,内联元素可以想象成文本元素。文本元素的居中需要 text-align:center
+* 行内元素（内联元素）居中不能用 margin:0 auto, 内联元素可以想象成文本元素。文本元素的居中需要 text-align:center
+
 > 根据 css 规范，为块级元素设置 line-height 值的作用是为块级元素中的内容设定行框的最小高度。
 
 ### 行内非置换元素
+
 行框 : 字体框 +  行距 即：line-height
-浏览器会将 line-height 与 font-size 的差值除以2，分别添加到内容区的上部和下部。**如果 font-size 大于 line-height,则内容会叠加到其他行框上，最终结果会使文本显得不太协调**
+浏览器会将 line-height 与 font-size 的差值除以2，分别添加到内容区的上部和下部。**如果 font-size 大于 line-height, 则内容会叠加到其他行框上，最终结果会使文本显得不太协调**
 
 ### 纵向对齐方式
+
 > vertical-align:
+
 * top 元素的行内框的顶边与所在行框的顶边对齐
 * bottom 元素行内框的底边与所在行框的底边对齐
 * text-top 元素行内框的顶边与父元素内容区的顶边对齐
@@ -137,27 +165,37 @@ list-style-position : 记号的位置。可放在内容区的外部、行间内�
 * middle 元素行内框的纵向中点与父元素基线以上 0.5ex 处的点对齐
 * super 向上移动元素的内容区和行内框无法指定移动距离，不同的浏览器之间可能有区别
 * sub 与 super 类似，只不过是向下移动
-* <percentage> 向上或者向下移动元素，移动的距离等于声明的百分数乘以元素的 line-height 值。
+* percentage 向上或者向下移动元素，移动的距离等于声明的百分数乘以元素的 line-height 值。
 
 ### 控制行高
+
 line-height 是相对与字体 font-size 的值，与父元素无关，并且子类可继承。
+
 1. 为字号有变化的元素设定单位为 em 的行高。
 2. 增加段落的 line-height 值，以让段落中的每一行都受影响。
 
 ### 基线与行高
+
 字体框中基线的位置在每个字体中不尽相同。这个信息内置在字体文件中，除了直接编辑字体文件之外，无法修改。
 
 ### 按比例设置行高
+
 * 设定 line-height 值的最佳方式是使用纯数字。这是因为纯数字相当于比例因子，而这个因子能被继承，而不计算为具体值。
 
-```css
-body {line-height：1.5}
+``` css
+body {
+    line-height：1.5
+}
+
 文档中所有元素的 line-height 设为 font-size 的 1.5 倍
 ```
+
 * 设置 line-height 值为 1。让每个行内框的高度与内容区的高度相同，而这正好是内容区的最小高度。
 
 ### 加上盒模型属性
+
 如果将 padding、border 和 margin 都应用到行内非置换元素上，行内元素的这些属性并不影响行框的总体高度。
+
 * 边框的边界由 font-size 控制，不受 line-height 的影响。
 * padding 和 margin 也并不影响内容区的高度，因此也不影响元素行内框的高度。 
 
@@ -166,17 +204,23 @@ body {line-height：1.5}
 > css 2.1 明确指出，行框是按照文本出现在文档中的顺序绘制的：“这会导致后面行的边框出现在前面行的边框上。”同理，背景色也是这个道理，边框如果重叠，后面的会覆盖掉前面的。
 
 ### 改变断行行为
+
 > box-decoration-break 
+
 * slice 把一个行内非置换元素分成多行显示时，用户代理将其视为断成多块的一长行，没换一行就多一块。
 * clone 把元素各个片段视为单独的框。每个片段都是一个副本，单独应用 border、padding、background等。
 
 # 行内置换元素
+
 行内置换元素（例如图像）自身是有高度和宽度的。**置换元素的行内框包含整个元素，包括内容、外边距、边框和内边距。**
 vertical-align 属性的百分值是相对于元素的 line-height 计算的。
 
 ### 加上盒模型属性
+
 行内置换元素的内边距、边框和外边距会增加行内框的高度。
+
     1. 正外边距就是增加置换元素行内框的高度。与之相反，负外边距会减少元素行内框的高度。
 
 ### 置换元素与基线
+
 置换元素自身没有基线，退而求其次，把置换元素的行内框底边与基线对齐。因此，与基线对齐的其实是外边距的边界。

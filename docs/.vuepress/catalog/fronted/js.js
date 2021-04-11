@@ -16,7 +16,12 @@ const data = [
   'ts学习',
   '事件循环',
   'pwa',
-  'taro开发问题总结'
+  'taro开发问题总结',
+  'es5继承',
+  '跨浏览器事件对象',
+  '前端本地缓存概况之浏览器缓存策略',
+  'cloneDeep',
+  'js数据类型检测',
 ]
 
 module.exports = parsedArticleName(prefix, data);
