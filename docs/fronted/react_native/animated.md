@@ -1,16 +1,210 @@
 # Animated 动画
 
-Animated旨在以声明的形式来定义动画的输入与输出，在其中建立一个可配置的变化函数，然后使用start/stop方法来控制动画按顺序执行。
+Animated 旨在以声明的形式来定义动画的输入与输出，在其中建立一个可配置的变化函数，然后使用start/stop方法来控制动画按顺序执行。
+
+先举一个简单的例子，显隐动画。
+
+``` jsx
+import React, { useEffect, useRef } from "react";
+import { Animated, Text, View, StyleSheet } from "react-native";
+
+export default () => {
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    useEffect(() => {
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 5000
+        }).start();
+    }, []);
+    return <View style={styles.container}>
+        <Animated.View
+            style={[
+                styles.fadingContainer,
+                {
+                    opacity: fadeAnim
+                }
+            ]}
+        >
+            <Text style={styles.fadingText}>我出现了</Text>
+        </Animated.View>
+    </View>
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    fadingContainer: {
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        backgroundColor: "powderblue"
+    },
+    fadingText: {
+        fontSize: 28,
+        textAlign: "center",
+        margin: 10
+    },
+});
+```
+
+动画的优化
+
+``` jsx
+import React, { useEffect, useRef } from 'react';
+import { View, Animated, Easing, StyleSheet } from 'react-native';
+
+export default () => {
+    const animation = useRef(new Animated.Value(0)).current;
+    useEffect(() => {
+        Animated.timing(animation, {
+            toValue: 1,
+            duration: 1000,
+            easing: Easing.linear
+        }).start();
+    }, []);
+
+    return <View style={styles.container}>
+        <Animated.View style={
+            [
+                {
+                    opacity: animation,
+                    transform: [{
+                        rotateZ: animation.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: ['0deg', '720deg']
+                        })
+                    }]
+                }]}>
+            <Animated.Text style={{
+                fontSize: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [10, 24]
+                })
+            }}>
+                😄😄升高😄😄
+            </Animated.Text>
+        </Animated.View>
+    </View>
+}
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
+```
+
+``` jsx
+import React, { useEffect, useRef } from 'react';
+import { View, Animated, StyleSheet, Easing } from 'react-native';
+
+export default () => {
+    const animationArray = Array.from({ length: 3 }).map(() => new Animated.Value(0));
+    const animations = useRef(animationArray).current;
+    useEffect(() => {
+        Animated.sequence(
+            [
+                // 向右移动
+                ...animations.map(anim => {
+                    return Animated.timing(anim, {
+                        toValue: 1,
+                        duration: 600,
+                        easing: Easing.linear,
+                        useNativeDriver: true
+                    })
+                }),
+                // 延迟600毫秒
+                Animated.delay(600),
+                // 向左移动，返回原始状态
+                ...animations.map(anim => {
+                    return Animated.timing(anim, {
+                        toValue: 0,
+                        duration: 600,
+                        easing: Easing.linear,
+                        useNativeDriver: true
+                    })
+                }).reverse()
+            ]
+        ).start();
+    })
+
+    return (
+        <View style={styles.box}>
+            {
+                animations.map((anim, index) => {
+                    return (
+                        <Animated.View
+                            style={
+                                [
+                                    styles.list,
+                                    styles[`list${index + 1}`],
+                                    {
+                                        transform: [
+                                            {
+                                                translateX: anim.interpolate({
+                                                    inputRange: [0, 1],
+                                                    outputRange: [0, 80],
+                                                })
+                                            }
+                                        ],
+                                        opacity: anim.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: [1, 0.5]
+                                        })
+                                    }
+                                ]
+                            }
+                        />
+                    );
+                })
+            }
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    box: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    list: {
+        width: 100,
+        height: 50,
+        borderRadius: 15,
+        marginBottom: 5
+    },
+    list1: {
+        backgroundColor: 'orange'
+    },
+    list2: {
+        backgroundColor: 'purple'
+    },
+    list3: {
+        backgroundColor: 'pink'
+    }
+});
+```
 
 ## 1 动画的使用
 
-1. 使用基本的 Animated 组件，如 Animated.View 组件或者自定义的动画组件。（重要，否则自己就算瞪大眼睛看动画配置信息，也不会发现问题）。
-2. 使用 Animated.value 初始化一个或者多个动画值。
-3. 将初始动画值绑定到目标动画的属性上。
-4. 通过 Animated.timing 等函数设定动画参数。
-5. 通过 start 函数开启动画。（重要，否则动画开不了）。
+使用规则
 
-animated. Value 可以定义一个动画值。如果需要实现类似元素的坐标变化等需求，可使用 animated. ValueXY 进行初始化。
+1. 页面中需要动画的目标元素使用基本的 Animated 组件。如 Animated.View 组件或者自定义的动画组件。
+2. 使用 Animated.value 初始化一个或者多个动画值。
+3. 将步骤 2 的动画值绑定到目标动画的属性上。
+4. 通过动画函数设定动画参数。
+5. 通过 start 函数开启动画。
+
+### 动画组件
+
+animated. Value可以定义一个动画值。如果需要实现类似元素的坐标变化等需求，可使用 animated. ValueXY 进行初始化。
 
 ### 1.1 自定义动画组件
 
@@ -60,7 +254,7 @@ interpolate 所支持的功能
 
 > 无限循环一个指定的动画，从头到尾周而复始。如果此循环的子动画设置了useNativeDriver: true则不会阻塞 JS 线程的执行。
 
-#### 问题 如果不用 loop, 该如何实现一个 loop 函数呢？
+#### 如果不用 loop, 该如何实现一个 loop 函数呢？
 
 思路：当一次动画完成之后，在回调函数中再次执行动画函数。
 
