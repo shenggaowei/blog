@@ -29,7 +29,7 @@ export default () => {
             <View style={styles.button}>
                 <Text style={styles.text}>点我点我</Text>
             </View>
-            <Animated.Imag
+            <Animated.Image
                 source={require('./assets/hand.png')}
                 style={[
                     styles.image,
@@ -44,7 +44,7 @@ export default () => {
                         ],
                     }
                 ]}>
-            </Animated.Imag>
+            </Animated.Image>
         </View>
 
     );
