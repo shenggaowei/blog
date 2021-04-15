@@ -23,7 +23,7 @@ export default () => {
                     transform: [{
                         rotateZ: fadeAnim.interpolate({
                             inputRange: [0, 1],
-                            outputRange: ['0deg', '1806deg']
+                            outputRange: ['0deg', '360deg']
                         })
                     }]
                 }
