@@ -16,12 +16,8 @@ module.exports = {
     nav,
     sidebar,
     sidebarDepth: 0,
-    lastUpdated: 'Last Updated', 
+    lastUpdated: 'Last Updated',
     smoothScroll: true,
-    // algolia: {
-    //   apiKey: '25626fae796133dc1e734c6bcaaeac3c',
-    //   indexName: 'docsearch'
-    // }
   },
   configureWebpack,
   markdown: {
