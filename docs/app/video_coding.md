@@ -16,7 +16,7 @@ ISO/IEC 实际上是两个组织
 
 ITU-T与ISO/IEC两大组织在历史上究竟发生了什么有趣的事情呢？
 
-![编码标准历史](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2021/6/encoding-history.jpeg?Expires=1623171547&OSSAccessKeyId=TMP.3KfUK9nmoRFiWiT3XgUC1WZ81k7MFTd15ECvUH4GMKCHKGU8uaPHEvTQoxgaSL5Bzfw3wzKxavg8ExmSiyD6BhuLyr3GFU&Signature=Y%2FeTbz6j4L8WZzLkFfBlz9DNAtM%3D)
+![编码标准历史](../../assets/image/video/encoding-history.jpeg)
 
 一般认为，ITU-T的H.26x标准，主要应用于实时视频通信领域，如会议电视；ISO/IEC制定的MPEG系列标准，主要应用于视频存储(DVD)、广播电视、因特网或无线网上的流媒体等。
 
@@ -46,11 +46,20 @@ H.265旨在在有限带宽下传输更高质量的网络视频，仅需原先的
 
 ## h265 兼容性
 
-ios
+**ios**
 
 [在 Apple 设备上使用 HEIF 或 HEVC 媒体](https://support.apple.com/zh-cn/HT207022)
 
-1. 查看文档了解各个操作系统对 h.265 格式的兼容性
-2. 查看项目中播放器配置
-3. 判断当前播放器是否可以兼容最新的视频播放格式
-4. ffmpeg 基本用法
+![ios对h265兼容性](../../assets/image/video/ios对h265的兼容性.jpg)
+
+**安卓**
+
+[安卓音视频格式兼容性支持](https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn)
+
+![安卓h265兼容性](../../assets/image/video/h265安卓兼容性.jpg)
+
+## 测试效果
+
+用 ffmpeg 将 h.264视频转成 h.265 后，视频所占用的空间减小一半，但是清晰度，却几乎没有变化。
+
+![h265和h264大小对照](../../assets/image/video/h265和h264.jpg)
