@@ -4,7 +4,7 @@ React-native Animated 旨在以声明的形式来定义动画的输入与输出�
 
 ::: details 基础动画。opacity过度
 
-``` jsx
+```jsx
 import React, { useEffect, useRef } from "react";
 import { Animated, Text, View, StyleSheet } from "react-native";
 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
 ::: details interpolate(插值动画)。多个属性同时改变
 
-``` jsx
+```jsx
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, Easing, StyleSheet } from 'react-native';
 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 
 ::: details sequence(顺序执行动画)。目录淡入淡出
 
-``` jsx
+```jsx
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet, Easing } from 'react-native';
 
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
 
 ::: details loop(循环动画)。无限旋转。
 
-``` jsx
+```jsx
 // loop 循环动画
 import React, { useEffect, useRef } from "react";
 import { Animated, Text, View, StyleSheet, Easing } from "react-native";
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
 
 ::: details loop(循环动画)。提示点击动画
 
-``` jsx
+```jsx
 import React, { useEffect, useRef } from 'react';
 import { View, Text, Animated, StyleSheet, Easing } from 'react-native';
 
@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
 
 ::: details 手势跟踪动画。拖拽
 
-``` jsx
+```jsx
   import React, { useRef } from "react";
 import { Animated, View, StyleSheet, PanResponder } from "react-native";
 
@@ -436,7 +436,7 @@ Animated. Value 可以定义一个动画值。如果需要实现类似元素的�
 
 插值函数，允许输入范围映射到不同的输出范围。
 
-``` js
+```js
  // 例子
  style = {
      {
@@ -473,7 +473,7 @@ interpolate 所支持的功能
 
 思路：当一次动画完成之后，在回调函数中再次执行动画函数。
 
-``` js
+```js
   function loop() {
       const animatedValue = new Animated.Value(5);
       Animated.timing(animatedValue, {
