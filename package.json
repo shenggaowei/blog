@@ -1,5 +1,5 @@
 {
-  "homepage": "https://imshenggao.github.io/blog",
+  "homepage": "https://iswsg.github.io/blog",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
