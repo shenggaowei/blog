@@ -24,5 +24,4 @@ module.exports = {
     lineNumbers: false
   },
   plugins,
-  base: '/blog/'
 }
