@@ -3,7 +3,7 @@
     <slot name="top" />
     <div class="theme-default-content">
       <Content />
-      <Comment v-if="ifShowComment" />
+      <Comment v-if="false" />
     </div>
     <PageEdit />
     <PageNav v-bind="{ sidebarItems }" />
