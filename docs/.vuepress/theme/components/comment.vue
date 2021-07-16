@@ -27,7 +27,7 @@ export default {
         admin: ["shenggaogao"],
         labels: ["gittalk"],
         id: title.replace(/\s+/g, ""),
-        name: "大芒果的博客",
+        name: "升高的博客",
         createIssueManually: true,
       };
       const gitalk = new Gitalk(commentConfig);

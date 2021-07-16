@@ -5,8 +5,8 @@ const plugins = require('./utils/plugins');
 const { header } = require('./utils/constant');
 
 module.exports = {
-  title: '大芒果',
-  description: '大芒果的博客',
+  title: '升高',
+  description: '升高的博客',
   head: [
     ['link', { rel: 'icon', href: header }]
   ],
