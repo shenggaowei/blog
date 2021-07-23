@@ -1,4 +1,3 @@
-const sidebar = require('./utils/catalog');
 const nav = require('./utils/nav');
 const configureWebpack = require('./utils/webpack');
 const plugins = require('./utils/plugins');
@@ -14,7 +13,7 @@ module.exports = {
     displayAllHeaders: true,
     logo: header,
     nav,
-    sidebar,
+    sidebar: false,
     sidebarDepth: 0,
     lastUpdated: 'Last Updated',
     smoothScroll: true,
