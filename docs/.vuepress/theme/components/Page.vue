@@ -3,7 +3,6 @@
     <slot name="top" />
     <div class="theme-default-content">
       <Content />
-      <Comment v-if="ifShowComment" />
     </div>
     <PageEdit />
     <PageNav v-bind="{ sidebarItems }" />
@@ -14,7 +13,6 @@
 <script>
 import PageEdit from "@parent-theme/components/PageEdit.vue";
 import PageNav from "@parent-theme/components/PageNav.vue";
-import Comment from "@theme/components/comment.vue";
 
 export default {
   data() {

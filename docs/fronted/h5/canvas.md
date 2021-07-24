@@ -6,7 +6,7 @@
 2. js 中获取画布
 3. 获取画笔
 
-``` html
+```html
   <!doctype html>
   <html lang="zh">
 

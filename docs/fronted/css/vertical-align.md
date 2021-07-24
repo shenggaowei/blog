@@ -49,7 +49,7 @@
 
   
 
-``` html
+```html
   <style type="text/css">
       .ctn-block {
           background-color: #bbb;
@@ -86,7 +86,7 @@
 
 * 子元素为行内块，里面有行内框。
 
-``` html
+```html
 <style type="text/css">
     .ctn-block {
         background-color: #bbb;
@@ -130,7 +130,7 @@
 
 * 垂直空隙
 
-``` html
+```html
 <!doctype html>
 <html lang="en">
 
@@ -138,7 +138,6 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style type="text/css">
-
         * {
 
             margin: 0;

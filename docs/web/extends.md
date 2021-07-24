@@ -2,7 +2,7 @@
 
 ## 1 构造函数继承
 
-``` js
+```js
 function Person() {
     this.name = '升高';
     this.arr = [1, 2, 3, 4];
@@ -27,7 +27,7 @@ child1.sayName();
 
 ## 2 原型链继承
 
-``` js
+```js
 function Person() {
     this.name = '升高';
     this.arr = [1, 2, 3, 4];
@@ -58,7 +58,7 @@ child1.sayName();
 
 ## 3 组合继承
 
-``` js
+```js
 function Person() {
     this.name = '升高';
     this.arr = [1, 2, 3, 4];
@@ -93,7 +93,7 @@ console.log(Object.getPrototypeOf(child1).constructor); //Person
 
 ## 4 组合继承优化
 
-``` js
+```js
 function Person() {
     this.name = '升高';
     this.arr = [1, 2, 3, 4];

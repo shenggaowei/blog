@@ -1,4 +1,4 @@
-# 前端本地缓存之PWA篇
+# 前端本地缓存之PWA
 
 <a name="e05dce83"></a>
 
@@ -134,7 +134,7 @@ Service Worker 出于安全性和其实现原理，在使用的时候有一定�
 
 上文我们提过，Service Worker本质是一个“线程”，我们要使用其功能，首先是需要在主线程进行 Service Worker 注册，也就是启动一个子进程，后续的 Service Worker 安装/激活等等业务都由该子进程完成。
 
-``` javascript
+```javascript
 // 注册 Service Worker
 window.addEventListener('load', function(event) {
     if ('serviceWorker' in window.navigator) {
@@ -159,7 +159,7 @@ scope 参数是选填的，可以被用来指定你想让 service worker 控制�
 
 #### 3、Service注销
 
-``` javascript
+```javascript
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistration('/sw.js', {
         scope: '/'
@@ -183,7 +183,7 @@ if ('serviceWorker' in navigator) {
 
 通过 register 方法，注册 Service Worker 脚本后，就可以通过监听 Service Worker提供的生命周期方法来实现我们自己的业务逻辑了。如下的代码实现了一个简单的功能：监听Service Worker的 install 事件、activate 事件和 fetch 事件。结合上面的生命周期部分，我们可以完整实现本地缓存与相关匹配机制，从而完成页面性能优化。
 
-``` javascript
+```javascript
 // 生命周期事件监听  #sw.js
 const VERSION = 'V2';
 const CACHE_NAME = 'CACHE_' + VERSION
@@ -219,7 +219,7 @@ addAll() 方法接受一个 URL 数组，检索它们，并将生成的 response
 
 add()方法接受一个 URL 作为参数，请求参数指定的 URL，并将返回的 response 对象添加到给定的cache中。
 
-``` javascript
+```javascript
 caches.open(CACHE_NAME).then(cache => {
             cacheUrls.forEach(item => {
                 cache.add(item).catch(error => {
@@ -232,7 +232,7 @@ caches.open(CACHE_NAME).then(cache => {
 
 当安装成功完成之后，Service Worker 就会激活。在第一次你的 Service Worker 注册／激活时，这并不会有什么不同。但是当 Service Worker 更新的时候 ，就不太一样了。
 
-``` javascript
+```javascript
 //activate事件监听，install完成后，进入wating，需要满足特定条件，activate事件被触发
 self.addEventListener('activate', function(event) {
     event.waitUntil(
@@ -256,7 +256,7 @@ self.addEventListener('activate', function(event) {
 
 这就用到了“fetch”事件，严格来说这个过程是Service Worker功能核心之二：匹配处理。我们通常做法是给 Service Worker 添加一个 fetch 的事件监听器，接着调用 event 上的 respondWith() 方法来劫持浏览器 HTTP 请求，然后你可以用特定逻辑处理相关相应。
 
-``` javascript
+```javascript
 //网络请求监听，activate成功完成后，此时worker可以控制页面行为，有请求发送，则事件被触发
 self.addEventListener('fetch', function(event) {
     console.log(`[SW]:「判断是否在缓存序列中」：${event.request.url}`);
@@ -325,7 +325,7 @@ Web 服务器可以下行数据时在response的header对象中添加 Expires �
 
 <br />接着说，Service Worker通过监听fetch事件进行比对处理，那么我们原理篇中讲过的“[304缓存](https://yuque.antfin-inc.com/ykvip_fed/fe_tech_share/oyzbnz#bPAcF)”可就与Service Worker“撞车”了。因为304是在没有http缓存，或者http缓存过期的情况下，本身response-header中又有Etag字段，浏览器再次发送请求，服务端接到请求比对Etag，进而判断是返回200/新资源，还是304/空响应体，这个过程请求是肯定会发出的，发出请求也就会触发fetch事件，如果返回304则意味着response为空，那么fetch事件函数中奖response存储到环境及返回到浏览器呈现都出错。<br />
 
-``` javascript
+```javascript
 //为了防止返回304，请求时加时间戳；存储时照常使用event.request
 fetch(event.request.url + '?d=' + +new Date()) //fetch
     .then(res => {

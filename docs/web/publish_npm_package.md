@@ -21,7 +21,7 @@ npm 包可以将可复用逻辑封装成一个工具库，依赖 npm 的强大�
 
 ### 2 在本地登录npm账号。
 
-``` shell
+```shell
 npm login
 ```
 
@@ -31,7 +31,7 @@ npm login
 
 #### 3.1 执行以下命令，创建一个npm模块
 
-``` shell
+```shell
 mkdir npmDir
 cd npmDir
 npm init -y
@@ -39,7 +39,7 @@ npm init -y
 
 #### 3.2 安装webpack
 
-``` shell
+```shell
 npm install webpack webpack-ci -D
 ```
 
@@ -58,7 +58,7 @@ dist目录存放webpack打包后的文件。
 
 ##### 3.4.1 webpack.config.js
 
-``` js
+```js
 const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
     mode: 'none',
@@ -96,7 +96,7 @@ module.exports = {
 
 #### 3.4.2 模块主要内容 src/index.js
 
-``` js
+```js
   const add = (...rest) => {
       console.log(rest)
       alert('哈哈')
@@ -109,7 +109,7 @@ module.exports = {
 
 #### 3.4.3 main入口文件index.js
 
-``` js
+```js
   if (process.env.NODE_ENV === 'production') {
       module.exports = require('./dist/add.min.js');
   } else {
@@ -121,7 +121,7 @@ module.exports = {
 
 #### 3.4.4 构建命令。package.json
 
-``` json
+```json
   "scripts": {
     "test": "npm test",
     "build": "webpack",
@@ -136,7 +136,7 @@ module.exports = {
 修改 package.json 中的name字段，即包在npm中的名字。小提示，想好名字之后，最好到npm官网上搜索一下这个包有没有被别人注册，有的话就要换一个了。
 修改版本号，可手动修改，也可通过npm  version命令进行更换。个人习惯于后面。
 
-``` shell
+```shell
 # 修改版本号
 npm version major | minorr | patch
 # 发布包到npm

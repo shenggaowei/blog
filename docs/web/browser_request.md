@@ -2,7 +2,7 @@
 
 ## JSONP
 
-``` js
+```js
 function JSONP(options) {
     let formatParams = data => {
         let arr = []
@@ -59,7 +59,7 @@ function JSONP(options) {
 
 ## AJAX
 
-``` js
+```js
 function Ajax(params) {
     let {
         methods = 'GET', data = {}, onSucess = () => 0, onError = () => 0, url = '', timeout, dataType
@@ -112,7 +112,7 @@ function Ajax(params) {
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
 
-``` js
+```js
 fetch(url, {
     method: 'POST',
     credentials: 'include',

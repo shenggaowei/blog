@@ -2,7 +2,7 @@
 
 ## 规定单行文本出现省略号
 
-``` html
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +47,7 @@
 
 ## 规定多行文本出现省略号
 
-``` css
+```css
         p {
             width: 100px;
             background: red;

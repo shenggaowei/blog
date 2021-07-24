@@ -10,7 +10,7 @@
 
 * 字面量形式
 
-``` js
+```js
 var expression = /pattern/flags
 // pattern 需要匹配的字符串模式
 // flags 修饰符
@@ -18,7 +18,7 @@ var expression = /pattern/flags
 
 * 构造函数的形式
 
-``` js
+```js
 var expression = new RegExp('[bc]at', 'i')
 // 两个参数格式都是字符串。
 ```
@@ -30,7 +30,7 @@ var expression = new RegExp('[bc]at', 'i')
 
 正则表达式中的特殊符号
 
-``` js
+```js
 //元字符 
 ^
 $ / \ ? | .*+()[] {}! :
@@ -69,13 +69,15 @@ let reg2 = /\.spiderMan/
     -  ?  匹配前一项 0-1 次。即 {0-1}
     -  \+  匹配前一项 1 次至多次。即 {1,}
     -  \*  匹配前一项 0 至多次。即 {0,}
-
     贪婪性的重复。匹配重复的字符尽可能多的匹配字符, 而且允许后续的正则表达式继续匹配。
     非贪婪性重复。在待匹配的字符后面跟着一个?，正则便会尽量少的匹配字符。
 
-$mdFormatter$14$mdFormatter$
+    // 贪婪匹配
+    let reg2 = /\d+/
+    let str2 = '123abc'
+    let result2 = reg2.exec(str2) // 123 
 
-``` js
+```js
     // 贪婪匹配
     let reg2 = /\d+/
     let str2 = '123abc'
@@ -99,9 +101,12 @@ $mdFormatter$14$mdFormatter$
 
    
 
-$mdFormatter$14$mdFormatter$
+    // 贪婪匹配
+    let reg2 = /\d+/
+    let str2 = '123abc'
+    let result2 = reg2.exec(str2) // 123 
 
-``` js
+```js
     let reg = /green|red/
     let str = 'apple green'
     let result = reg.exec(str); // green
@@ -138,7 +143,7 @@ $mdFormatter$14$mdFormatter$
             如果不想让组表达式产生引用。可以用 (?:) 来进行分组。
             
 
-``` js
+```js
                 let reg = /(?:\w+)\s(\w+)\s\1/
                 var str = 'spider Man Man'
                 let result = reg.exec(str)
@@ -178,7 +183,7 @@ $mdFormatter$14$mdFormatter$
 
     
 
-``` js
+```js
     let text2 = 'cat, bat, sat, fat'
     let pattern2 = /.at/g
     let result1 = pattern2.exec(text2)

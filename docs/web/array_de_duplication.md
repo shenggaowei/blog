@@ -6,7 +6,7 @@
 
    1. 思想： 将标志位的每一项与后面的项进行对比，一致则删除，j--。
 
-``` js
+```js
 function avoidRepeat(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
         for (let j = i + 1; j < arr.length; j++) {
@@ -32,7 +32,7 @@ function avoidRepeat(arr) {
 
   1. 思想：indexof判断是否在数组中存在，不存在则push。 
 
-``` js
+```js
 function avoidRepeat2(arr) {
     let newArr = [];
     for (let j = 0; j < arr.length; j++) {
@@ -50,7 +50,7 @@ function avoidRepeat2(arr) {
 
 1. 思想：归并思想。
 
-``` js
+```js
 function avoidRepeat4(arr) {
     return arr.reduce((pre, next) => pre.includes(next) ? pre : pre.concat(next), [])
 }
@@ -58,7 +58,7 @@ function avoidRepeat4(arr) {
 
 #### 3 利用对象key的不可重复性
 
-``` js
+```js
 function avoidRepeat5(arr) {
     return Object.keys(arr.reduce((pre, next) => {
         pre[next] = true;
@@ -73,7 +73,7 @@ function avoidRepeat5(arr) {
 
    1. 将数组进行排序，遍历数组，将当前项和下一项进行对比，一样则将下一项删除掉。最后return数组。
 
-``` js
+```js
 function avoidRepeat7(arr) {
     let sortArr = arr.sort((a, b) => b - a);
     for (let i = 0; i < sortArr.length; i++) {
@@ -102,7 +102,7 @@ function avoidRepeat7(arr) {
 
 ##### 1 filter + indexOf
 
-``` js
+```js
 function avoidRepeat3(arr) {
     return arr.filter((ele, index) => index === arr.indexOf(ele))
 }
@@ -110,7 +110,7 @@ function avoidRepeat3(arr) {
 
 ### 四 es6 新增api Set
 
-``` js
+```js
 function avoidRepeat6(arr) {
     return [...new Set(arr)]
 }

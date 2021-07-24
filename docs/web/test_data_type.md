@@ -33,7 +33,7 @@
 
 > 不能检测非原生构造函数的构造函数名。因此，开发人员定义的任何构造函数都将返回[object Object]
 
-``` js
+```js
 function getType(data) {
     return Object.prototype.toString.call(data).slice(8, -1);
 }

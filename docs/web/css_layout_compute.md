@@ -1,4 +1,4 @@
-# 元素宽高和偏移量
+# 浏览器元素宽高计算
 
 ## 1 获取窗口大小
 
@@ -16,7 +16,10 @@ function getWindowSize(window) {
             pageHeight = document.body.clientHeight;
         }
     }
-return { pageWidth, pageHeight }
+    return {
+        pageWidth,
+        pageHeight
+    }
 }
 ```
 
@@ -24,15 +27,18 @@ return { pageWidth, pageHeight }
 
 ```js
 offsetHeight: height + padding + border + 水平滚动条的高度
-offsetWidth:  width + padding + border + 垂直水平滚动条的宽度
+offsetWidth: width + padding + border + 垂直水平滚动条的宽度
 
-offsetLeft: 元素的左外边框至包含元素的左内边框之间的像素距离 (包括父元素的边框)
-offsetTop:  元素的上外边框至包含元素的上内边框之间的像素距离 (包括父元素的边框)
-offsetParent:包含元素（其直接父元素）的引用
+offsetLeft: 元素的左外边框至包含元素的左内边框之间的像素距离(包括父元素的边框)
+offsetTop: 元素的上外边框至包含元素的上内边框之间的像素距离(包括父元素的边框)
+offsetParent: 包含元素（ 其直接父元素） 的引用
 
 //依据 offsetparent 获取元素至页面上的偏移量
 function getElementLeft(ele) {
-    let { offsetLeft, offsetParent } = ele;
+    let {
+        offsetLeft,
+        offsetParent
+    } = ele;
     let left = offsetLeft;
     let curParent = offsetParent
     while (curParent !== null) {
@@ -43,7 +49,10 @@ function getElementLeft(ele) {
 }
 
 function getElementTop(ele) {
-    let { offsetTop, offsetParent } = ele;
+    let {
+        offsetTop,
+        offsetParent
+    } = ele;
     let top = offsetTop;
     let curParent = offsetParent
     while (curParent !== null) {
@@ -55,30 +64,42 @@ function getElementTop(ele) {
 ```
 
 ## 3 客户区大小
+
 ```js
 clientWidth: width + padding
-clientHeight:height+padding
+clientHeight: height + padding
 ```
+
 获取窗口大小：[获取窗口大小](mweblib://15705144607328)
 
 ## 4 滚动大小
+
 ```js
- scrolHeight:在没有滚动条的情况下，元素内容的总高度。最小为元素的高度。如果内部有滚动，则为滚动内容的高度。
- scrollWidth:在没有滚动条的情况下，元素内容的总宽度。
- scrollLeft:被隐藏的内容区域左侧的像素数。通过设置这个属性可以改变元素的滚动位置。
- scrollTop:被隐藏在内容区域上方的像素数。通过设置这个属性可以改变元素的滚动位置。 
+ scrolHeight: 在没有滚动条的情况下， 元素内容的总高度。 最小为元素的高度。 如果内部有滚动， 则为滚动内容的高度。
+ scrollWidth: 在没有滚动条的情况下， 元素内容的总宽度。
+ scrollLeft: 被隐藏的内容区域左侧的像素数。 通过设置这个属性可以改变元素的滚动位置。
+ scrollTop: 被隐藏在内容区域上方的像素数。 通过设置这个属性可以改变元素的滚动位置。
 ```
+
 scrollWidth 和 scrollHeight 主要用于确定元素内容的实际大小。
+
 ```js
 // 获取文档总高度 取 scroll 与 client 的最大值
-let { scrollHeight,clientHeight,scrollWidth,clientWidth } = document.documentElement;
-var docHeight = Math.max(scrollHeight,clientHeight);
-var docWidth = Math.max(scrollWidth,clientWidth);
+let {
+    scrollHeight,
+    clientHeight,
+    scrollWidth,
+    clientWidth
+} = document.documentElement;
+var docHeight = Math.max(scrollHeight, clientHeight);
+var docWidth = Math.max(scrollWidth, clientWidth);
 
 //对于运行在 混杂模式下的 ie。需要用 document.body 来替换 document.documentElement。
 ```
+
 判断内容滚动到底部思路：
-满足公式 box.scrollTop + box.clientHeight >= box.scrollHeight;
+满足公式 box.scrollTop + box.clientHeight >= box.scrollHeight; 
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +131,17 @@ var docWidth = Math.max(scrollWidth,clientWidth);
 <script>
     let oBox = document.querySelector('.box');
     let oContainer = document.querySelector('.container')
-    let { scrollHeight, scrollTop, clientHeight } = oContainer;
-    oContainer.addEventListener('scroll', function () {
-        let { scrollHeight, scrollTop, clientHeight } = this;
+    let {
+        scrollHeight,
+        scrollTop,
+        clientHeight
+    } = oContainer;
+    oContainer.addEventListener('scroll', function() {
+        let {
+            scrollHeight,
+            scrollTop,
+            clientHeight
+        } = this;
         console.log(scrollHeight, clientHeight, scrollTop);
         if (clientHeight + scrollTop >= scrollHeight) {
             alert('到底了');

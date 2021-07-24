@@ -1,4 +1,5 @@
 # JSONP
+
 ```js
 function JSONP(options) {
     let formatParams = data => {
@@ -10,7 +11,16 @@ function JSONP(options) {
         return arr.join('&');
     }
 
-    let { api, data, callbackKeyName = 'callback', callbackFnName = 'jsonp_' + new Date(), success, error, timeout, connect = '?' } = options;
+    let {
+        api,
+        data,
+        callbackKeyName = 'callback',
+        callbackFnName = 'jsonp_' + new Date(),
+        success,
+        error,
+        timeout,
+        connect = '?'
+    } = options;
     let oHead = document.getElementsByTagName('head')[0];
     let oS = document.createElement('script');
     data[callbackKeyName] = callbackFnName;
@@ -18,19 +28,18 @@ function JSONP(options) {
     oS.src = url;
     oHead.appendChild(oS);
 
-
-    window[callbackFnName] = function (data) {
+    window[callbackFnName] = function(data) {
         clearTimeout(oS.timer);
         success(data);
         oHead.removeChild(oS);
         window[callbackFnName] = null;
     }
 
-    window['error'] = function (data) {
+    window['error'] = function(data) {
         error(data);
     }
 
-    oS.timer = setTimeout(function (params) {
+    oS.timer = setTimeout(function(params) {
         window[callbackKeyName] = null;
         error({
             message: '超时了'
@@ -40,6 +49,7 @@ function JSONP(options) {
 
 }
 ```
+
 注意点：
 1. 实为 get 请求，参数需要编码。回调函数的关键字和函数名称也需要加入到参数中。
 2. jsonp 下载文件是在 appendChild 之后发生的。与 src 的设置顺序无关。
