@@ -20,7 +20,7 @@ export default {
       ifShowComment: false,
     };
   },
-  components: { PageEdit, PageNav, Comment },
+  components: { PageEdit, PageNav },
   props: ["sidebarItems"],
   methods: {
     showComment(path) {
