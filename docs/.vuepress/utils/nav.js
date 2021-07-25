@@ -10,7 +10,12 @@ module.exports = [
     ]
   },
   {
-    text: '读书&旅行',
-    link: '/note/'
+    text: '个人记录',
+    items: [
+      {
+        link: '/read/',
+        text: '读书笔记'
+      }
+    ]
   },
 ];
