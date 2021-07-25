@@ -17,7 +17,7 @@ module.exports = {
     sidebarDepth: 0,
     lastUpdated: 'Last Updated',
     smoothScroll: true,
-    search: false
+    search: true
   },
   configureWebpack,
   markdown: {
