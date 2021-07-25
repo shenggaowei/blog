@@ -5,7 +5,11 @@ module.exports = [
       {
         text: 'web小记',
         link: '/web/'
-      }
+      },
+      {
+        text: '算法小记',
+        link: '/data_structure/'
+      },
     ]
   },
   {
