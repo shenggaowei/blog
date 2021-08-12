@@ -21,3 +21,7 @@
 21. [why is setState asynchronous?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 22. [深入学习：何时以及为什么 setState() 会批量执行？](https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973)
 23. [实现 setInterval hook](https://overreacted.io/zh-hans/making-setinterval-declarative-with-react-hooks/)
+
+## 微信小程序
+
+1. [openId 和 unionId 的概念和区别](./mini-app/openid_unionid.md)
