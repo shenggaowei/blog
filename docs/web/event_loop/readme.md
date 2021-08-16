@@ -35,7 +35,7 @@ javascript 单线程指的是浏览器中负责解释和执行 javascript 代码
 
 ## 二、什么是执行栈(stack)、堆(heap)、事件队列(task queue)？
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/10/data)
+![](./assets/data.jpeg)
 
 ### 1、执行栈
 
@@ -43,7 +43,7 @@ javascript 单线程指的是浏览器中负责解释和执行 javascript 代码
 
 利用数组的 push 和 shift 可以实现压栈和出栈的操作。
 
-![stack](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/09/stack.png)
+![stack](./assets/stack.png)
 
 在代码运行的过程中，函数的调用会形成一个由若干帧组成的栈。
 
@@ -70,7 +70,7 @@ console.log(bar(7));
 5. bar 执行完毕然后返回，被弹出栈。
 6. log 函数接收到 bar 的返回值。执行完毕后，出栈。此时栈已空。
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/09/stackcall.png)
+![](./assets/stack_call.png)
 
 ### 2、堆
 
@@ -101,7 +101,7 @@ public void Method1()
 
 上面代码这三个变量和一个对象实例在内存中的存放方式如下。
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/09/stackCall.jpg)
+![](./assets/stack_call2.jpeg)
 
 从上图可以看到，i、y 和 cls1 都存放在 stack，因为它们占用内存空间都是确定的，而且本身也属于局部变量。但是，cls1 指向的对象实例存放在 heap，因为它的大小不确定。作为一条规则可以记住，所有的对象都存放在 heap。
 
@@ -115,7 +115,7 @@ public void Method1()
 
 利用数组的 push 和 pop 可实现入队和出队的操作。
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/09/queue.png)
+![](./assets/queue.png)
 
 事件循环和事件队列的维护是由事件触发线程控制的。
 
@@ -129,7 +129,7 @@ js 引擎在执行过程中，遇到同步任务，会将任务直接压入执�
 
 为了更好地理解 Event Loop，请看下图（转引自 Philip Roberts 的演讲《Help, I'm stuck in an event-loop》）。
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/10/eventloop.png)
+![](./assets/eventloop.png)
 
 例子代码：
 
@@ -163,11 +163,11 @@ console.log("script end");
 
 此时，执行栈为空，js 引擎线程空闲。便从事件队列中读取任务，此时队列如下：
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/10/%E6%89%A7%E8%A1%8C%E9%98%9F%E5%88%97.png)
+![](./assets/call_queue.png)
 
 **第二轮事件循环**
 
-5. js 引擎线程从事件对列中读取 cb2 加入执行栈并执行，打印”time 2 over“。出栈。
+1. js 引擎线程从事件对列中读取 cb2 加入执行栈并执行，打印”time 2 over“。出栈。
 
 **第三轮事件循环**
 
@@ -224,7 +224,7 @@ js 引擎首先执行主代码块。
 
 微任务是在宏任务执行的时候创建的，而在下一个宏任务执行之前，浏览器会对页面重新渲染（task >> render >> task（任务队列中读取））。**同时，在上一个宏任务执行完成后，页面渲染之前，会执行当前微任务队列中的所有微任务。**
 
-![](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/10/task.png)
+![](./assets/task.png)
 
 所以上述代码的执行过程就可以解释了。
 
