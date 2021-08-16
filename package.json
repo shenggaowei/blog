@@ -18,6 +18,6 @@
   "license": "MIT",
   "dependencies": {},
   "lint-staged": {
-    "docs/**/*.{js,css,md}": "prettier --write"
+    "docs/**/*.{vue,js,css,md}": "prettier --write"
   }
 }

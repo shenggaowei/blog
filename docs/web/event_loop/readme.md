@@ -49,13 +49,13 @@ javascript 单线程指的是浏览器中负责解释和执行 javascript 代码
 
 ```js
 function foo(b) {
-    let a = 10;
-    return a + b + 11;
+  let a = 10;
+  return a + b + 11;
 }
 
 function bar(x) {
-    let y = 3;
-    return foo(x * y);
+  let y = 3;
+  return foo(x * y);
 }
 
 console.log(bar(7));
@@ -137,11 +137,11 @@ js 引擎在执行过程中，遇到同步任务，会将任务直接压入执�
 console.log("script start");
 
 setTimeout(() => {
-    console.log("timer 1 over");
+  console.log("timer 1 over");
 }, 1000);
 
 setTimeout(() => {
-    console.log("timer 2 over");
+  console.log("timer 2 over");
 }, 0);
 
 console.log("script end");
@@ -188,17 +188,17 @@ console.log("script end");
 ```js
 console.log("script start");
 
-setTimeout(function() {
-    console.log("timer over");
+setTimeout(function () {
+  console.log("timer over");
 }, 0);
 
 Promise.resolve()
-    .then(function() {
-        console.log("promise1");
-    })
-    .then(function() {
-        console.log("promise2");
-    });
+  .then(function () {
+    console.log("promise1");
+  })
+  .then(function () {
+    console.log("promise2");
+  });
 
 console.log("script end");
 
@@ -213,8 +213,8 @@ console.log("script end");
 
 所有的任务都划分到宏任务和微任务下：
 
-* **macrotask**: script 主代码块、setTimeout、setInterval、requestAnimationFrame、node 中的 setimmediate 等。
-* **microtask**: Promise.then catch finally、MutationObserver、node 中的 process.nextTick 等。
+- **macrotask**: script 主代码块、setTimeout、setInterval、requestAnimationFrame、node 中的 setimmediate 等。
+- **microtask**: Promise.then catch finally、MutationObserver、node 中的 process.nextTick 等。
 
 js 引擎首先执行主代码块。
 
@@ -250,9 +250,9 @@ js 引擎执行 promise.then 时，promise1、promise2 被认为是两个微任�
 setTimeout((_) => console.log(4));
 
 async function main() {
-    console.log(1);
-    await Promise.resolve();
-    console.log(3);
+  console.log(1);
+  await Promise.resolve();
+  console.log(3);
 }
 
 main();
@@ -278,11 +278,11 @@ async 函数在 await 之前的代码都是同步执行的，**可以理解为 a
 
 参考：
 
-* [JavaScript 异步与事件循环](https://juejin.im/post/6844903711106400264#refetch)
-* [并发模型与事件循环](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
-* [微任务、宏任务与 Event-Loop](https://juejin.im/post/6844903657264136200)
-* [JavaScript 运行机制详解：再谈 Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
-* [JS 事件循环](https://juejin.im/post/6844903577052250119)
-* [ 深入理解 JavaScript 事件循环（二）— task and microtask](https://www.cnblogs.com/dong-xu/p/7000139.html)
+- [JavaScript 异步与事件循环](https://juejin.im/post/6844903711106400264#refetch)
+- [并发模型与事件循环](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
+- [微任务、宏任务与 Event-Loop](https://juejin.im/post/6844903657264136200)
+- [JavaScript 运行机制详解：再谈 Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
+- [JS 事件循环](https://juejin.im/post/6844903577052250119)
+- [ 深入理解 JavaScript 事件循环（二）— task and microtask](https://www.cnblogs.com/dong-xu/p/7000139.html)
 
-* [Help, I'm stuck in an event-loop](http://vimeo.com/96425312)
+- [Help, I'm stuck in an event-loop](http://vimeo.com/96425312)
