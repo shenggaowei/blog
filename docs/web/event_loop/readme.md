@@ -284,5 +284,4 @@ async 函数在 await 之前的代码都是同步执行的，**可以理解为 a
 - [JavaScript 运行机制详解：再谈 Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
 - [JS 事件循环](https://juejin.im/post/6844903577052250119)
 - [ 深入理解 JavaScript 事件循环（二）— task and microtask](https://www.cnblogs.com/dong-xu/p/7000139.html)
-
 - [Help, I'm stuck in an event-loop](http://vimeo.com/96425312)
