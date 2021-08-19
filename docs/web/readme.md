@@ -24,6 +24,7 @@
 22. [why is setState asynchronous?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 23. [深入学习：何时以及为什么 setState() 会批量执行？](https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973)
 24. [实现 setInterval hook](https://overreacted.io/zh-hans/making-setinterval-declarative-with-react-hooks/)
+25. [ts: interface 和 type 的异同](./typescript/interface_type.md)
 
 ## 微信小程序
 
