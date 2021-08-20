@@ -1,6 +1,6 @@
 # ts 常见飘红解决
 
-## 类型“string”的参数不能赋给类型“Alignment”的参数。
+## 1 类型“string”的参数不能赋给类型“Alignment”的参数。
 
 ```ts
 type Alignment = "left" | "right" | "center";
