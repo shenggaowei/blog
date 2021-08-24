@@ -59,7 +59,7 @@ Pages 生命周期
 | ---------- | :--------------------------------------------------------------------------: |
 | onLaunch   |                                   onLaunch                                   |
 | onLoad     |                                    onLoad                                    |
-| onReady    |                       onReady()<br>useReady(() => {})                        |
+| onReady    |                       监听页面组件的的onReady生命周期<br>useReady(() => {})                        |
 | onShow     |                   componentDidShow()<br>useDidShow(()=>{})                   |
 | onHide     |                   componentDidHide()<br>useDidHide(()=>{})                   |
 |            | componentDidMount<br>componentDidUpdate<br>componentWillUnMount<br>useEffect |

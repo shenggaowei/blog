@@ -1,14 +1,14 @@
 ## 前端趣记
 
-1.  [Event Loop](event_loop)
-2.  [函数式编程](function_programmer.md)
-3.  [如何发布一个 npm 包?](publish_npm_package.md)
-4.  [类的继承](extends.md)
-5.  [如何实现 compose 和 curry 函数](compose_curry.md)
-6.  [数组去重算法](array_de_duplication.md)
-7.  [浏览器网络请求整理](browser_request.md)
-8.  [前端本地缓存概况之浏览器缓存策略](cache.md)
-9.  [前端本地缓存之 PWA](pwa.md)
+01.  [Event Loop](event_loop)
+02.  [函数式编程](function_programmer.md)
+03.  [如何发布一个 npm 包?](publish_npm_package.md)
+04.  [类的继承](extends.md)
+05.  [如何实现 compose 和 curry 函数](compose_curry.md)
+06.  [数组去重算法](array_de_duplication.md)
+07.  [浏览器网络请求整理](browser_request.md)
+08.  [前端本地缓存概况之浏览器缓存策略](cache.md)
+09.  [前端本地缓存之 PWA](pwa.md)
 10. [如何自己实现 bind、call、apply 函数](bind_call_apply.md)
 11. [节流防抖概念以及实现](throttle_debounce.md)
 12. [javascript 数据类型检测](test_data_type.md)
@@ -29,4 +29,4 @@
 
 ## 微信小程序
 
-1.  [openId 和 unionId 的概念和区别](./mini-app/openid_unionid.md)
+01.  [openId 和 unionId 的概念和区别](./mini_app/openid_unionid.md)
