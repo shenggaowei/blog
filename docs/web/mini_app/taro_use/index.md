@@ -176,16 +176,23 @@ App 生命周期
 
 1. onLaunch (小程序初始化完成时触发，`全局只触发一次`)
 2. onShow (进入前台显示时触发)
+
 3. onHide (进入后台时触发)
 
 Pages 生命周期
 
 1. onLoad (页面加载时触发)
+
    1. 可获取从上级页面所获取的 query 参数
+
 2. onShow (进入前台触发)
+
 3. onReady (页面初次渲染完成，可以与视图进行交互)
+
    1. 页面首次加载可以获取元素尺寸
+
 4. onHide (进入后台时触发)
+
 5. onUnLoad (页面卸载时触发)
 
 ### 2 Taro 对生命周期的封装
@@ -199,10 +206,15 @@ Pages 生命周期
 | onHide     |                   componentDidHide()<br>useDidHide(()=>{})                   |
 |            | componentDidMount<br>componentDidUpdate<br>componentWillUnMount<br>useEffect |
 
-### 3 小程序 api 调用
+### 3 微信原生小程序的支持度
 
-1. wx.method => Taro.method
-2. api 调用可使用 promise
+1. 组件支持
+   1. Taro 以微信小程序组件库为标准，结合 jsx 语法规范，定制了一套自己的组件库规范。基于以上原则，在小程序端，可以使用所有的小程序原生组件。
+2. api
+   1. wx.method => Taro.method。如果 taro.method 调用不兼容，先暂时调用 wx.method。
+   2. 部分异步 api 调用可使用 promise
+3. 插件支持
+   1. 官网目前支持小程序插件。暂未实践。
 
 ```tsx
 import Taro from "@tarojs/taro";
@@ -242,4 +254,4 @@ taro cli 和 taro 相关依赖库的版本必须保持一致，现均为 3.3.0
 
 ## 性能优化
 
-## 原理浅析
+## 原理解析
