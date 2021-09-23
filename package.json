@@ -16,7 +16,10 @@
     "vuepress-plugin-reading-progress": "^1.0.10"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0"
+  },
   "lint-staged": {
     "docs/**/*.{vue,js,css,md}": "prettier --write"
   }
