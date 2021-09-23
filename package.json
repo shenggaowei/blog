@@ -1,5 +1,6 @@
 {
   "homepage": "https://iswsg.github.io",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
