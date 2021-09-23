@@ -4,7 +4,7 @@
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "prepare": "husky install",
-    "scripts": "standard-version"
+    "release": "standard-version"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
