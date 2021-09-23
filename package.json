@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "scripts": "standard-version"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
@@ -18,7 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0"
+    "@commitlint/config-conventional": "^13.1.0",
+    "standard-version": "^9.3.1"
   },
   "lint-staged": {
     "docs/**/*.{vue,js,css,md}": "prettier --write"
