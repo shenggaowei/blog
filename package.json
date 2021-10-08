@@ -21,9 +21,15 @@
   "dependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "standard-version": "^9.3.1"
+    "standard-version": "^9.3.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
   },
   "lint-staged": {
-    "docs/**/*.{vue,js,css,md}": "prettier --write"
+    "docs/**/*.{vue,js,md}": "prettier --write",
+    "*.css":[
+        "stylelint",
+        "prettier --write"
+    ]
   }
 }
