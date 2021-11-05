@@ -1,12 +1,13 @@
 {
-  "homepage": "https://weishenggao.com",
-  "version": "1.0.0",
+  "homepage": "https://iswsg.github.io",
+  "version": "0.0.2",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@vuepress/plugin-search": "^2.0.0-beta.27",
     "vuepress": "^2.0.0-beta.27",
     "husky": ">=7",
     "lint-staged": ">=11",

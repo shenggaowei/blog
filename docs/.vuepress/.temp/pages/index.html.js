@@ -1,31 +1,19 @@
 export const data = {
   key: "v-8daa1a0e",
   path: "/",
-  title: "升高的日常博客",
-  lang: "en-US",
-  frontmatter: {},
+  title: "升高的博客",
+  lang: "zh-CN",
+  frontmatter: {
+    lang: "zh-CN",
+    title: "升高的博客",
+    description: "测试博客",
+  },
   excerpt: "",
   headers: [],
-  filePathRelative: "README.md",
+  filePathRelative: "readme.md",
   git: {
-    updatedTime: 1627962751000,
-    contributors: [
-      {
-        name: "weishenggao",
-        email: "weishenggao@innobuddy.com",
-        commits: 7,
-      },
-      {
-        name: "weishenggao",
-        email: "",
-        commits: 4,
-      },
-      {
-        name: "gaogao",
-        email: "weishenggao@innobuddy.com",
-        commits: 3,
-      },
-    ],
+    updatedTime: null,
+    contributors: [],
   },
 };
 

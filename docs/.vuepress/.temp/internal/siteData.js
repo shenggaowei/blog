@@ -1,17 +1,9 @@
 export const siteData = {
   base: "/",
-  lang: "en-US",
+  lang: "zh-CN",
   title: "升高的博客",
-  description: "升高的博客",
-  head: [
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "https://shenggao.oss-cn-beijing.aliyuncs.com/info/head.jpg",
-      },
-    ],
-  ],
+  description: "keep running",
+  head: [],
   locales: {},
 };
 

@@ -1,7 +1,11 @@
-module.exports = [
+const navbar = [
   {
     text: "我的技术栈",
-    items: [
+    children: [
+      {
+        text: "web小记",
+        link: "/web/",
+      },
       {
         text: "算法小记",
         link: "/data_structure/",
@@ -10,7 +14,7 @@ module.exports = [
   },
   {
     text: "个人记录",
-    items: [
+    children: [
       {
         link: "/read/",
         text: "读书笔记",
@@ -18,3 +22,5 @@ module.exports = [
     ],
   },
 ];
+
+export default navbar;

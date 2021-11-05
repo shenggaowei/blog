@@ -824,6 +824,19 @@
     "@vuepress/core" "2.0.0-beta.27"
     prismjs "^1.25.0"
 
+"@vuepress/plugin-search@^2.0.0-beta.27":
+  version "2.0.0-beta.27"
+  resolved "https://registry.npmjs.org/@vuepress/plugin-search/-/plugin-search-2.0.0-beta.27.tgz#39ea9282709e4b275d801b8397b281190c818e0b"
+  integrity sha512-22r2nVD55CnraQZOnzEsIueg6iXWIsutcw54UVbQFmgQxmAEEa8ZQ4YQ/W91IQepis1qdinynWvJGPLI6IHSOg==
+  dependencies:
+    "@vuepress/client" "2.0.0-beta.27"
+    "@vuepress/core" "2.0.0-beta.27"
+    "@vuepress/shared" "2.0.0-beta.27"
+    "@vuepress/utils" "2.0.0-beta.27"
+    chokidar "^3.5.2"
+    vue "^3.2.20"
+    vue-router "^4.0.12"
+
 "@vuepress/plugin-theme-data@2.0.0-beta.27":
   version "2.0.0-beta.27"
   resolved "https://registry.npmjs.org/@vuepress/plugin-theme-data/-/plugin-theme-data-2.0.0-beta.27.tgz#34064747fd77c27669c2c7713c956b56742fffed"
@@ -1388,9 +1401,9 @@ camelcase@^5.3.1:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001272, caniuse-lite@^1.0.30001274:
-  version "1.0.30001277"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001277.tgz#9416dae5e075f47eacd8e0475ae1dcc5a20e9ca5"
-  integrity sha512-J2WtYj2Pl6LBEG214XmbGw1gzZEsYuinQFPqYtpZDB3/vm49qNlrcbJrTMkHKmdRDdmXYwkG0tgOBJsuI+J12Q==
+  version "1.0.30001278"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001278.tgz#51cafc858df77d966b17f59b5839250b24417fff"
+  integrity sha512-mpF9KeH8u5cMoEmIic/cr7PNS+F5LWBk0t2ekGT60lFf0Wq+n9LspAj0g3P+o7DQhD3sUdlMln4YFAWhFYn9jg==
 
 chalk@^2.0.0:
   version "2.4.2"

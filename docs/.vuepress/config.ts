@@ -1,21 +1,18 @@
-import nav from "./utils/nav";
-import { header } from "./utils/constant";
 import { defineUserConfig } from "vuepress";
 import type { DefaultThemeOptions } from "vuepress";
+import { logo, repo } from "./utils/constant";
+import navbar from "./utils/navbar";
+import plugins from "./utils/plugins";
 
 export default defineUserConfig<DefaultThemeOptions>({
+  lang: "zh-CN",
   title: "升高的博客",
-  description: "升高的博客",
-  head: [["link", { rel: "icon", href: header }]],
-
+  description: "keep running",
+  plugins,
   themeConfig: {
-    logo: header,
-    displayAllHeaders: true,
-    nav,
-    sidebar: false,
-    sidebarDepth: 0,
-    lastUpdated: true,
-    smoothScroll: true,
-    search: true,
+    logo,
+    repo,
+    navbar,
+    darkMode: false,
   },
 });

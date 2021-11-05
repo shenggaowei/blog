@@ -1,1 +1,0 @@
-module.exports.header = 'https://shenggao.oss-cn-beijing.aliyuncs.com/info/head.jpg'
