@@ -1,0 +1,499 @@
+<template>
+  <h1 id="修改元素的显示方式" tabindex="-1">
+    <a class="header-anchor" href="#修改元素的显示方式" aria-hidden="true">#</a>
+    修改元素的显示方式
+  </h1>
+  <h2 id="块级框" tabindex="-1">
+    <a class="header-anchor" href="#块级框" aria-hidden="true">#</a> 块级框
+  </h2>
+  <h3
+    id="box-sizing-content-box-默认-padding-box-border-box-适用于能设定width和height的所有元素。"
+    tabindex="-1"
+  >
+    <a
+      class="header-anchor"
+      href="#box-sizing-content-box-默认-padding-box-border-box-适用于能设定width和height的所有元素。"
+      aria-hidden="true"
+      >#</a
+    >
+    <strong
+      >box-sizing : content-box (默认) | padding-box | border-box;
+      适用于能设定width和height的所有元素。</strong
+    >
+  </h3>
+  <ol>
+    <li>
+      content-box
+      <ol>
+        <li>content = width</li>
+      </ol>
+    </li>
+    <li>
+      border-box
+      <ol>
+        <li>content = width - padding</li>
+      </ol>
+    </li>
+    <li>padding-box</li>
+  </ol>
+  <h3
+    id="常规流动方式下块级框各组成部分的横向尺寸始终等于容纳框的宽度"
+    tabindex="-1"
+  >
+    <a
+      class="header-anchor"
+      href="#常规流动方式下块级框各组成部分的横向尺寸始终等于容纳框的宽度"
+      aria-hidden="true"
+      >#</a
+    >
+    <strong
+      >常规流动方式下块级框各组成部分的横向尺寸始终等于容纳框的宽度</strong
+    >
+  </h3>
+  <pre><code>1. 块级框的宽度始终等于容纳块的宽度。
+</code></pre>
+  <h3 id="横向格式化属性" tabindex="-1">
+    <a class="header-anchor" href="#横向格式化属性" aria-hidden="true">#</a>
+    <strong>横向格式化属性</strong>
+  </h3>
+  <p>margin width 可设置为auto border padding 只能设置具体值或者默认 0</p>
+  <h3 id="使用auto" tabindex="-1">
+    <a class="header-anchor" href="#使用auto" aria-hidden="true">#</a>
+    <strong>使用auto</strong>
+  </h3>
+  <div class="language-html ext-html line-numbers-mode">
+    <pre
+      v-pre
+      class="language-html"
+    ><code>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+        <span class="token selector">div</span> <span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 500px<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">p</span> <span class="token punctuation">{</span>
+            <span class="token property">margin-left</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+            <span class="token property">margin-right</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> orange<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 30px
+        <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+</code></pre>
+    <div class="line-numbers">
+      <span class="line-number">1</span><br /><span class="line-number">2</span
+      ><br /><span class="line-number">3</span><br /><span class="line-number"
+        >4</span
+      ><br /><span class="line-number">5</span><br /><span class="line-number"
+        >6</span
+      ><br /><span class="line-number">7</span><br /><span class="line-number"
+        >8</span
+      ><br /><span class="line-number">9</span><br /><span class="line-number"
+        >10</span
+      ><br /><span class="line-number">11</span><br /><span class="line-number"
+        >12</span
+      ><br /><span class="line-number">13</span><br /><span class="line-number"
+        >14</span
+      ><br /><span class="line-number">15</span><br /><span class="line-number"
+        >16</span
+      ><br /><span class="line-number">17</span><br /><span class="line-number"
+        >18</span
+      ><br /><span class="line-number">19</span><br />
+    </div>
+  </div>
+  <ul>
+    <li>
+      一个设为 auto，其他为具体值
+      <ol>
+        <li>
+          结果：设置 auto属性的具体长度要能满足元素框的宽度等于父元素的宽度。
+        </li>
+      </ol>
+    </li>
+    <li>
+      三个值均设置为具体值。
+      <ol>
+        <li>
+          结果：如果总宽度小于父元素的宽度。则
+          margin-right会自动拉长补全剩余尺寸。
+        </li>
+      </ol>
+    </li>
+    <li>
+      margin 两边设置成auto，宽度为具体值
+      <ol>
+        <li>结果: 子元素居中</li>
+      </ol>
+    </li>
+    <li>
+      width 和某一边的外边距设置为 auto
+      <ol>
+        <li>结果:设为 auto 的外边距为0，width 被填满容纳快。</li>
+      </ol>
+    </li>
+    <li>
+      三个属性都设置为auto
+      <ol>
+        <li>边距为0，width 要多宽有多宽。</li>
+      </ol>
+    </li>
+  </ul>
+  <p>可利用此特点设置两边定宽，中间自适应居中的布局。</p>
+  <h3 id="负外边距" tabindex="-1">
+    <a class="header-anchor" href="#负外边距" aria-hidden="true">#</a>
+    <strong>负外边距</strong>
+  </h3>
+  <p>
+    设置父外边距后，需要满足公式。 marginLeft + borderLeft + paddingLeft + width
+    + paddingRight + borderRight + marginRight = ParentWidth; 结果:
+  </p>
+  <ol>
+    <li>会造成子元素比父元素宽。</li>
+    <li>
+      如果子元素 width &gt;父元素 width，margin 为 auto 的一边会形成负值。
+    </li>
+  </ol>
+  <h3 id="百分数" tabindex="-1">
+    <a class="header-anchor" href="#百分数" aria-hidden="true">#</a>
+    <strong>百分数</strong>
+  </h3>
+  <p>
+    宽度，内边距和外边距设置为百分数时，上述规则仍然适用。其百分比为容纳块的百分比。
+    注意：
+  </p>
+  <ol>
+    <li>
+      边框不接受百分数，只能为长度值。因为只使用百分数无法创建完全弹性的元素，除非不添加边框，或者使用某种实验性的方案，例如弹性布局。
+    </li>
+  </ol>
+  <h3 id="置换元素" tabindex="-1">
+    <a class="header-anchor" href="#置换元素" aria-hidden="true">#</a>
+    <strong>置换元素</strong>
+  </h3>
+  <p>
+    width 为 auto 时，置换元素的宽度为内容自身的宽度。
+    如果置换元素的宽度与自身宽度不同，height
+    的值会按照自身比例进行变化，除非明确设定 height 的值。反之亦然。
+  </p>
+  <h3 id="纵向格式化" tabindex="-1">
+    <a class="header-anchor" href="#纵向格式化" aria-hidden="true">#</a>
+    <strong>纵向格式化</strong>
+  </h3>
+  <ul>
+    <li>元素的内容决定元素的默认高度</li>
+    <li>如果元素的内容比框体高，浏览器的具体行为取决为 overflow 属性。</li>
+    <li>
+      height 默认定义内容区的高度，而不是元素框可见区域的高度。元素框的
+      padding、border、margin在高度的基础上增加, 除非 box-sizing 的属性值不是
+      content-box。
+    </li>
+  </ul>
+  <h3 id="纵向格式化属性" tabindex="-1">
+    <a class="header-anchor" href="#纵向格式化属性" aria-hidden="true">#</a>
+    <strong>纵向格式化属性</strong>
+  </h3>
+  <blockquote>
+    <p>
+      与横向格式化一样，纵向格式化设计七个属性：margin-top、border-top、padding-top、height、padding-bottom、border-bottom
+      和margin-bottom。
+    </p>
+  </blockquote>
+  <ul>
+    <li>
+      这七个属性的值加在一起必须等于块级框的高度。通常，<strong
+        >这是块级框父元素的height值（因为块级元素的父元素几乎都是块级元素）</strong
+      >
+    </li>
+    <li>
+      元素的高度和上下外边距可设置为
+      auto。其他必须设置具体的值，否则取默认值0（假设没声明边框样式）。
+    </li>
+    <li>
+      在常规流动模式下，margin-top 和 margin-bottom 设为 auto, 二者都自动计算为
+      0。所以，常规流动模式下的元素无法轻易在容纳块中纵向居中。
+    </li>
+    <li>height 的属性要么设置为 auto, 要么设为某种类型的非负值。</li>
+  </ul>
+  <h3 id="百分数高度" tabindex="-1">
+    <a class="header-anchor" href="#百分数高度" aria-hidden="true">#</a>
+    <strong>百分数高度</strong>
+  </h3>
+  <ul>
+    <li>
+      常规流动下，如果把块级框的高度设置为百分数，百分数是相对框体的容纳快的高度而言的。
+    </li>
+    <li>
+      常规流动下，如果未明确声明容纳块的高度，那么子元素百分数高度将被重置为
+      auto。
+    </li>
+  </ul>
+  <h3 id="自动调整高度" tabindex="-1">
+    <a class="header-anchor" href="#自动调整高度" aria-hidden="true">#</a>
+    <strong>自动调整高度</strong>
+  </h3>
+  <p>
+    常规流动模式下，声明 height:auto
+    的块级框是最简单的，此时，框体的高度恰好能放得下里面的内容。
+  </p>
+  <ul>
+    <li>
+      常规模式下的块级框如果高度是自动调整的，而且子代都是块级元素，那么默认高度是从最上面的那个块级子元素的
+      border-top 至最下面的那个块级子元素的 border-bottom 之间的距离。margin
+      是在父元素的外部。
+    </li>
+    <li>
+      常规流动模式下，如果父块级元素有 padding-top 或者 padding-bottom, 或者
+      border-top 或者 border-bottom。那么其父元素的高度是最上面子元素的
+      margin-top 到最下面子元素的 margin-bottom 之间的距离。
+    </li>
+  </ul>
+  <h3 id="折叠纵向外边距" tabindex="-1">
+    <a class="header-anchor" href="#折叠纵向外边距" aria-hidden="true">#</a>
+    <strong>折叠纵向外边距</strong>
+  </h3>
+  <blockquote>
+    <p>
+      纵向格式化的另一个重要特征是，相邻的纵向外边距 margin 会折叠。padding 和
+      border 绝不与任何区域折叠或者重叠。 即较小的外边距会被较大的外边距抵消。
+    </p>
+  </blockquote>
+  <p>发生折叠的情况：</p>
+  <ol>
+    <li>相邻子元素的 margin-top 和 margin-bottom</li>
+    <li>父元素的 margin-top 和第一个子元素的 margin-top</li>
+    <li>父元素的 margin-bottom 和最后一个子元素的 margin-bottom</li>
+  </ol>
+  <h3 id="负外边距和折叠" tabindex="-1">
+    <a class="header-anchor" href="#负外边距和折叠" aria-hidden="true">#</a>
+    <strong>负外边距和折叠</strong>
+  </h3>
+  <ul>
+    <li>
+      如果两个相邻的外边距都是负值，浏览器取其中绝对值较大的那个，然后从正边距中减去他的绝对值。
+    </li>
+  </ul>
+  <h3 id="列表项目" tabindex="-1">
+    <a class="header-anchor" href="#列表项目" aria-hidden="true">#</a>
+    <strong>列表项目</strong>
+  </h3>
+  <blockquote>
+    <p>
+      列表项如 li
+      前面通常有个记号，例如小圆点或者数字，但这个记号通常不在列表项目的内容区域中。
+    </p>
+  </blockquote>
+  <p>
+    list-style-position :
+    记号的位置。可放在内容区的外部、行间内容或者内容区的开头。不管如何调整列表的样式，记号与内容区间之间的距离始终不变。有时，记号甚至可能超出列表元素本身
+  </p>
+  <h1 id="行内元素" tabindex="-1">
+    <a class="header-anchor" href="#行内元素" aria-hidden="true">#</a> 行内元素
+  </h1>
+  <p>基本概念</p>
+  <ol>
+    <li>匿名文本 不在任何行内元素中的字符串。</li>
+    <li>字体框 font-size</li>
+    <li>
+      内容区
+      <ol>
+        <li>
+          非置换元素
+          可以是各字符的字体框连在一起构成的方框。也可以是元素中各字符的字形合在一起构成的方框。
+        </li>
+        <li>置换元素 元素自身的高度加上内外边距和边框。</li>
+      </ol>
+    </li>
+    <li>
+      行距 font-size 和 line-height
+      之差。差值除以2分别添加到内容区的上部和下部。内容区多出来的这部分空间叫半行距。只有非置换元素有行距。
+    </li>
+    <li>
+      行内框 内容区加行距后得到的方框
+      <ol>
+        <li>非置换元素，行内框的高度正好等于 line-height</li>
+        <li>
+          置换元素 行内框的高度等于内容区的高度，因为<strong
+            >置换元素没有行距</strong
+          >
+        </li>
+      </ol>
+    </li>
+    <li>行框 过一行中各个行内框最高点和最低点的方框。</li>
+  </ol>
+  <h3 id="行内格式化" tabindex="-1">
+    <a class="header-anchor" href="#行内格式化" aria-hidden="true">#</a>
+    行内格式化
+  </h3>
+  <p>
+    不管有没有显示声明，所有元素都有 line-height
+    值。这个值很大程度上影响着行内元素的显示。
+  </p>
+  <ul>
+    <li>
+      一行的高度（行框的高度）由其内部的元素及其他内容（例如文本）的高度决定。注意，line-height
+      影响行内元素和其他内容，<strong>但不影响块级元素</strong>，至少没有直接影响。块级元素可以设置
+      line-height 值，但是只对块级元素中的行内内容有视觉影响。
+    </li>
+    <li>
+      行内元素（内联元素）居中不能用 margin:0 auto,
+      内联元素可以想象成文本元素。文本元素的居中需要 text-align:center
+    </li>
+  </ul>
+  <blockquote>
+    <p>
+      根据 css 规范，为块级元素设置 line-height
+      值的作用是为块级元素中的内容设定行框的最小高度。
+    </p>
+  </blockquote>
+  <h3 id="行内非置换元素" tabindex="-1">
+    <a class="header-anchor" href="#行内非置换元素" aria-hidden="true">#</a>
+    行内非置换元素
+  </h3>
+  <p>
+    行框 : 字体框 + 行距 即：line-height 浏览器会将 line-height 与 font-size
+    的差值除以2，分别添加到内容区的上部和下部。<strong
+      >如果 font-size 大于 line-height,
+      则内容会叠加到其他行框上，最终结果会使文本显得不太协调</strong
+    >
+  </p>
+  <h3 id="纵向对齐方式" tabindex="-1">
+    <a class="header-anchor" href="#纵向对齐方式" aria-hidden="true">#</a>
+    纵向对齐方式
+  </h3>
+  <blockquote>
+    <p>vertical-align:</p>
+  </blockquote>
+  <ul>
+    <li>top 元素的行内框的顶边与所在行框的顶边对齐</li>
+    <li>bottom 元素行内框的底边与所在行框的底边对齐</li>
+    <li>text-top 元素行内框的顶边与父元素内容区的顶边对齐</li>
+    <li>text-bottom 元素行内框的底边与父元素内容区的底边对齐</li>
+    <li>middle 元素行内框的纵向中点与父元素基线以上 0.5ex 处的点对齐</li>
+    <li>
+      super
+      向上移动元素的内容区和行内框无法指定移动距离，不同的浏览器之间可能有区别
+    </li>
+    <li>sub 与 super 类似，只不过是向下移动</li>
+    <li>
+      percentage 向上或者向下移动元素，移动的距离等于声明的百分数乘以元素的
+      line-height 值。
+    </li>
+  </ul>
+  <h3 id="控制行高" tabindex="-1">
+    <a class="header-anchor" href="#控制行高" aria-hidden="true">#</a> 控制行高
+  </h3>
+  <p>line-height 是相对与字体 font-size 的值，与父元素无关，并且子类可继承。</p>
+  <ol>
+    <li>为字号有变化的元素设定单位为 em 的行高。</li>
+    <li>增加段落的 line-height 值，以让段落中的每一行都受影响。</li>
+  </ol>
+  <h3 id="基线与行高" tabindex="-1">
+    <a class="header-anchor" href="#基线与行高" aria-hidden="true">#</a>
+    基线与行高
+  </h3>
+  <p>
+    字体框中基线的位置在每个字体中不尽相同。这个信息内置在字体文件中，除了直接编辑字体文件之外，无法修改。
+  </p>
+  <h3 id="按比例设置行高" tabindex="-1">
+    <a class="header-anchor" href="#按比例设置行高" aria-hidden="true">#</a>
+    按比例设置行高
+  </h3>
+  <ul>
+    <li>
+      设定 line-height
+      值的最佳方式是使用纯数字。这是因为纯数字相当于比例因子，而这个因子能被继承，而不计算为具体值。
+    </li>
+  </ul>
+  <div class="language-css ext-css line-numbers-mode">
+    <pre
+      v-pre
+      class="language-css"
+    ><code><span class="token selector">body</span> <span class="token punctuation">{</span>
+    line-height：1.5
+<span class="token punctuation">}</span>
+
+文档中所有元素的 line-height 设为 font-size 的 1.5 倍
+</code></pre>
+    <div class="line-numbers">
+      <span class="line-number">1</span><br /><span class="line-number">2</span
+      ><br /><span class="line-number">3</span><br /><span class="line-number"
+        >4</span
+      ><br /><span class="line-number">5</span><br />
+    </div>
+  </div>
+  <ul>
+    <li>
+      设置 line-height 值为
+      1。让每个行内框的高度与内容区的高度相同，而这正好是内容区的最小高度。
+    </li>
+  </ul>
+  <h3 id="加上盒模型属性" tabindex="-1">
+    <a class="header-anchor" href="#加上盒模型属性" aria-hidden="true">#</a>
+    加上盒模型属性
+  </h3>
+  <p>
+    如果将 padding、border 和 margin
+    都应用到行内非置换元素上，行内元素的这些属性并不影响行框的总体高度。
+  </p>
+  <ul>
+    <li>边框的边界由 font-size 控制，不受 line-height 的影响。</li>
+    <li>
+      padding 和 margin 也并不影响内容区的高度，因此也不影响元素行内框的高度。
+    </li>
+  </ul>
+  <p>
+    行内元素基本上是按照一行放置的，然后再去分成多个部分。因此行内元素的外边距会出现在元素的开头和结尾，即左外边距和右外边距。内边距也会出现在两端，但是不影响行高。
+  </p>
+  <blockquote>
+    <p>
+      css 2.1
+      明确指出，行框是按照文本出现在文档中的顺序绘制的：“这会导致后面行的边框出现在前面行的边框上。”同理，背景色也是这个道理，边框如果重叠，后面的会覆盖掉前面的。
+    </p>
+  </blockquote>
+  <h3 id="改变断行行为" tabindex="-1">
+    <a class="header-anchor" href="#改变断行行为" aria-hidden="true">#</a>
+    改变断行行为
+  </h3>
+  <blockquote>
+    <p>box-decoration-break</p>
+  </blockquote>
+  <ul>
+    <li>
+      slice
+      把一个行内非置换元素分成多行显示时，用户代理将其视为断成多块的一长行，没换一行就多一块。
+    </li>
+    <li>
+      clone 把元素各个片段视为单独的框。每个片段都是一个副本，单独应用
+      border、padding、background等。
+    </li>
+  </ul>
+  <h1 id="行内置换元素" tabindex="-1">
+    <a class="header-anchor" href="#行内置换元素" aria-hidden="true">#</a>
+    行内置换元素
+  </h1>
+  <p>
+    行内置换元素（例如图像）自身是有高度和宽度的。<strong
+      >置换元素的行内框包含整个元素，包括内容、外边距、边框和内边距。</strong
+    >
+    vertical-align 属性的百分值是相对于元素的 line-height 计算的。
+  </p>
+  <h3 id="加上盒模型属性-1" tabindex="-1">
+    <a class="header-anchor" href="#加上盒模型属性-1" aria-hidden="true">#</a>
+    加上盒模型属性
+  </h3>
+  <p>行内置换元素的内边距、边框和外边距会增加行内框的高度。</p>
+  <pre><code>1. 正外边距就是增加置换元素行内框的高度。与之相反，负外边距会减少元素行内框的高度。
+</code></pre>
+  <h3 id="置换元素与基线" tabindex="-1">
+    <a class="header-anchor" href="#置换元素与基线" aria-hidden="true">#</a>
+    置换元素与基线
+  </h3>
+  <p>
+    置换元素自身没有基线，退而求其次，把置换元素的行内框底边与基线对齐。因此，与基线对齐的其实是外边距的边界。
+  </p>
+</template>

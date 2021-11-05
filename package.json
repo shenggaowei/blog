@@ -1,35 +1,29 @@
 {
-  "homepage": "https://iswsg.github.io",
-  "version": "0.0.2",
+  "homepage": "https://weishenggao.com",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "prepare": "husky install",
-    "release": "standard-version"
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.8.2",
-    "@vuepress/plugin-medium-zoom": "^1.8.2",
-    "@vuepress/plugin-nprogress": "^1.8.2",
+    "vuepress": "^2.0.0-beta.27",
     "husky": ">=7",
     "lint-staged": ">=11",
-    "prettier": "2.4.1",
-    "vuepress": "^1.8.2",
-    "vuepress-plugin-reading-progress": "^1.0.10"
+    "prettier": "2.4.1"
   },
   "license": "MIT",
   "dependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
-    "standard-version": "^9.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0"
   },
   "lint-staged": {
     "docs/**/*.{vue,js,md}": "prettier --write",
-    "*.css":[
-        "stylelint",
-        "prettier --write"
+    "*.css": [
+      "stylelint",
+      "prettier --write"
     ]
   }
 }
