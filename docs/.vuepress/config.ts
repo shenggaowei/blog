@@ -13,6 +13,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     logo,
     repo,
     navbar,
-    darkMode: false,
+    sidebar: false,
+    contributors: false,
   },
 });
