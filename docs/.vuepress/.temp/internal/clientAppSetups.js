@@ -1,6 +1,6 @@
-import clientAppSetup0 from "/Users/admin/Documents/projects/blog/node_modules/@vuepress/theme-default/lib/client/clientAppSetup.js";
-import clientAppSetup1 from "/Users/admin/Documents/projects/blog/node_modules/@vuepress/plugin-active-header-links/lib/client/clientAppSetup.js";
-import clientAppSetup2 from "/Users/admin/Documents/projects/blog/node_modules/@vuepress/plugin-nprogress/lib/client/clientAppSetup.js";
+import clientAppSetup0 from "/Users/weishenggao/Documents/blog/node_modules/@vuepress/theme-default/lib/client/clientAppSetup.js";
+import clientAppSetup1 from "/Users/weishenggao/Documents/blog/node_modules/@vuepress/plugin-active-header-links/lib/client/clientAppSetup.js";
+import clientAppSetup2 from "/Users/weishenggao/Documents/blog/node_modules/@vuepress/plugin-nprogress/lib/client/clientAppSetup.js";
 
 export const clientAppSetups = [
   clientAppSetup0,

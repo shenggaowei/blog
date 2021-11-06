@@ -4,13 +4,13 @@ export const pagesComponents = {
   // path: /
   "v-8daa1a0e": defineAsyncComponent(() =>
     import(
-      /* webpackChunkName: "v-8daa1a0e" */ "/Users/admin/Documents/projects/blog/docs/.vuepress/.temp/pages/index.html.vue"
+      /* webpackChunkName: "v-8daa1a0e" */ "/Users/weishenggao/Documents/blog/docs/.vuepress/.temp/pages/index.html.vue"
     )
   ),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() =>
     import(
-      /* webpackChunkName: "v-3706649a" */ "/Users/admin/Documents/projects/blog/docs/.vuepress/.temp/pages/404.html.vue"
+      /* webpackChunkName: "v-3706649a" */ "/Users/weishenggao/Documents/blog/docs/.vuepress/.temp/pages/404.html.vue"
     )
   ),
 };

@@ -10,10 +10,26 @@ export const data = {
   },
   excerpt: "",
   headers: [],
-  filePathRelative: "readme.md",
+  filePathRelative: "README.md",
   git: {
-    updatedTime: null,
-    contributors: [],
+    updatedTime: 1636110322000,
+    contributors: [
+      {
+        name: "weishenggao",
+        email: "weishenggao@innobuddy.com",
+        commits: 7,
+      },
+      {
+        name: "gaogao",
+        email: "weishenggao@innobuddy.com",
+        commits: 4,
+      },
+      {
+        name: "weishenggao",
+        email: "",
+        commits: 4,
+      },
+    ],
   },
 };
 
