@@ -17,7 +17,7 @@ ISO/IEC 实际上是两个组织
 
 ITU-T 与 ISO/IEC 两大组织在历史上究竟发生了什么有趣的事情呢？
 
-![编码标准历史](~@img/video/encodingHistory.jpeg)
+![编码标准历史](./img/encodingHistory.jpeg)
 
 一般认为，ITU-T 的 H.26x 标准，主要应用于实时视频通信领域，如会议电视；ISO/IEC 制定的 MPEG 系列标准，主要应用于视频存储(DVD)、广播电视、因特网或无线网上的流媒体等。
 
@@ -52,16 +52,16 @@ H.265 旨在在有限带宽下传输更高质量的网络视频，仅需原先�
 
 [在 Apple 设备上使用 HEIF 或 HEVC 媒体](https://support.apple.com/zh-cn/HT207022)
 
-![ios对h265兼容性](~@img/video/iosCompatibility.jpg)
+![ios对h265兼容性](./img/iosCompatibility.jpg)
 
 **安卓**
 
 [安卓音视频格式兼容性支持](https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn)
 
-![安卓h265兼容性](~@img/video/androidCompatibility.jpg)
+![安卓h265兼容性](./img/androidCompatibility.jpg)
 
 ## 测试效果
 
 用 ffmpeg 将 h.264 视频转成 h.265 后，视频所占用的空间减小一半，但是清晰度，却几乎没有变化。
 
-![h265和h264大小对照](~@img/video/capacity.jpg)
+![h265和h264大小对照](./img/capacity.jpg)
