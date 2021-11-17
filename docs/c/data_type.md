@@ -139,3 +139,55 @@ int main() {
 2 如果没有特殊需要，使用 double
 
 - 现代 cpu 能直接对 double 做硬件运算，性能不会比 float 差，在 64 位的机器上，数据存储的速度也不会比 float 差。
+
+## 4 字符类型
+
+### 4.1 类型总览
+
+Char 是一种整数，也是一种特殊的类型：字符。这是因为：
+
+- 用单引号可以表示字符字面量: 'a', '1'
+- ''也是一个字符
+- printf 和 scanf 里用 %c 来输入输出字符
+
+### 4.2 字符的输入和输出
+
+```c
+#include<stdio.h>
+int main() {
+    char c;
+    int i;
+    scanf("%c", &c);
+    scanf("%d", &i);
+
+    printf("c=%d\n", c);
+    printf("c=%c\n", c);
+
+    printf("i=%c\n", i);
+    printf("i=%d\n", i);
+}
+```
+
+执行上面代码，输入 1 49 ，输出如下
+
+c=49
+c=1
+i=1
+i=49
+
+字符 '1' 转换成整数是 49, 整数 49 转换成字符是 '1'，计算机中字符是以 ascll 码方式进行存储的。其中 '1' 的 ascll 码是整数 49，'A' 的 ascll 码是整数 65。
+
+### 4.3 混合输入
+
+习题 a: 输入小写字母，输出大写字母
+
+```c
+#include<stdio.h>
+int main() {
+    int interval = 'A' - 'a';
+    char c;
+    scanf("%c", &c);
+    printf("%c\n", c + interval);
+    return 0;
+}
+```
