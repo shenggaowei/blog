@@ -241,3 +241,34 @@ int main() {
 强转 short 类型, short 最大为 32767,加 1 溢出变成 -32768
 
 强转 char 类型，char 为 一个字节。精度缺失，变成 0
+
+## 5 布尔类型
+
+```c
+#include<stdbool.h>
+int main() {
+  bool a = true;
+  printf("%d", a);
+}
+```
+
+布尔类型，如果用 printf 进行打印，显示的是 0 或 1。
+
+## 6 条件运算
+
+如果获取 (4,6)区间之间的值呢？
+
+```c
+#include<stdio.h>
+int main() {
+  int x;
+  sccanf("%d", &x);
+  if(4<x<6){
+    // 错误写法。 先计算 4 < x,得到 1 或者 0，然后再与 6 进行比较。得到的结果始终为1
+  }
+
+  if(x>4 && x < 6) {
+    // 这是正确的
+  }
+}
+```
