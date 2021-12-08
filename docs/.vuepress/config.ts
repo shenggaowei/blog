@@ -17,4 +17,9 @@ export default defineUserConfig<DefaultThemeOptions>({
     sidebar: false,
     contributors: false,
   },
+  markdown: {
+    code: {
+      lineNumbers: false,
+    },
+  },
 });
