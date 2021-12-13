@@ -16,7 +16,7 @@ function useCallback<T extends (...args: any[]) => any>(
 function useMemo<T>(factory: () => T, deps: DependencyList | undefined): T;
 ```
 
-从 react 官方文档对两个函数的定义可以知道，useCallback 中 T 为一个函数，而在 useMemo 中，**由于传入`useMemo` 的函数会在渲染期间执行** ，所以 T 为执行结果。
+从 react 官方文档对两个函数的定义可以知道，useCallback 中 T 为一个函数，而在 useMemo 中，**由于传入 `useMemo` 的函数会在渲染期间执行** ，所以 T 为执行结果。
 
 useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。
 
