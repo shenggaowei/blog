@@ -8,7 +8,7 @@ const navbar = [
       },
       {
         text: "算法小记",
-        link: "/data_structure/",
+        link: "/algorithm/",
       },
     ],
   },
