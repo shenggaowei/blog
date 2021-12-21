@@ -1,37 +1,45 @@
-## 前端趣记
+### 基础记录
 
-1.  [Event Loop](event_loop)
-2.  [函数式编程](function_programmer.md)
-3.  [如何发布一个 npm 包?](publish_npm_package.md)
-4.  [类的继承](extends.md)
-5.  [如何实现 compose 和 curry 函数](compose_curry.md)
-6.  [数组去重算法](array_de_duplication.md)
-7.  [浏览器网络请求整理](browser_request.md)
-8.  [前端本地缓存概况之浏览器缓存策略](cache.md)
-9.  [前端本地缓存之 PWA](pwa.md)
-10. [如何自己实现 bind、call、apply 函数](bind_call_apply.md)
-11. [节流防抖概念以及实现](throttle_debounce.md)
-12. [javascript 数据类型检测](test_data_type.md)
-13. [正则表达式](regexp.md)
-14. [浏览器元素宽高计算](layout_compute.md)
-15. [react native 动画应用](./react/react_native_animated.md)
-16. [我是 div，我要以多种姿势居中](css_center.md)
-17. [太长了，我要加省略号..](css_ellipsis.md)
-18. [优雅而又聪明的实现两栏布局](css_layout_compute.md)
-19. [代码美化小技巧](./code_formatting)
-20. [useCallback 和 useMemo](./react/useMemo&useCallback.md)
-21. [why is setState asynchronous?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
-22. [深入学习：何时以及为什么 setState() 会批量执行？](https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973)
-23. [实现 setInterval hook](https://overreacted.io/zh-hans/making-setinterval-declarative-with-react-hooks/)
-24. [ts: interface 和 type 的异同](./typescript/interface_type.md)
-25. [ts: 常见飘红解决](./typescript/issue.md)
-26. [rollup: 基础配置](./rollup/use.md)
+- [面向对象之继承](extends.md)
+- [浏览器网络请求整理](browser_request.md)
+- [js 数据类型检测](test_data_type.md)
+- [正则表达式](regexp.md)
+- [浏览器元素宽高计算](layout_compute.md)
+- [我是 div，我要以多种姿势居中](css_center.md)
+- [太长了，我要加省略号..](css_ellipsis.md)
+- [优雅而又聪明的实现两栏布局](css_layout_compute.md)
 
-## 微信小程序
+### 基础进阶
+
+- [理解事件循环机制](event_loop.md)
+- [学会函数式编程，远离代码副作用](function_programmer.md)
+- [compose 和 curry 函数实现原理](compose_curry.md)
+- [动手实现 bind、call、apply 函数](bind_call_apply.md)
+- [节流防抖的实现和应用](throttle_debounce.md)
+- [浏览器缓存策略--强缓存和协商缓存](cache.md)
+- [浏览器缓存策略--PWA](pwa.md)
+
+### 前端工程化
+
+- [自动格式化代码，打造舒适的项目开发环境](./code_formatting)
+- [如何发布第一个 npm 包？](publish_npm_package.md)
+- [rollup: 基础配置](./rollup/use.md)
+
+### TypeScript
+
+- [用 interface 或者 type 定义类型有什么区别？](./typescript/interface_type.md)
+- [常见飘红解决](./typescript/issue.md)
+
+### 微信小程序
 
 1.  [openId 和 unionId 的概念和区别](./mini_app/openid_unionid.md)
 2.  [taro 开发配置](./mini_app/taro_use/index.md)
 
-## react 学习
+### React
 
-### 1. [react 基础](./react/)
+- [理解合成事件](./react/syntheticEvent.md)
+- [理解 react key](./react/key.md)
+- [setState 为什么是异步的？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+- [setState 何时会批量执行？](https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973)
+- [如何实现 setInterval hook？](https://overreacted.io/zh-hans/making-setinterval-declarative-with-react-hooks/)
+- [react native 动画应用](./react/react_native_animated.md)

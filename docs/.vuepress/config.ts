@@ -14,7 +14,6 @@ export default defineUserConfig<DefaultThemeOptions>({
     logo,
     repo,
     navbar,
-    sidebar: false,
     contributors: false,
   },
   markdown: {
