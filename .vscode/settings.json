@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["commitlint", "stylelint", "vite", "vuepress", "weishenggao"]
+  "cSpell.words": [
+    "commitlint",
+    "instanceof",
+    "stylelint",
+    "typeof",
+    "vite",
+    "vuepress",
+    "weishenggao"
+  ]
 }

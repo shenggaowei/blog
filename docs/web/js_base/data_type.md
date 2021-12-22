@@ -1,6 +1,12 @@
-# JS 数据类型检测
+---
+title: JS 数据类型检测
+tags: js
+date: 2021-12-22 13:05:00
+---
 
-### typeof 操作符
+# js 数据类型检测
+
+## typeof
 
 > 只能用来检测基本类型的数值。引用类型会统一返回 object。
 
@@ -16,7 +22,7 @@
 
 1. 自定义构造函数会统一检测为 Object,无法具体判断构造函数的类型。
 
-### instanceof 操作符
+## instanceof
 
 > 只能用来检测引用类型，由于 js 规定所有引用类型的值都是 Object 构造函数的实例，所以用 instanceof 检测基本类型的值，始终会返回 false。
 > 检测引用类型可以判断出该实例所属的构造函数。
@@ -25,7 +31,7 @@
 
 1. **?** 变量与构造函数必须在同一个作用域中 如果变量定义在其他的 frame 中，在主框架中是无法进行检测的。需要进一步的尝试，没测出来。
 
-### toString
+## toString
 
 > Object.prototype.toString.call(value) 检测某个对象到底是原生对象还是开发人员自定义的对象
 
@@ -39,6 +45,6 @@ function getType(data) {
 }
 ```
 
-### constructor![vim](/Users/weishenggao/Desktop/vim.png
+## constructor
 
 > 判断实例的直接构造函数属性。适用于原生构造函数或者开发人员自定义的构造函数。
