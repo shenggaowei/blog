@@ -1,3 +1,7 @@
+---
+lastUpdated: true
+---
+
 ## 基础记录
 
 - [面向对象之继承](./js_base/object_extends.md)
@@ -37,9 +41,9 @@
 
 ## React
 
-- [理解合成事件](./react/library/syntheticEvent.md)
-- [理解 react key](./react/library/key.md)
+- [理解合成事件](./library/react/syntheticEvent.md)
+- [理解 react key](./library/react/key.md)
 - [setState 为什么是异步的？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 - [setState 何时会批量执行？](https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973)
 - [如何实现 setInterval hook？](https://overreacted.io/zh-hans/making-setinterval-declarative-with-react-hooks/)
-- [react native 动画应用](./react/library/react_native_animated.md)
+- [react native 动画应用](./library/react/react_native_animated.md)
