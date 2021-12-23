@@ -21,6 +21,15 @@ const navbar = [
       },
     ],
   },
+  {
+    text: "工具库",
+    children: [
+      {
+        link: "https://uweb.umeng.com/v1/login.php?siteid=1280721424",
+        text: "站点统计",
+      },
+    ],
+  },
 ];
 
 export default navbar;
