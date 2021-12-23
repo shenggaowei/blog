@@ -1,5 +1,6 @@
 import { defineUserConfig } from "vuepress";
 import type { DefaultThemeOptions } from "vuepress";
+import path from "path";
 import { logo, repo } from "./utils/constant";
 import navbar from "./utils/navbar";
 import plugins from "./utils/plugins";
@@ -16,6 +17,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     navbar,
     contributors: false,
   },
+  templateSSR: path.resolve(__dirname, "./public/index.html"),
   markdown: {
     code: {
       lineNumbers: false,
