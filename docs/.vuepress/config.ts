@@ -17,7 +17,8 @@ export default defineUserConfig<DefaultThemeOptions>({
     navbar,
     contributors: false,
   },
-  templateSSR: path.resolve(__dirname, "./public/index.html"),
+  templateSSR: path.resolve(__dirname, "./public/ssr.html"),
+  templateDev: path.resolve(__dirname, "./public/dev.html"),
   markdown: {
     code: {
       lineNumbers: false,
