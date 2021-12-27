@@ -27,7 +27,7 @@ lastUpdated: true
 
 - [自动格式化代码，打造舒适的项目开发环境](./js_engineering/code_formatting)
 - [如何发布第一个 npm 包？](./js_engineering/publish_npm_package.md)
-- [rollup: 基础配置](./engineering/rollup/use.md)
+- [rollup: 基础配置](./js_engineering/rollup/use.md)
 
 ## TypeScript
 
