@@ -74,7 +74,7 @@ disk cache 不同于 memory cache，disk cache 的资源是从磁盘当中取出
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2019/png/84653/1558439296918-b969ce9c-32a1-4500-bb77-ae0496146822.png#align=left&display=inline&height=901&name=image.png&originHeight=901&originWidth=1225&size=97526&status=done&width=1225)
 
-文件未更新，协商缓存生效，返回 304 及空响应及，浏览器直接读取缓存资源
+文件未更新，协商缓存生效，返回 304 及空响应体，浏览器直接读取缓存资源
 
 如图所示，http 请求携带的缓存标识可以有两个，分别是 Last-modified 和 Etag，接下来我们慢慢说一说这两个。
 

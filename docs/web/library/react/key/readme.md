@@ -2,18 +2,18 @@
 
 ## 一 react 组件元素的 diff 算法
 
-![屏幕快照 2019-10-08 下午11.55.39](https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/02/29/ping-mu-kuai-zhao-20191008-xia-wu115539.png)
+![key diff](./key.png)
 
 ## 二 key 的理解
 
 ### 概述
 
-react 中的 key 属性，它是一个特殊的属性，它的出现不是给开发者用的（例如你为一个组件设置 key 之后不能获取组件的这个 key props），而是给 react 自己用的。
+react 中的 key，是一个特殊的属性，它的出现不是给开发者用的（例如为一个组件设置 key 之后不能获取组件的这个 key props），而是给 react 自己用的。
 
 ### key 的作用
 
-key 不是用来提升 react 的性能的，不过用好 key 对性能是有帮组的。
-react 利用 key 来识别组件，它是一种身份标识标识。每个 key 对应一个独立的组件，在前后渲染过程中，相同的 key 会被 react 认为是同一个组件。
+key 不是用来提升 react 性能的，不过用好 key 对性能是有帮助的。
+react 利用 key 来识别组件，它是一种身份标识。每个 key 对应一个独立的组件，在前后渲染过程中，相同的 key 会被 react 认为是同一个组件。
 
 - key 相同，会重新渲染 props 属性。
 - key 不同，即在下次渲染中有新的 key 值出现，会销毁之前的组件，然后重新创建该组件。
@@ -44,8 +44,8 @@ react 利用 key 来识别组件，它是一种身份标识标识。每个 key �
 分析：
 
 1. 重新排序后，组件重新生成虚拟 dom,然后新旧虚拟 dom 进行 diff 对比。
-2. 拿 key 为 0 的组件举例。获取到新虚拟 dom 中 key 为 0 的组件，然后从旧的虚拟 dom 中找到 key 为 0 的组件。由同一个 key 可判断是同一个组件进行 diff。react 会保证组件的实例不变。只更新 props 值。然后递归遍历他的子节点，发现只有文本节点前后不一致，调用 componentWillReceiveProps -> componentWillUpdate -> render 依次更新组件的属性。
-3. 因为 input 元素在对比中并没有变化，且其是非受控组件，又与父组件传入的任一 props 没有关联，所以其输入的 value 值会保存在 input 中，导致排序后，内容和组件的顺序错乱。
+2. 拿 key 为 0 的组件举例。react 拿更新后虚拟 dom 中 key 为 0 的组件，与其更新前的状态进行对比。由同一个 key 可判断是同一个组件，然后进行 diff。react 会保证组件的实例不变。只更新 props 值。然后递归遍历其子节点，发现只有文本节点前后不一致，调用 componentWillReceiveProps -> componentWillUpdate -> render 依次更新组件的属性。
+3. 因为 input 元素是非受控组件，diff 完后没有变化，又与父组件传入的任一 props 没有关联，所以其输入的 value 值会保存在 input 中，这就导致排序后，内容和组件的顺序错乱。
 
 **key 的值要稳定唯一**
 

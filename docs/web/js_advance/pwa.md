@@ -10,7 +10,7 @@ Manifest 本质是一个 JSON 格式的文件，你可以把它理解为一个�
 
 #### 2、Push & Notification
 
-Push API 和 Notification API 其实是两个独立的技术（功能实现，需要借助后文中的 service worker），完全可以分开使用；不过 Push API 和 Notification API 相结合是一个常见的模式。其中 Push 主要链路为：浏览器发起订阅至服务端，服务端存储相关信息，如有消息推送，则项浏览器 push service 发起请求，浏览器 push service 将信息传递给浏览。Notification 则比较简介直接，显示使用 Notification.requestPermission()询问授权，之后调用 registration.showNotification()进行显示。<br />
+Push API 和 Notification API 其实是两个独立的技术（功能实现，需要借助后文中的 service worker），完全可以分开使用；不过 Push API 和 Notification API 相结合是一个常见的模式。其中 Push 主要链路为：浏览器发起订阅至服务端，服务端存储相关信息，如有消息推送，则向浏览器 push service 发起请求，浏览器 push service 将信息传递给浏览器。Notification 则比较简 jie 直接，显示使用 Notification.requestPermission()询问授权，之后调用 registration.showNotification()进行显示。<br />
 
 #### 3、Service Worker
 
@@ -26,7 +26,7 @@ W3C 组织早早的洞察到了这些问题可能会造成的影响，这个时�
 
 表面看，JavaScript 单线程问题得到了解决，然而 Web Worker 是临时会话存在的，业务及处理结果并不能被持久存下来，基于这样的痛点推出了最初版本的 Service Worker。
 
-W3C 组织在 2014 年 5 月就提出过 Service Worker 这样的一个 HTML5 API ，主要用来做持久的离线缓存。Sevice Worker 不仅能做到页面秒开的效果，而且当浏览器在弱网或者无网的时候，依然能做出很好的相应。使 web 站点拥有像原生 app 那样的离线缓存功能，丰富了用户的使用体验。
+W3C 组织在 2014 年 5 月就提出过 Service Worker 这样的一个 HTML5 API ，主要用来做持久的离线缓存。Sevice Worker 不仅能做到页面秒开的效果，而且当浏览器在弱网或者无网的时候，依然能做出很好的响应。使 web 站点拥有像原生 app 那样的离线缓存功能，丰富了用户的使用体验。
 
 当然在 Service Worker 之前也有在 HTML5 上做离线缓存的 API 叫 AppCache, 但是 AppCache 存在很多不能忍受的缺点。W3C 决定 AppCache 仍然保留在 HTML 5.0 Recommendation 中，在 HTML 后续版本中移除。
 
@@ -312,12 +312,12 @@ on fetch 的优点是无需更改编译过程，也不会产生额外的流量�
 
 ## HTTP 缓存与 Service Worker 缓存
 
-我们先要明确“Service Worker”真正的缓存处理部分，是基于“事件”触发的，这个时间就是浏览器页面主线程中的“fetch 请求”事件，Service Worker 则是拦截 fetch 请求，进行本地缓存库比对，之后根据情况确定是直接 return 请求还是将请求发出。
+我们先要明确“Service Worker”真正的缓存处理部分，是基于“事件”触发的，这个事件就是浏览器页面主线程中的“fetch 请求”事件，Service Worker 则是拦截 fetch 请求，进行本地缓存库比对，之后根据情况确定是直接 return 请求还是将请求发出。
 
-Web 服务器可以下行数据时在 response 的 header 对象中添加  Expires 或者 Cache-Control  来通知浏览器，它可以使用资源的当前副本，直到指定的“过期时间”，期间无需再次发送请求。反过来，浏览器可以缓存此资源，并且只有在有效期满后才会再次检查新版本。<br />
+Web 服务器在发送数据时可以在 response 的 header 对象中添加  Expires 或者 Cache-Control  来通知浏览器，它可以使用资源的当前副本，直到指定的“过期时间”，期间无需再次发送请求。反过来，浏览器可以缓存此资源，并且只有在有效期满后才会再次检查新版本。<br />
 <br />那么，我们根据两种原理可以得出，Service Worker 并不会影响 http 缓存。当 http 缓存，也就是“memory cache / disk cache”过期前，浏览器发出请求，经过浏览器层比对直接读取 http 缓存资源，该过程中，请求并没有真正发出。因而 Service Worker 的 fetch 事件监听也将不会被触发，结果是请求正常呈现，二者互不干扰。需要指出的是：实际上浏览器请求过程中，http 缓存效率比 Service Worker 缓存要快得多。<br />
 
-<br />接着说，Service Worker 通过监听 fetch 事件进行比对处理，那么我们原理篇中讲过的“[304 缓存](https://yuque.antfin-inc.com/ykvip_fed/fe_tech_share/oyzbnz#bPAcF)”可就与 Service Worker“撞车”了。因为 304 是在没有 http 缓存，或者 http 缓存过期的情况下，本身 response-header 中又有 Etag 字段，浏览器再次发送请求，服务端接到请求比对 Etag，进而判断是返回 200/新资源，还是 304/空响应体，这个过程请求是肯定会发出的，发出请求也就会触发 fetch 事件，如果返回 304 则意味着 response 为空，那么 fetch 事件函数中奖 response 存储到环境及返回到浏览器呈现都出错。<br />
+<br />接着说，Service Worker 通过监听 fetch 事件进行比对处理，那么我们原理篇中讲过的“[304 缓存](https://yuque.antfin-inc.com/ykvip_fed/fe_tech_share/oyzbnz#bPAcF)”可就与 Service Worker“撞车”了。因为 304 是在没有 http 缓存，或者 http 缓存过期的情况下，本身 response-header 中又有 Etag 字段，浏览器再次发送请求，服务端接到请求比对 Etag，进而判断是返回 200/新资源，还是 304/空响应体，这个过程请求是肯定会发出的，发出请求也就会触发 fetch 事件，如果返回 304 则意味着 response 为空，那么 fetch 事件函数中将 response 存储到环境及返回到浏览器呈现都出错。<br />
 
 ```javascript
 //为了防止返回304，请求时加时间戳；存储时照常使用event.request

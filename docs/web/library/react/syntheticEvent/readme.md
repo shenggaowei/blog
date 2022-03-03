@@ -14,16 +14,17 @@
 
 react 合成事件是 react 基于 w3c 标准，对原生事件做的封装。
 
-那问题来了，react 为什么要封装合成事件呢？直接写不行吗？结合 react 官方文档，可以看出 react 的原因：
+那问题来了，react 为什么要封装合成事件呢？结合 react 官方文档，可以看出 react 的原因：
 
-1. 不需要担心跨浏览器的兼容问题。
-
-2. 对事件的处理，通过事件委托机制冒泡到 root(react 17) 或者 document(react 16) 节点进行触发，减少内存消耗，提高性能。
+1. 不需要担心跨浏览器的兼容问题
+2. 对事件的处理，通过事件委托机制冒泡到 root(react 17) 或者 document(react 16) 节点进行触发，减少内存消耗，避免频繁解绑，提高性能
+3. 方便事件的同一管理（如事务机制）
 
 ## 二 和原生事件的区别
 
 1. 事件命名方式不同。react 事件采用小驼峰(onClick)，不是纯小写。
 2. jsx 语法需要传入一个函数作为事件处理函数，而不是一个字符串。
+3. 不能通过返回 false 来阻止默认行为，必须使用 preventDefault。
 
 ```jsx
 // react 写法
@@ -36,8 +37,6 @@ react 合成事件是 react 基于 w3c 标准，对原生事件做的封装。
   Activate Lasers
 </button>
 ```
-
-3. 不能通过返回 false 来阻止默认行为，必须使用 preventDefault。
 
 ## 三 合成事件和原生事件的执行顺序
 
@@ -58,7 +57,7 @@ export default function App() {
     console.log("document=> click");
   });
 
-  const rootCjjklick = React.useRef(() => {
+  const rootClick = React.useRef(() => {
     console.log("#root=> click");
   });
 
@@ -105,14 +104,22 @@ document=> click
 
 结合官方文档和 demo，可总结出执行顺序：
 
-1. 触发真实 dom 元素事件，冒泡到 root 节点。
-2. 到达 root 节点后，执行 react 合成事件。
-3. 执行 root 根节点上的原生事件。
-4. 继续冒泡执行原生事件。
+1. 触发目标 dom 元素原生事件，冒泡到 root 节点。
+2. 执行 root 节点上的 react 合成事件。
+3. 执行 root 节点上的原生事件。
+4. 向上冒泡执行原生事件。
 
 ## 三 合成事件的常见问题
 
-1. 阻止事件冒泡对 react 合成事件和原生事件的影响。
+1. react 17 为什么将事件绑定到 root?
+
+   1. 有利于多个 react 版本并存，例如微前端。同时绑定到 document 上，会导致 react 版本混乱。
+
+      ![react 合成事件](./syntheticEvent.jpg)
+
+2. 阻止事件冒泡对 react 合成事件和原生事件的影响。
+
+以 17 为例, 在合成事件中设置 e.stopPropagation(), 可以阻止合成事件的冒泡行为。但是由于事件本身都在 root 上执行，所以最多只能阻止事件从 root 向上层冒泡。
 
 对代码进行修改，在元素点击的时候，阻止事件冒泡。
 
@@ -129,7 +136,7 @@ export default function App() {
     console.log("document=> click");
   });
 
-  const rootCjjklick = React.useRef(() => {
+  const rootClick = React.useRef(() => {
     console.log("#root=> click");
   });
 
@@ -179,5 +186,3 @@ h1=> click
 react h1=> click
 document=> click
 ```
-
-以 17 为例, 在合成事件中设置 e.stopPropagation(), 可以阻止合成事件的冒泡行为。但是由于事件本身都在 root 上执行，所以最多只能阻止事件从 root 向上层冒泡。
