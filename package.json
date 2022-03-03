@@ -1,5 +1,5 @@
 {
-  "homepage": "https://weishisi.github.io",
+  "homepage": "https://shenggaowei.github.io",
   "version": "0.0.2",
   "scripts": {
     "dev": "vuepress dev docs",
