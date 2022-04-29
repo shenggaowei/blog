@@ -2,13 +2,13 @@
 
 ## a 标签实现下载
 
-> 此属性指示浏览器下载 url 而不是导航到它,chrome 会直接下载文件，download 属性的值会被作为下载的文件名
+> 此属性指示浏览器下载 `url` 而不是导航到它,chrome 会直接下载文件，`download` 属性的值会被作为下载的文件名
 
 - 需要注意的点
 
 1. 此属性仅使用于同源 url。换句话说，仅仅只能下载站内的资源。
 2. href 属性可以使用 `blob: url` 和 `data: url` 链接进行下载。
-3. 如果 http 响应头中的 content-disposition 赋予了文件不同于 download 属性的文件名，http 头的属性优先于此属性
+3. 如果 http 响应头中的 `content-disposition` 赋予了文件不同于 `download` 属性的文件名，http 头的属性优先于此属性
 
 - 使用例子
 
@@ -24,11 +24,11 @@
 
 2. 创建 a 标签模拟点击
 
-```JavaScript
+```js
 function download(filename, url) {
-  const link = document.createElement('a');
+  const link = document.createElement("a");
   link.download = filename;
-  link.href =  url
+  link.href = url;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -47,36 +47,38 @@ function download(filename, url) {
 
 1. 通过 fetch
 
-```JavaScript
-    function download (url) {
-      fetch(url, {
-        method: 'GET'
-      }).then(res => res.blob()).then(data => {
-        const link = window.URL.createObjectURL(data)
-        const a = document.createElement('a')
-        a.href = link
-        a.download = '下载文件'
-        a.click()
-      })
-   }
+```js
+function download(url) {
+  fetch(url, {
+    method: "GET",
+  })
+    .then((res) => res.blob())
+    .then((data) => {
+      const link = window.URL.createObjectURL(data);
+      const a = document.createElement("a");
+      a.href = link;
+      a.download = "下载文件";
+      a.click();
+    });
+}
 ```
 
 2. 通过 ajax
 
-```JavaScript
-    function download (url) {
-      const x = new XMLHttpRequest()
-      x.open('GET', url, true)
-      x.responseType = 'blob'
-      x.onload = function () {
-        const link = window.URL.createObjectURL(x.response)
-        const a = document.createElement('a')
-        a.href = link
-        a.download = true
-        a.click()
-      }
-      x.send()
-    }
+```js
+function download(url) {
+  const x = new XMLHttpRequest();
+  x.open("GET", url, true);
+  x.responseType = "blob";
+  x.onload = function () {
+    const link = window.URL.createObjectURL(x.response);
+    const a = document.createElement("a");
+    a.href = link;
+    a.download = true;
+    a.click();
+  };
+  x.send();
+}
 ```
 
 ## 前后端配合解决方案
