@@ -12,6 +12,7 @@ lastUpdated: true
 - [我是 div，我要以多种姿势居中](./css/center.md)
 - [太长了，我要加省略号..](./css/ellipsis.md)
 - [优雅而又聪明的实现两栏布局](./css/two_column_layout.md)
+- [前端文件下载方式总结](./js_base/download.md)
 
 ## 基础进阶
 
