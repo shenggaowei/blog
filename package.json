@@ -10,17 +10,17 @@
   "devDependencies": {
     "@vuepress/plugin-search": "^2.0.0-beta.27",
     "husky": ">=7",
-    "lint-staged": ">=11",
-    "prettier": "2.4.1",
+    "lint-staged": ">=12",
+    "prettier": "2.6.2",
     "vuepress": "^2.0.0-beta.27",
     "vuepress-vite": "^2.0.0-beta.27"
   },
   "license": "MIT",
   "dependencies": {
-    "@commitlint/cli": "^13.2.1",
-    "@commitlint/config-conventional": "^13.2.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0"
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "stylelint": "^14.8.0",
+    "stylelint-config-standard": "^25.0.0"
   },
   "lint-staged": {
     "docs/**/*.{vue,js,md}": "prettier --write",
