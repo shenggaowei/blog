@@ -1,21 +1,24 @@
 import { defineUserConfig } from "vuepress";
 import type { DefaultThemeOptions } from "vuepress";
 import path from "path";
-import { logo, repo } from "./utils/constant";
+import { repo } from "./utils/constant";
 import navbar from "./utils/navbar";
 import plugins from "./utils/plugins";
 
+const logoPath = "/assets/head.jpg";
+
 export default defineUserConfig<DefaultThemeOptions>({
-  head: [["link", { rel: "icon", href: logo }]],
+  head: [["link", { rel: "icon", href: logoPath }]],
   lang: "zh-CN",
   title: "升高的博客",
   description: "keep running",
   plugins,
   themeConfig: {
-    logo,
+    logo: logoPath,
     repo,
     navbar,
     contributors: false,
+    sidebar: false,
   },
   templateSSR: path.resolve(__dirname, "./public/ssr.html"),
   templateDev: path.resolve(__dirname, "./public/dev.html"),
