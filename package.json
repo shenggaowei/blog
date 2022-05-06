@@ -17,8 +17,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@commitlint/cli": "^16.2.4",
-    "@commitlint/config-conventional": "^16.2.4",
     "stylelint": "^14.8.0",
     "stylelint-config-standard": "^25.0.0"
   },

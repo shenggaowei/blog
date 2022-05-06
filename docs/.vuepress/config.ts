@@ -10,7 +10,7 @@ const logoPath = "/assets/head.jpg";
 export default defineUserConfig<DefaultThemeOptions>({
   head: [["link", { rel: "icon", href: logoPath }]],
   lang: "zh-CN",
-  title: "升高的博客",
+  title: "大芒果",
   description: "keep running",
   plugins,
   themeConfig: {
