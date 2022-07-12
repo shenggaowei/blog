@@ -23,6 +23,7 @@
     - 登录态的校验
 - 缓存
     - redis。todo
+- 接入阿里云短信验证
 
 ## 部署配置
 - pm2 后台启动进程
@@ -31,8 +32,6 @@
     - 阿里云注册免费一年的 ca 证书
 - 数据脱敏
     - 将关键数据存放到了服务器上。todo
-- 接入 ci。todo
-- 使用 docker 容器化部署。todo
-
-
- 
+- 接入 circle-ci。todo
+- ssh 登陆远程服务器。todo
+- 使用 docker 和 docker-compose 进行容器化部署。todo
