@@ -8,7 +8,7 @@
 
 ## 2 解释
 
-```tsx
+```typescript
 function useCallback<T extends (...args: any[]) => any>(
   callback: T,
   deps: DependencyList
@@ -21,5 +21,6 @@ function useMemo<T>(factory: () => T, deps: DependencyList | undefined): T;
 useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。
 
 ## 3 作用
-
+    对函数进行缓存，以便于
+    
 ## 4 使用场合
