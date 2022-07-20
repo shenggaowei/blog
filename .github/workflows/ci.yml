@@ -1,24 +1,17 @@
-name: blog deploy
+name: blog publish 
+
 on:
   push:
     branches:
       - master
+
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-18.04
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+      - uses: actions/checkout@v2
+      - uses: enriikke/gatsby-gh-pages-action@v2
         with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
-
-      - name: Install and Build
-        run: |
-          yarn 
-          yarn build
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: gh-pages
+          gatsby-args: --prefix-paths

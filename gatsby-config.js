@@ -5,6 +5,7 @@ module.exports = {
       name: 'shengGao',
       summary: "a frontend engineer"
     },
+    pathPrefix: '/blog',
     description: '升高的个人博客，记录成长和学习',
     siteUrl: `https://shenggao.tech`,
     social: {
