@@ -51,9 +51,8 @@ const styles = StyleSheet.create({
 });
 ```
 
-:::
 
-::: details interpolate(插值动画)。多个属性同时改变
+ details interpolate(插值动画)。多个属性同时改变
 
 ```jsx
 import React, { useEffect, useRef } from "react";
@@ -88,7 +87,7 @@ export default () => {
       >
         <Animated.Text
           style={{
-            fontSize: animation.interpolate({
+            fontSize: animation.interpolate( {
               inputRange: [0, 1],
               outputRange: [10, 24],
             }),
