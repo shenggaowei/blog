@@ -22,10 +22,10 @@ jobs:
         run: |
           yarn 
           yarn build
-          
+
       - name: add .nojekyll
         run: |
-          cd build
+          cd public
           touch .nojekyll
 
       - name: Deploy
