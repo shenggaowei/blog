@@ -1,5 +1,4 @@
-# Ignore artifacts:
-dist
-coverage
 .cache
-.temp
+package.json
+package-lock.json
+public

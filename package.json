@@ -1,30 +1,56 @@
 {
-  "homepage": "https://shenggaowei.github.io",
-  "version": "0.0.2",
-  "scripts": {
-    "start": "npm run dev",
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "prepare": "husky install"
+  "name": "gatsby-starter-blog",
+  "private": true,
+  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "dependencies": {
+    "gatsby": "^4.19.0",
+    "gatsby-plugin-feed": "^4.19.0",
+    "gatsby-plugin-gatsby-cloud": "^4.19.0",
+    "gatsby-plugin-google-analytics": "^4.19.0",
+    "gatsby-plugin-image": "^2.19.0",
+    "gatsby-plugin-manifest": "^4.19.0",
+    "gatsby-plugin-offline": "^5.19.0",
+    "gatsby-plugin-react-helmet": "^5.19.0",
+    "gatsby-plugin-sharp": "^4.19.0",
+    "gatsby-remark-copy-linked-files": "^5.19.0",
+    "gatsby-remark-images": "^6.19.0",
+    "gatsby-remark-prismjs": "^6.19.0",
+    "gatsby-remark-responsive-iframe": "^5.19.0",
+    "gatsby-remark-smartypants": "^5.19.0",
+    "gatsby-source-filesystem": "^4.19.0",
+    "gatsby-transformer-remark": "^5.19.0",
+    "gatsby-transformer-sharp": "^4.19.0",
+    "prismjs": "^1.28.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-helmet": "^6.1.0",
+    "typeface-merriweather": "0.0.72",
+    "typeface-montserrat": "0.0.75"
   },
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.27",
-    "husky": ">=7",
-    "lint-staged": ">=12",
-    "prettier": "2.6.2",
-    "vuepress": "^2.0.0-beta.27",
-    "vuepress-vite": "^2.0.0-beta.27"
+    "prettier": "^2.7.1"
   },
-  "license": "MIT",
-  "dependencies": {
-    "stylelint": "^14.8.0",
-    "stylelint-config-standard": "^25.0.0"
+  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
-  "lint-staged": {
-    "docs/**/*.{vue,js}": "prettier --write",
-    "*.css": [
-      "stylelint",
-      "prettier --write"
-    ]
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
