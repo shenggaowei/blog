@@ -87,10 +87,10 @@ export default () => {
       >
         <Animated.Text
           style={{
-            fontSize: animation.interpolate( {
+            fontSize: animation.interpolate({
               inputRange: [0, 1],
               outputRange: [10, 24],
-            }),
+            })
           }}
         >
           😄😄升高😄😄
