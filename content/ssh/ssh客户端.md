@@ -1,3 +1,9 @@
+---
+title: ssh 客户端
+date: 2022-07-19
+description: ssh 学习笔记
+---
+
 # ssh 客户端
 
 ## 1. 简介

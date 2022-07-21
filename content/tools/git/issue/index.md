@@ -1,3 +1,9 @@
+---
+title: git 问题记录
+date: 2021-08-12
+description: git 问题记录
+---
+
 # git 使用问题记录
 
 ## 1 新项目,拉取远程代码时报错。![merger error](./assets/image-20211228105433211.png)
