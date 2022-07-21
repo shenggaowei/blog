@@ -1,4 +1,9 @@
-# object types
+---
+title:  object types
+date: 2022-07-21
+description:  object types
+---
+
 
 1. Optional Properties
 2. Readonly Properties

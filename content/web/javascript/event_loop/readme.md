@@ -1,9 +1,9 @@
 ---
-author: weishenggao
-tag: js
+title:  事件循环
+date: 2022-07-21
+description:  事件循环
 ---
 
-# 事件循环
 
 **引言**
 

@@ -1,4 +1,9 @@
-# ES5 继承
+---
+title:  ES5 继承
+date: 2022-07-21
+description:  ES5 继承
+---
+
 
 ## 1 构造函数继承
 

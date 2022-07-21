@@ -1,4 +1,9 @@
-# rollup
+---
+title:  rollup
+date: 2022-07-21
+description:  rollup
+---
+
 
 Rollup 是一个模块打包器，它能将代码片段打包成复杂的库或者应用。使用 esm 的方式去引用 javascript 代码，只把库中用到的函数打包进去，不携带其他未使用的代码，也就是 tree shaking。
 

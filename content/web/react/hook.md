@@ -1,4 +1,9 @@
-# hook
+---
+title:  hook
+date: 2022-07-21
+description:  hook
+---
+
 
 react hook 是 16.8 版本以后新增的功能。
 

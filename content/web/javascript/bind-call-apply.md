@@ -1,4 +1,9 @@
-# 实现 bind、call 和 apply
+---
+title:  实现 bind、call 和 apply
+date: 2022-07-21
+description:  实现 bind、call 和 apply
+---
+
 
 ## 一 call 实现
 

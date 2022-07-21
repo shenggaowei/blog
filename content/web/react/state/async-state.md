@@ -1,4 +1,9 @@
-# setState 为什么是异步的？
+---
+title:  setState 为什么是异步的？
+date: 2022-07-21
+description:  setState 为什么是异步的？
+---
+
 
 ### 1 使状态提升更加安全，props 和 state 的保持一致性。
 

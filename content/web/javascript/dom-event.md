@@ -1,4 +1,9 @@
-# 跨浏览器事件对象
+---
+title:  跨浏览器事件对象
+date: 2022-07-21
+description:  跨浏览器事件对象
+---
+
 
 ```js
 let eventUtil = {

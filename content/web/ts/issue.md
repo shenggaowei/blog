@@ -1,4 +1,9 @@
-# ts 常见飘红解决
+---
+title:  ts 常见飘红解决
+date: 2022-07-21
+description:  ts 常见飘红解决
+---
+
 
 ## 1 类型“string”的参数不能赋给类型“Alignment”的参数。
 

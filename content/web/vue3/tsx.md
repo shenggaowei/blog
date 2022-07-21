@@ -1,4 +1,9 @@
-# 如何在 vue3 中使用 tsx
+---
+title:  如何在 vue3 中使用 tsx
+date: 2022-07-21
+description:  如何在 vue3 中使用 tsx
+---
+
 
 在 vue3 版本中也可以使用 tsx 语法了，和 react 极度相似，为了快速体验，那么应该如何配置呢？
 

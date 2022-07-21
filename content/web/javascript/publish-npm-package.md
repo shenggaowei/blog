@@ -1,4 +1,9 @@
-# 如何发布一个 npm 包
+---
+title:  如何发布一个 npm 包
+date: 2022-07-21
+description:  如何发布一个 npm 包
+---
+
 
 ## 一 背景
 

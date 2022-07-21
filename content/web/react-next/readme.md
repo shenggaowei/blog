@@ -1,4 +1,9 @@
-# nextJs 打包静态文件在 github pages 上 404
+---
+title:  nextJs 打包静态文件在 github pages 上 404
+date: 2022-07-21
+description:  nextJs 打包静态文件在 github pages 上 404
+---
+
 
 使用 nextJs 打包生成静态文件，并部署到 github page 后。在浏览器上访问网站，发现服务器下的 \_next 目录无法访问, 404。
 

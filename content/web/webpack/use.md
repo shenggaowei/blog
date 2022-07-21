@@ -1,4 +1,9 @@
-# webpack 入门基础
+---
+title:  webpack 入门基础
+date: 2022-07-21
+description:  webpack 入门基础
+---
+
 
 ## [webpack 核心概念之 entry](https://webpack.docschina.org/concepts/entry-points/)
 

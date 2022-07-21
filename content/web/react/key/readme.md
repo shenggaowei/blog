@@ -1,4 +1,9 @@
-# 深入理解 key（react）
+---
+title:  深入理解 key（react）
+date: 2022-07-21
+description:  深入理解 key（react）
+---
+
 
 ## 一 react 组件元素的 diff 算法
 

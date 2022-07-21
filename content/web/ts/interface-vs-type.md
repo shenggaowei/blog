@@ -1,4 +1,9 @@
-# Differences Between Type Aliases and interfaces
+---
+title:  Differences Between Type Aliases and interfaces
+date: 2022-07-21
+description:  Differences Between Type Aliases and interfaces
+---
+
 
 type 和 interfaces 是非常接近的，在许多场合你可以随意选择他们使用。几乎 interface 的功能 type 都有，唯一区别是 type 在定义过后不能再添加属性，interface 总是可以扩展的。
 

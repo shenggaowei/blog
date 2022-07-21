@@ -1,4 +1,9 @@
-# Animated 动画
+---
+title:  Animated 动画
+date: 2022-07-21
+description:  Animated 动画
+---
+
 
 React-native Animated 旨在以声明的形式来定义动画的输入与输出，在其中建立一个可配置的变化函数，然后使用 start/stop 方法来控制动画执行。
 

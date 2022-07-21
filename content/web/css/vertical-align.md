@@ -1,4 +1,9 @@
-# vertical-align
+---
+title:  vertical-align
+date: 2022-07-21
+description:  vertical-align
+---
+
 
 > 用来指定行内元素或表格元素的垂直对齐方式
 

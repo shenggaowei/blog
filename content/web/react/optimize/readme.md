@@ -1,4 +1,9 @@
-# react 性能优化
+---
+title:  react 性能优化
+date: 2022-07-21
+description:  react 性能优化
+---
+
 
 - 渲染列表加 key
 - 自定义事件、dom 和计时器及时销毁

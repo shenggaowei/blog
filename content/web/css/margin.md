@@ -1,4 +1,9 @@
-# 深入理解 CSS 外边距折叠（margin collapse）
+---
+title:  深入理解 CSS 外边距折叠（margin collapse）
+date: 2022-07-21
+description:  深入理解 CSS 外边距折叠（margin collapse）
+---
+
 
 ## 概念
 

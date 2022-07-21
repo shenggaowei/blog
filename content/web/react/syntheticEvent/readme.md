@@ -1,4 +1,9 @@
-# React 合成事件
+---
+title:  React 合成事件
+date: 2022-07-21
+description:  React 合成事件
+---
+
 
 翻看 react 文档，记录一下 react 合成事件，了解以下几点。
 

@@ -1,4 +1,9 @@
-# compose 和 curry
+---
+title:  compose 和 curry
+date: 2022-07-21
+description:  compose 和 curry
+---
+
 
 ## 函数合并 compose
 

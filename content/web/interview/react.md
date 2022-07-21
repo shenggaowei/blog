@@ -1,4 +1,9 @@
-# react 面试题目整理
+---
+title:  react 面试题目整理
+date: 2022-07-21
+description:  react 面试题目整理
+---
+
 
 ## 1 函数组件和 class 组件的区别
 
