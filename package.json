@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "个人博客，学习记录",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "shengGao<527518190@qq.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/shenggaowei/blog/issues"
   },
   "dependencies": {
     "gatsby": "^4.19.0",
@@ -36,14 +36,15 @@
   "devDependencies": {
     "prettier": "^2.7.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://shenggao.tech",
   "keywords": [
-    "gatsby"
+    "blog",
+    "learn"
   ],
   "license": "0BSD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/shenggaowei/blog.git"
   },
   "scripts": {
     "build": "gatsby build && touch public/.nojekyll",
