@@ -1,5 +1,5 @@
 ---
-title:  Differences Between Type Aliases and interfaces
+title:  ts-interface和type的异同
 date: 2022-07-21
 description:  Differences Between Type Aliases and interfaces
 ---

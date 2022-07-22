@@ -27,7 +27,7 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
+  --fontFamily-sans: -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
@@ -55,6 +55,7 @@
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
   --color-primary: #005b99;
+  --color-text-gray: #8a8f8d; 
   --color-text: #2e353f;
   --color-text-light: #4f5969;
   --color-heading: #1a202c;
@@ -187,10 +188,6 @@ li > p {
   margin-bottom: calc(var(--spacing-8) / 2);
 }
 
-li *:last-child {
-  margin-bottom: var(--spacing-0);
-}
-
 li > ul {
   margin-left: var(--spacing-8);
   margin-top: calc(var(--spacing-8) / 2);
@@ -259,23 +256,26 @@ a:focus {
   margin: 0;
 }
 
-.post-list-item {
-  margin-bottom: var(--spacing-8);
-  margin-top: var(--spacing-8);
-}
-
 .post-list-item p {
   margin-bottom: var(--spacing-0);
 }
 
-.post-list-item h2 {
-  font-size: var(--fontSize-4);
+.post-list-item h4 {
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-medium);
   color: var(--color-primary);
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-0);
   margin-top: var(--spacing-0);
 }
 
-.post-list-item header {
+.post-list-item small {
+  display: inline-block;
+  width: 86px;
+  font-size: var(--fontSize-0);
+  color: var(--color-text-gray);
+}
+
+.post-list-item{
   margin-bottom: var(--spacing-4);
 }
 
