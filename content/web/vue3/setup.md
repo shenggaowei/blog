@@ -1,5 +1,5 @@
 ---
-title:  provide
+title:  vue3 setup
 date: 2022-07-21
 description:  provide
 ---
