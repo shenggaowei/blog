@@ -4,8 +4,6 @@ date: 2022-07-19
 description: ssh 学习笔记
 ---
 
-# ssh 客户端
-
 ## 1. 简介
 
 OpenSSH 的客户端是二进制程序 ssh。在 linux/unix中的位置是 `/usr/local/bin/ssh`，在 windows 的位置是 `\Program Files\OpenSSH\bin\ssh.exe`。

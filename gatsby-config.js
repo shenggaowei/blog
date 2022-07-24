@@ -2,11 +2,11 @@ module.exports = {
   siteMetadata: {
     title: `升高's Blog`,
     author: {
-      name: 'shengGao',
-      summary: "a frontend engineer"
+      name: "shengGao",
+      summary: "a frontend engineer",
     },
-    pathPrefix: '/blog',
-    description: '升高的个人博客，记录成长和学习',
+    pathPrefix: "/blog",
+    description: "升高的个人博客，记录成长和学习",
     siteUrl: `https://shenggao.tech`,
     social: {
       twitter: `@n5vUQwiGmToOSDw`,
@@ -52,12 +52,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: `ADD YOUR TRACKING ID HERE`,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -114,17 +108,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `blog,javascript,shenggao,升高`,
+        short_name: `升高`,
         start_url: `/`,
         background_color: `#ffffff`,
         display: `minimal-ui`,
-        icon: `src/images/head.jpeg`, 
+        icon: `src/images/head.jpeg`,
       },
     },
     `gatsby-plugin-react-helmet`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
