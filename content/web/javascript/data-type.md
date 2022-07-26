@@ -1,5 +1,5 @@
 ---
-title: JS 数据类型检测
+title: JS 数据类型
 tags: js
 date: 2021-12-22 13:05:00
 ---

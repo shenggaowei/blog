@@ -4,8 +4,6 @@ date: 2021-12-01
 description: mysql基础记录
 ---
 
-# MySql 安装
-
 ## mac unix 环境
 
 ### 推荐 brew

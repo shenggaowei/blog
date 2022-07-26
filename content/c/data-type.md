@@ -4,8 +4,6 @@ date: 2021-12-01
 description: 复习c语言类型
 ---
 
-# 数据类型
-
 ## 1 类型总览
 
 char(1) < short(2) < float(4) <=int(4|8) <= double(8)
