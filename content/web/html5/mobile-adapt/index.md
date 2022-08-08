@@ -4,8 +4,6 @@ date: 2022-08-08
 description: viewport 理解（mdn 翻译）
 ---
 
-# viewport
-
 这篇文章主要介绍如何使用 `viewport` 标签去控制页面视图的大小和状态。
 
 ## 背景
