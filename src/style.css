@@ -54,7 +54,7 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
+  --color-primary: #ff69b4;
   --color-text-gray: #8a8f8d;
   --color-text: #2e353f;
   --color-text-light: #4f5969;
@@ -265,20 +265,22 @@ a:focus {
 }
 
 .post-list-item h4 {
-  font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-medium);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
   color: var(--color-primary);
   margin-bottom: var(--spacing-0);
   margin-top: var(--spacing-0);
 }
 
+.post-list-item h4 .title {
+  margin-right: var(--spacing-3);
+}
+
 .post-list-item small {
   display: inline-block;
-  width: 90px;
   font-size: var(--fontSize-0);
-  color: var(--color-text-gray);
+  color: var(--color-text);
   font-weight: var(--fontWeight-normal);
-  zoom: 0.9;
 }
 
 .post-list-item {
