@@ -43,7 +43,7 @@
   --fontSize-root: 16px;
   --lineHeight-none: 1;
   --lineHeight-tight: 1.1;
-  --lineHeight-normal: 1.5;
+  --lineHeight-norma: 1.5;
   --lineHeight-relaxed: 1.625;
   /* 1.200 Minor Third Type Scale */
   --fontSize-0: 0.833rem;
@@ -265,22 +265,24 @@ a:focus {
 }
 
 .post-list-item h4 {
-  font-size: var(--fontSize-2);
-  font-weight: var(--fontWeight-bold);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-0);
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-medium);
+  color: rgb(55,65,81,1);
+  margin-bottom: var(--spacing-1);
   margin-top: var(--spacing-0);
 }
 
 .post-list-item h4 .title {
-  margin-right: var(--spacing-3);
+  margin-left: var(--spacing-3);
+  letter-spacing: 0.08rem;
 }
 
 .post-list-item small {
+  font-style: italic;
   display: inline-block;
   font-size: var(--fontSize-0);
-  color: var(--color-text);
-  font-weight: var(--fontWeight-normal);
+  color:rgb(156, 163,175, 1) ;
+  font-weight: var(--fontWeight-medium);
 }
 
 .post-list-item {
