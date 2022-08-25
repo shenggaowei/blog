@@ -7,9 +7,9 @@
 <p>如果开发 js 库，只是把 esm 代码转换成不同环境的 js，例如支持 cjs,umd,amd 等，那么 rollup 完全可以做到。相比于 webpack， rollup 的配置简单，仅仅是一款 esm 打包器，没有其他额外功能。在开发 js 工具库的时候可以用 rollup。主流的库像 redux、react 等等都利用 roolup 进行构建打包。</p>
 <h2>使用</h2>
 <p>1 全局安装</p>
-<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> rollup -g</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> rollup <span class="token parameter variable">-g</span></code></pre></div>
 <p>2 项目内安装</p>
-<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> rollup -D</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> rollup <span class="token parameter variable">-D</span></code></pre></div>
 <p>3 cli 配置</p>
 <div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token comment"># package.json</span>
 <span class="token punctuation">{</span>
@@ -69,7 +69,7 @@
     </span></p>
 <p>不同于 webpack，可以直接加载 js 和 json 文件，默认的 rollup 配置只能加载 esm 文件。如果需要编译 json，需要安装插件。<strong>在 rollup 中，功能的扩展都是通过插件来进行完成的。</strong><a href="https://github.com/rollup/plugins">rollup 插件列表</a></p>
 <p>安装 json 解析插件。</p>
-<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> @rollup/plugin-json -D</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> @rollup/plugin-json <span class="token parameter variable">-D</span></code></pre></div>
 <p>安装完成后，添加配置</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> json <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-json"</span><span class="token punctuation">;</span>
 
@@ -89,11 +89,11 @@
 <p>编译出来的代码，相比较 webpack 非常的简洁。同时 json 中的 version 在编译时，被读取并打包，其他属性则被 tree shaking 掉。</p>
 <hr>
 <p>js 库在开发阶段建议使用 ts, 于是便需要引入 typescript 插件。</p>
-<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> @rollup/plugin-typescript -D
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> @rollup/plugin-typescript <span class="token parameter variable">-D</span>
 
 <span class="token comment">## 需要同时安装的 ts 相关库</span>
-<span class="token function">yarn</span> <span class="token function">add</span> tslib -D
-<span class="token function">yarn</span> <span class="token function">add</span> typescript -D</code></pre></div>
+<span class="token function">yarn</span> <span class="token function">add</span> tslib <span class="token parameter variable">-D</span>
+<span class="token function">yarn</span> <span class="token function">add</span> typescript <span class="token parameter variable">-D</span></code></pre></div>
 <p>修改入口文件后缀为 index.ts, 并同时修改配置文件。添加相应的 tsconfig.json 文件。</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> json <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-json"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> typescript <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-typescript"</span><span class="token punctuation">;</span>
@@ -168,7 +168,7 @@
 <div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> lodash-es</code></pre></div>
 <p>更新文件导入，build ，通过。</p>
 <p>2 安装插件，让 rollup 支持加载 cjs 模块。</p>
-<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> @rollup/plugin-commonjs -D</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> @rollup/plugin-commonjs <span class="token parameter variable">-D</span></code></pre></div>
 <p>修改配置文件</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> json <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-json"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> resolve <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-node-resolve"</span><span class="token punctuation">;</span>
@@ -192,7 +192,7 @@
 <p>执行 build，通过。</p>
 <hr>
 <p>Build 通过后，目前可以用 ts 写库了，写完之后，应该对文件进行压缩混淆处理。rollup 默认不会进行压缩，还是需要通过插件来进行处理</p>
-<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> rollup-plugin-terser -D</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> rollup-plugin-terser <span class="token parameter variable">-D</span></code></pre></div>
 <p>修改配置文件</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> json <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-json"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> resolve <span class="token keyword">from</span> <span class="token string">"@rollup/plugin-node-resolve"</span><span class="token punctuation">;</span>
@@ -254,4 +254,4 @@
         decoding="async"
       />
   </a>
-    </span></p></section></article></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/web/rollup/use/";window.___webpackCompilationHash="8fc5044729162b2230e0";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-aa4692331c0a6f85cb9f.js"],"app":["/app-b34ceeaa3ab34485bbd1.js"],"component---src-pages-404-js":["/component---src-pages-404-js-c3871468abfb224bc4ad.js"],"component---src-pages-index-js":["/component---src-pages-index-js-905d248088966614ffd7.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-3306a58debe1f9d3ba86.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-d449cb0634d329d6ff1d.js"]};/*]]>*/</script><script src="/polyfill-aa4692331c0a6f85cb9f.js" nomodule=""></script><script src="/app-b34ceeaa3ab34485bbd1.js" async=""></script><script src="/framework-9649dcfd1ddbf692b0b9.js" async=""></script><script src="/webpack-runtime-4f7cb5b747ef16117140.js" async=""></script></body></html>
+    </span></p></section></article></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/web/rollup/use/";window.___webpackCompilationHash="9f74c75599aacefb15b0";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-aa4692331c0a6f85cb9f.js"],"app":["/app-1d25e2ddce8e589af41c.js"],"component---src-pages-404-js":["/component---src-pages-404-js-c3871468abfb224bc4ad.js"],"component---src-pages-index-js":["/component---src-pages-index-js-905d248088966614ffd7.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-3306a58debe1f9d3ba86.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-d449cb0634d329d6ff1d.js"]};/*]]>*/</script><script src="/polyfill-aa4692331c0a6f85cb9f.js" nomodule=""></script><script src="/app-1d25e2ddce8e589af41c.js" async=""></script><script src="/framework-9649dcfd1ddbf692b0b9.js" async=""></script><script src="/webpack-runtime-e48cc74b727ac6308d2f.js" async=""></script></body></html>
