@@ -1,26 +1,98 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://shenggao.tech</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Nov 2022 16:40:52 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[表格 Name Type key String className String colSpan Number]]></description><link>https://shenggao.tech/markdown/</link><guid isPermaLink="false">https://shenggao.tech/markdown/</guid><content:encoded>&lt;h1&gt;表格&lt;/h1&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Name&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;key&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;className&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;colSpan&lt;/td&gt;
-&lt;td&gt;Number&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</content:encoded></item><item><title><![CDATA[函数式编程]]></title><description><![CDATA[面向对象语言的问题是，它们永远都要随身携带那些隐式的环境。你只需要一个香蕉，但却得到一个拿着香蕉的大猩猩… 以及整个丛林。 函数是一等公民 在 js…]]></description><link>https://shenggao.tech/web/javascript/function-programmer/</link><guid isPermaLink="false">https://shenggao.tech/web/javascript/function-programmer/</guid><pubDate>Thu, 25 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;面向对象语言的问题是，它们永远都要随身携带那些隐式的环境。你只需要一个香蕉，但却得到一个拿着香蕉的大猩猩… 以及整个丛林。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://shenggao.tech</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 01 Dec 2022 11:06:07 GMT</lastBuildDate><item><title><![CDATA[Docker学习笔记之docker简介和安装]]></title><description><![CDATA[1 容器技术的简介 容器 container 是一种技术，而 Docker 是一个容器技术的实现，它能够把开发的应用程序自动部署到容器的开源引擎。 容器是一种快速的打包技术，具有以下特点： 标准化 轻量级 易移植 1.1 Linux Container Linux…]]></description><link>https://shenggao.tech/docker/docker简介/</link><guid isPermaLink="false">https://shenggao.tech/docker/docker简介/</guid><pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 容器技术的简介&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;容器 container 是一种技术，而 Docker 是一个容器技术的实现，它能够把开发的应用程序自动部署到容器的开源引擎。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;容器是一种快速的打包技术，具有以下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;标准化&lt;/li&gt;
+&lt;li&gt;轻量级&lt;/li&gt;
+&lt;li&gt;易移植&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.1 Linux Container&lt;/h3&gt;
+&lt;p&gt;Linux Container 是一种内核轻量级的操作系统虚拟技术。主要由 Namespace 和 Cgroup 量大机制来保证实现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Namespace 命名空间主要用于资源的隔离&lt;/li&gt;
+&lt;li&gt;Cgroup 负责资源管理控制作用，比如进程组使用 cpu/mem 的限制，进程组的优先级控制，进程组的挂起和恢复等等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.2 容器的标准化&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker != container&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在2015年，由 Google, Docker、红帽等厂商联合发起了 OCI(Open Container Initiative) 组织，致力于容器技术的标准化。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;容器运行时标准
+&lt;ul&gt;
+&lt;li&gt;规定基本操作规范，比如如何下载镜像，创建容器，启动容器等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;容器镜像标准
+&lt;ul&gt;
+&lt;li&gt;定义镜像的基本格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.3 容器关乎“速度”&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;加速软件开发&lt;/li&gt;
+&lt;li&gt;加速程序编译和构建&lt;/li&gt;
+&lt;li&gt;加速测试&lt;/li&gt;
+&lt;li&gt;加速部署&lt;/li&gt;
+&lt;li&gt;加速更新&lt;/li&gt;
+&lt;li&gt;加速故障修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2 Docker 的安装&lt;/h2&gt;
+&lt;h3&gt;2.1 Linux 安装和启动&lt;/h3&gt;
+&lt;h4&gt;2.1.1 安装&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# get.docker.com 获取 docker 安装脚本&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-fsSL&lt;/span&gt; get.docker.com &lt;span class=&quot;token parameter variable&quot;&gt;-o&lt;/span&gt; get-docker.sh
+
+&lt;span class=&quot;token comment&quot;&gt;# 添加执行权限&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;777&lt;/span&gt; get-docker.sh
+
+&lt;span class=&quot;token comment&quot;&gt;# 安装&lt;/span&gt;
+./get-docker.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;2.1.2启动&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 查看docker的版本信息&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; version
+
+&lt;span class=&quot;token comment&quot;&gt;# 启动 docker&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;此时执行 docker version 输出如下，显示 client 和 server 的版本和启动情况&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt; sudo docker version
+&lt;span class=&quot;token property&quot;&gt;Client:&lt;/span&gt; Docker Engine &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; Community
+ &lt;span class=&quot;token property&quot;&gt;Version:&lt;/span&gt;           &lt;span class=&quot;token number&quot;&gt;20.10.21&lt;/span&gt;
+ &lt;span class=&quot;token property&quot;&gt;API version:&lt;/span&gt;       &lt;span class=&quot;token number&quot;&gt;1.41&lt;/span&gt;
+ &lt;span class=&quot;token property&quot;&gt;Go version:&lt;/span&gt;        go1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;18&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;7
+ &lt;span class=&quot;token property&quot;&gt;Git commit:&lt;/span&gt;        baeda1f
+ &lt;span class=&quot;token property&quot;&gt;Built:&lt;/span&gt;             &lt;span class=&quot;token date number&quot;&gt;Tue Oct 25&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;18:02:21&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;
+ &lt;span class=&quot;token property&quot;&gt;OS/Arch:&lt;/span&gt;           linux&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;amd64
+ &lt;span class=&quot;token property&quot;&gt;Context:&lt;/span&gt;           default
+ &lt;span class=&quot;token property&quot;&gt;Experimental:&lt;/span&gt;      &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;token property&quot;&gt;Server:&lt;/span&gt; Docker Engine &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; Community
+ &lt;span class=&quot;token property&quot;&gt;Engine:&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;Version:&lt;/span&gt;          &lt;span class=&quot;token number&quot;&gt;20.10.21&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;API version:&lt;/span&gt;      &lt;span class=&quot;token number&quot;&gt;1.41&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;minimum version &lt;span class=&quot;token number&quot;&gt;1.12&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;Go version:&lt;/span&gt;       go1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;18&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;7
+  &lt;span class=&quot;token property&quot;&gt;Git commit:&lt;/span&gt;       &lt;span class=&quot;token number&quot;&gt;3056208&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;Built:&lt;/span&gt;            &lt;span class=&quot;token date number&quot;&gt;Tue Oct 25&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;18:00:04&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;OS/Arch:&lt;/span&gt;          linux&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;amd64
+  &lt;span class=&quot;token property&quot;&gt;Experimental:&lt;/span&gt;     &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+ &lt;span class=&quot;token property&quot;&gt;containerd:&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;Version:&lt;/span&gt;          &lt;span class=&quot;token number&quot;&gt;1.6.9&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;GitCommit:&lt;/span&gt;        &lt;span class=&quot;token number&quot;&gt;1c90a442489720eec95342e1789ee8a5e1b9536f&lt;/span&gt;
+ &lt;span class=&quot;token property&quot;&gt;runc:&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;Version:&lt;/span&gt;          &lt;span class=&quot;token number&quot;&gt;1.1.4&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;GitCommit:&lt;/span&gt;        &lt;span class=&quot;token number&quot;&gt;v1.1.4&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;g5fd4c4d
+ &lt;span class=&quot;token property&quot;&gt;docker-init:&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;Version:&lt;/span&gt;          &lt;span class=&quot;token number&quot;&gt;0.19.0&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;GitCommit:&lt;/span&gt;        de40ad0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[filco 键盘相关操作]]></title><description><![CDATA[蓝牙切换设备 ctrl + alt + fn 等待红灯闪烁 按下 1 或 2 或 3 等小数字键切换连接设备]]></description><link>https://shenggao.tech/tools/键盘连接/</link><guid isPermaLink="false">https://shenggao.tech/tools/键盘连接/</guid><pubDate>Sat, 08 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ol&gt;
+&lt;li&gt;蓝牙切换设备
+&lt;ol&gt;
+&lt;li&gt;ctrl + alt + fn 等待红灯闪烁&lt;/li&gt;
+&lt;li&gt;按下 1 或 2 或 3 等小数字键切换连接设备&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[函数式编程]]></title><description><![CDATA[面向对象语言的问题是，它们永远都要随身携带那些隐式的环境。你只需要一个香蕉，但却得到一个拿着香蕉的大猩猩… 以及整个丛林。 函数是一等公民 在 js…]]></description><link>https://shenggao.tech/web/javascript/function-programmer/</link><guid isPermaLink="false">https://shenggao.tech/web/javascript/function-programmer/</guid><pubDate>Thu, 25 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;面向对象语言的问题是，它们永远都要随身携带那些隐式的环境。你只需要一个香蕉，但却得到一个拿着香蕉的大猩猩… 以及整个丛林。&lt;/p&gt;
 &lt;h2&gt;函数是一等公民&lt;/h2&gt;
 &lt;p&gt;在 js 中，函数隶属于对象，因此，可以把函数存在数组里，当做参数传递，或赋值给变量…&lt;/p&gt;
 &lt;h3&gt;函数式编程的优势&lt;/h3&gt;
