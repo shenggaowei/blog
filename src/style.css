@@ -267,7 +267,7 @@ a:focus {
 .post-list-item h4 {
   font-size: var(--fontSize-1);
   font-weight: var(--fontWeight-medium);
-  color: rgb(55,65,81,1);
+  color: rgb(55, 65, 81, 1);
   margin-bottom: var(--spacing-1);
   margin-top: var(--spacing-0);
 }
@@ -278,10 +278,9 @@ a:focus {
 }
 
 .post-list-item small {
-  font-style: italic;
   display: inline-block;
   font-size: var(--fontSize-0);
-  color:rgb(156, 163,175, 1) ;
+  color: rgb(156, 163, 175, 1);
   font-weight: var(--fontWeight-medium);
 }
 

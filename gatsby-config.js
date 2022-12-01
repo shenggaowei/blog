@@ -1,13 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `升高's Blog`,
+    title: `升高`,
     author: {
-      name: "shengGao",
+      name: "升高",
       summary: "a frontend engineer",
     },
     pathPrefix: "/blog",
     description: "升高的个人博客，记录成长和学习",
-    siteUrl: `https://shenggao.tech`,
+    siteUrl: `https://weishenggao.com`,
     social: {
       twitter: `@n5vUQwiGmToOSDw`,
     },
