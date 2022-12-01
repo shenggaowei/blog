@@ -1,5 +1,5 @@
 ---
-title: Docker学习笔记之docker简介和安装
+title: Docker学习之docker简介
 date: 2022-12-01
 description: docker 学习笔记
 ---
