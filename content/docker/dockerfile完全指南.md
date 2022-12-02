@@ -1,5 +1,5 @@
 ---
-title: Docker学习之Dockerfile完全指南
+title: Docker学习4之Dockerfile完全指南
 date: 2022-12-02
 description: docker 学习笔记
 ---
@@ -495,11 +495,11 @@ Successfully tagged flask-demo3:latest
 ```dockerfile
 FROM python:3.9.5-slim
 
-COPY app.py src/app.py
-
 RUN pip install flask
 
 WORKDIR /src
+
+COPY app.py src/app.py
 
 ENV FLASK=app.py
 
