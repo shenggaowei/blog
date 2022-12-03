@@ -187,6 +187,165 @@ Fri Dec  2 12:28:00 UTC 2022
 可以看到，数据在原文件中继续存储了，从而达到了数据持久化。
 
 ## 5.3 Data Volume 练习之 MySql
+
+练习在 linux 机器上使用 mysql 镜像，并且通过 volume 实现数据的持久化。
+
+### 5.3.1 
+
+使用 mysql 5.7 版本
+
+```bash
+docker pull mysql:5.7
+```
+
+```log
+➜  2.13 docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED             SIZE
+mysql        5.7       2d44289af685   2 days ago          495MB
+```
+
+创建容器并进入容器
+
+```bash
+docker container run --name some-mysql -e MYSQL_ROOT_PASSWORD=password -d -v mysql-data:/var/lib/mysql mysql:5.7
+```
+
+查看容器
+```log
+➜  ~ docker container ls
+CONTAINER ID   IMAGE       COMMAND                  CREATED             STATUS             PORTS                 NAMES
+c3300b0d7c87   mysql:5.7   "docker-entrypoint.s…"   3 minutes ago       Up 3 minutes       3306/tcp, 33060/tcp   some-mysql
+```
+
+进入 mysql 容器，并执行 shell
+
+```log
+➜  ~ docker container exec -it c33 sh
+
+sh-4.2# mysql -u -p 
+```
+
+输入密码 password 后，进入 mysql 管理界面。创建一个名为 demo 的 database。
+
+```mysql
+create database demo;
+```
+
+exit 退出到宿主机，查看 volume
+
+```log
+➜  ~ docker volume ls
+DRIVER    VOLUME NAME
+local     cron-data
+local     mysql-data
+
+➜  ~ docker volume inspect mysql-data
+[
+    {
+        "CreatedAt": "2022-12-02T21:50:28+08:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/mysql-data/_data",
+        "Name": "mysql-data",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+
+停止并删除 mysql 容器后，用上面创建 mysql 的命令新建一个容器后，mysql 会继续使用 mysql-data 这个 volume 的数据。
+
+
 ## 5.4 数据持久化之 Bind Mount
+
+可以将数据存储到宿主机的指定目录上，-v 属性后跟路径。
+
+```bash
+docker container run -d -v $(path):/app my-cron
+```
+
+依旧用上面的定时写日期脚本的 dockerfile 以及相关文件构建的镜像，指定当前目录存储数据。
+
+```dockerfile
+FROM alpine:latest
+
+RUN apk update
+
+RUN apk --no-cache add curl
+
+ENV SUPERCRONIC=supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=048b95b48b708983effb2e5c935a1ef8483d9e3e
+
+COPY supercronic-linux-amd64 /supercronic-linux-amd64
+
+RUN echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
+    && chmod +x "$SUPERCRONIC" \
+    && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
+    && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+
+COPY my-cron /app/my-cron
+
+WORKDIR /app
+
+CMD ["/usr/local/bin/supercronic", "/app/my-cron"]
+```
+
+操作过程如下
+
+```log
+➜  2.13 docker container run -d -v $(pwd):/app my-cron
+4f6c178ff1095eb6da6dc904ead393675a0eb4327a9c8089b5358a61808e5e02
+
+➜  2.13 docker container ls
+CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                 NAMES
+4f6c178ff109   my-cron     "/usr/local/bin/supe…"   7 seconds ago   Up 6 seconds                         pedantic_hopper
+c3300b0d7c87   mysql:5.7   "docker-entrypoint.s…"   21 hours ago    Up 21 hours    3306/tcp, 33060/tcp   some-mysql
+
+➜  2.13 docker volume ls
+DRIVER    VOLUME NAME
+
+➜  2.13 ls
+Dockerfile  my-cron  supercronic-linux-amd64  test.txt
+
+➜  2.13 cat test.txt
+Sat Dec  3 10:48:00 UTC 2022
+Sat Dec  3 10:49:00 UTC 2022
+Sat Dec  3 10:50:00 UTC 2022
+Sat Dec  3 10:51:00 UTC 2022
+```
+
+ls 多出来一个 test.txt 文件，容器中的 app 目录被映射到了当前文件夹中。
+
 ## 5.5 Bind Mount 练习之 Docker 开发环境
+
+通过 bind mount 配置数据存储，即文件共享。可以使用 docker 快速搭建开发环境。
+
+### 5.5.1 使用 docker 搭建 gcc 编译环境，并将本地文件夹作为数据存储映射到容器中的 /root 中
+
+```log
+➜  2.13 docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+gcc          9.4       0ed449773594   6 months ago     1.14GB
+
+➜  2.13 docker container run -d -v $(pwd):/root gcc:9.4
+b258660969d3808133d5b80000d980ff310847cc5e3f0d020c8f930db03b3394
+
+➜  2.13 docker container ls -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS                      PORTS                 NAMES
+b258660969d3   gcc:9.4     "bash"                   35 seconds ago   Exited (0) 33 seconds ago                         festive_dijkstra
+
+➜  2.13 docker container run -it -v $(pwd):/root gcc:9.4
+root@735e547b47dd:/#
+```
+
+### 5.5.2 使用 vscode 快速搭建
+
+插件商店搜索 remote development 并下载，点击 remote container。先选择本地的数据存储文件夹，再选择所使用的镜像，点击确定，即可在本地生成一个相应的容器。同时 vscode 会自动打开。
+
+特别适用于 windows 系统的电脑，在需要使用 linux 的开发环境下。
+
 ## 5.6 机器之间共享数据
+
+使用 sshfs 的 driver 实现。
+
+todo: driver 的使用细节
