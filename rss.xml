@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 04 Dec 2022 12:31:50 GMT</lastBuildDate><item><title><![CDATA[6.Docker网络]]></title><description><![CDATA[6.1 网络基础知识 ip、子网掩码、网关、dns、端口号 6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？ 原文：Traffic example, the full picture 6.2 网络常用命令 6.2.1 IP 地址的查看 widows linux 或者…]]></description><link>https://weishenggao.com/docker/docker网络/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker网络/</guid><pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;6.1 网络基础知识&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 04 Dec 2022 12:38:46 GMT</lastBuildDate><item><title><![CDATA[6.Docker网络]]></title><description><![CDATA[6.1 网络基础知识 ip、子网掩码、网关、dns、端口号 6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？ 原文：Traffic example, the full picture 6.2 网络常用命令 6.2.1 IP 地址的查看 widows linux 或者…]]></description><link>https://weishenggao.com/docker/docker网络/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker网络/</guid><pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;6.1 网络基础知识&lt;/h2&gt;
 &lt;p&gt;ip、子网掩码、网关、dns、端口号&lt;/p&gt;
 &lt;h3&gt;6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.homenethowto.com/advanced-topics/traffic-example-the-full-picture/&quot;&gt;原文：Traffic example, the full picture&lt;/a&gt;&lt;/p&gt;
@@ -26,7 +26,7 @@
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;TRACERT.EXE www.baidu.com&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;curl 命令&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.ruanyifeng.com/blog/2019/09/curl-reference.html&quot;&gt;原文：curl 的用法指南&lt;/a&gt;&lt;/p&gt;
-&lt;frame border=0 frameborder=0 height=600 width=&quot;100%&quot; src=&quot;https://www.ruanyifeng.com/blog/2019/09/curl-reference.html&quot;&gt;&lt;/iframe&gt;
+&lt;iframe border=0 frameborder=0 height=600 width=&quot;100%&quot; src=&quot;https://www.ruanyifeng.com/blog/2019/09/curl-reference.html&quot;&gt;&lt;/iframe&gt;
 &lt;h2&gt;6.3 容器网络涉及到哪些问题&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;容器为什么能获取到 IP 地址？&lt;/li&gt;
@@ -2162,46 +2162,6 @@ BFC 是 web 页面的可视化 css 渲染的一部分，是布局过程中生成
 &lt;ol&gt;
 &lt;li&gt;margin-top 设置为百分数时，其高度是相对于容纳块（父元素）的高度而言的。此时子元素的顶部是中心对齐的，但是整体不是。&lt;/li&gt;
 &lt;li&gt;transform 进行自身的宽度和高度的偏移。&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[float]]></title><description><![CDATA[概念 定义 取值：left | right | none
-初始值： none…]]></description><link>https://weishenggao.com/web/css/float/</link><guid isPermaLink="false">https://weishenggao.com/web/css/float/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;概念&lt;/h2&gt;
-&lt;p&gt;定义&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;取值：left | right | none
-初始值： none
-适用于：所有元素
-计算值：指定的值
-继承性：否
-动画性：否&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;浮动的元素&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;浮动的元素脱离了文档流，但对布局仍然有影响。
-&lt;ul&gt;
-&lt;li&gt;原因是因为其他内容将围绕着他流动。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;浮动元素四周的外边距不折叠。&lt;/li&gt;
-&lt;li&gt;浮动的非置换元素，要为元素设定宽度。否则，根据 css 规范，元素的宽度趋近于 0。&lt;/li&gt;
-&lt;li&gt;float:none 彻底禁止元素浮动。使用场景如下：
-&lt;ol&gt;
-&lt;li&gt;元素默认为 none。初始化元素的默认状态。&lt;/li&gt;
-&lt;li&gt;在内联样式中强制修改元素的浮动属性。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;浮动详解&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;浮动元素的坐（或右）外边界不能超过容纳块的左（或右）内边界。&lt;/li&gt;
-&lt;li&gt;文档中浮动的元素，后面的将靠近前面的外边界。不会发生重叠。
-&lt;ol&gt;
-&lt;li&gt;? 除非后一个元素的顶边在前一个元素的底边以下。那么后浮动的元素将会将直达父元素的内边界。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;属性为 left 和 right 的元素不会发生重叠。&lt;/li&gt;
-&lt;li&gt;浮动元素的顶边不能超过父元素的内顶边高。？如果浮动元素位于两个折叠的外边距之间，在两个元素之间放置时，将视其有个块级元素。&lt;/li&gt;
-&lt;li&gt;浮动元素的顶边不能比任何一个浮动元素或者块级元素的顶边高。&lt;/li&gt;
-&lt;li&gt;？浮动元素的顶边不能高于文档源码中出现在浮动元素之前的元素生成的框体所在的行框的顶边。&lt;/li&gt;
-&lt;li&gt;浮动元素不能超出容纳元素的边界。&lt;/li&gt;
 &lt;/ol&gt;</content:encoded></item><item><title><![CDATA[深入理解 CSS 外边距折叠（margin collapse）]]></title><description><![CDATA[概念 In CSS, the adjoining margins of two or more boxes (which might or might not be siblings) can combine to form a single margin. Margins…]]></description><link>https://weishenggao.com/web/css/margin/</link><guid isPermaLink="false">https://weishenggao.com/web/css/margin/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;概念&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In CSS, the adjoining margins of two or more boxes (which might or might not be siblings) can combine to form a single margin. Margins that combine this way are said to collapse, and the resulting combined margin is called a collapsed margin.&lt;/p&gt;
@@ -2377,7 +2337,47 @@ w3c 对毗邻的外边距的定义。&lt;/li&gt;
 &lt;h2&gt;处理背面&lt;/h2&gt;
 &lt;p&gt;backface-visibility: visible | hidden
 使用场景：翻转效果。当使用 rotate 函数进行 180 度大翻转时，会看到所翻转元素的背面。设置为 hidden 可以让元素的背面朝向我们时不渲染背面。
-&lt;strong&gt;需要给元素或其父元素添加属性 transform-style: preserve-3d; 否则看不见效果&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[两栏布局]]></title><description><![CDATA[常用的后台布局方式。左侧固定，右侧宽度自适应屏幕。 实现方式 BFC。运用 BFC 不和 float 块重叠的特点 position 布局。right 块 absolute,让 left 为 right 的宽度 自适应布局。right 不设置宽度。用 margin…]]></description><link>https://weishenggao.com/web/css/two-column-layout/</link><guid isPermaLink="false">https://weishenggao.com/web/css/two-column-layout/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;strong&gt;需要给元素或其父元素添加属性 transform-style: preserve-3d; 否则看不见效果&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[float]]></title><description><![CDATA[概念 定义 取值：left | right | none
+初始值： none…]]></description><link>https://weishenggao.com/web/css/float/</link><guid isPermaLink="false">https://weishenggao.com/web/css/float/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;概念&lt;/h2&gt;
+&lt;p&gt;定义&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;取值：left | right | none
+初始值： none
+适用于：所有元素
+计算值：指定的值
+继承性：否
+动画性：否&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;浮动的元素&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;浮动的元素脱离了文档流，但对布局仍然有影响。
+&lt;ul&gt;
+&lt;li&gt;原因是因为其他内容将围绕着他流动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;浮动元素四周的外边距不折叠。&lt;/li&gt;
+&lt;li&gt;浮动的非置换元素，要为元素设定宽度。否则，根据 css 规范，元素的宽度趋近于 0。&lt;/li&gt;
+&lt;li&gt;float:none 彻底禁止元素浮动。使用场景如下：
+&lt;ol&gt;
+&lt;li&gt;元素默认为 none。初始化元素的默认状态。&lt;/li&gt;
+&lt;li&gt;在内联样式中强制修改元素的浮动属性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;浮动详解&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;浮动元素的坐（或右）外边界不能超过容纳块的左（或右）内边界。&lt;/li&gt;
+&lt;li&gt;文档中浮动的元素，后面的将靠近前面的外边界。不会发生重叠。
+&lt;ol&gt;
+&lt;li&gt;? 除非后一个元素的顶边在前一个元素的底边以下。那么后浮动的元素将会将直达父元素的内边界。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;属性为 left 和 right 的元素不会发生重叠。&lt;/li&gt;
+&lt;li&gt;浮动元素的顶边不能超过父元素的内顶边高。？如果浮动元素位于两个折叠的外边距之间，在两个元素之间放置时，将视其有个块级元素。&lt;/li&gt;
+&lt;li&gt;浮动元素的顶边不能比任何一个浮动元素或者块级元素的顶边高。&lt;/li&gt;
+&lt;li&gt;？浮动元素的顶边不能高于文档源码中出现在浮动元素之前的元素生成的框体所在的行框的顶边。&lt;/li&gt;
+&lt;li&gt;浮动元素不能超出容纳元素的边界。&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[两栏布局]]></title><description><![CDATA[常用的后台布局方式。左侧固定，右侧宽度自适应屏幕。 实现方式 BFC。运用 BFC 不和 float 块重叠的特点 position 布局。right 块 absolute,让 left 为 right 的宽度 自适应布局。right 不设置宽度。用 margin…]]></description><link>https://weishenggao.com/web/css/two-column-layout/</link><guid isPermaLink="false">https://weishenggao.com/web/css/two-column-layout/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;常用的后台布局方式。左侧固定，右侧宽度自适应屏幕。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;实现方式&lt;/h2&gt;
