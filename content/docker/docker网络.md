@@ -71,7 +71,7 @@ TRACERT.EXE www.baidu.com
 
 [原文：curl 的用法指南](https://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
 
-<frame border=0 frameborder=0 height=600 width="100%" src="https://www.ruanyifeng.com/blog/2019/09/curl-reference.html"></iframe>
+<iframe border=0 frameborder=0 height=600 width="100%" src="https://www.ruanyifeng.com/blog/2019/09/curl-reference.html"></iframe>
 
 ## 6.3 容器网络涉及到哪些问题
 
