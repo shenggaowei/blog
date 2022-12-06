@@ -1,5 +1,5 @@
 ---
-title: 5.Docker学习之docker的存储
+title: 5.Docker学习之存储
 date: 2022-12-02
 description: docker 学习笔记
 ---
