@@ -1,4 +1,710 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 04 Dec 2022 12:38:46 GMT</lastBuildDate><item><title><![CDATA[6.Docker网络]]></title><description><![CDATA[6.1 网络基础知识 ip、子网掩码、网关、dns、端口号 6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？ 原文：Traffic example, the full picture 6.2 网络常用命令 6.2.1 IP 地址的查看 widows linux 或者…]]></description><link>https://weishenggao.com/docker/docker网络/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker网络/</guid><pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;6.1 网络基础知识&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Dec 2022 13:51:10 GMT</lastBuildDate><item><title><![CDATA[7.Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介 dokcer-compose 处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./asset/docker-compose-intro.webp&quot; alt=&quot;dokcer-compose&quot;&gt;&lt;/p&gt;
+&lt;p&gt;处理多个容器的启动和关闭。可以不用自己去写脚本处理。&lt;/p&gt;
+&lt;h2&gt;7.2 docker-compose 的安装&lt;/h2&gt;
+&lt;p&gt;mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--version&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面命令会打印出 docker-compose 的版本信息&lt;/p&gt;
+&lt;p&gt;linux 可以在 &lt;a href=&quot;https://github.com/docker/compose/releases&quot;&gt;github release&lt;/a&gt; 页面下载安装。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 下载 docker-compose，放到 /usr/local/bin 下&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;uname&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-s&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;-&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;uname&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-m&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-o&lt;/span&gt; /usr/local/bin/docker-compose
+
+&lt;span class=&quot;token comment&quot;&gt;# 如果 curl 下载贼慢，或者本地下载好后，用 scp 传上去&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;scp&lt;/span&gt; ~/Downloads/docker-compose-linux-x86_64 root@8.131.101.166:/usr/loca
+l/bin/docker-compose
+
+&lt;span class=&quot;token comment&quot;&gt;# 添加文件的可执行权限&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; +x /usr/local/bin/docker-compose
+
+&lt;span class=&quot;token comment&quot;&gt;# 查看版本信息，确定已经安装&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--version&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7.3 compose 文件的结构和版本&lt;/h2&gt;
+&lt;p&gt;文档： &lt;a href=&quot;https://docs.docker.com/compose/compose-file/&quot;&gt;https://docs.docker.com/compose/compose-file/&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# docker-compose 的语法版本&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 容器&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;servicename&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 服务名字，这个名字也是内部 bridge网络可以使用的 DNS name&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 镜像的名字&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，如果设置，则会覆盖默认镜像里的 CMD命令&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，相当于 docker run里的 --env&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，相当于docker run里的 -v&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，相当于 docker run里的 --network&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，相当于 docker run里的 -p&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;servicename2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，相当于 docker volume create&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# 可选，相当于 docker network create&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以第六节 docker 网络中 python-flask + redis 的脚本 demo为例子，改造成一个 docker-compose 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# prepare image&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; image pull redis
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; image build &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt; flask-demo &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# create network&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; network create &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; bridge demo-network
+
+&lt;span class=&quot;token comment&quot;&gt;# create container&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container run &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--name&lt;/span&gt; redis-server &lt;span class=&quot;token parameter variable&quot;&gt;--network&lt;/span&gt; demo-network redis
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container run &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--network&lt;/span&gt; demo-network &lt;span class=&quot;token parameter variable&quot;&gt;--name&lt;/span&gt; flask-demo &lt;span class=&quot;token parameter variable&quot;&gt;--env&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;REDIS_HOST&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;redis-server &lt;span class=&quot;token parameter variable&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;:5000 flask-demo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;flask-demo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_HOST=redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;8080&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;redis-server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+      &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7.4 docker-compose 命令行基本使用&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 前台启动服务&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up 
+
+&lt;span class=&quot;token comment&quot;&gt;# 后台启动服务&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# 停止服务&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; stop
+
+&lt;span class=&quot;token comment&quot;&gt;# 删除后台已经停止的容器&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# -p 指令修改容器的前缀，也可在 yml 文件中指定 container_name 写死。&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-p&lt;/span&gt; myproject up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看镜像&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; docker image ls
+REPOSITORY   TAG          IMAGE ID       CREATED          SIZE
+flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo   latest       &lt;span class=&quot;token number&quot;&gt;0fe4a5f0a768&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;21&lt;/span&gt; minutes ago   &lt;span class=&quot;token number&quot;&gt;128MB&lt;/span&gt;
+redis        latest       &lt;span class=&quot;token number&quot;&gt;3358aea34e8c&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; weeks ago      &lt;span class=&quot;token number&quot;&gt;117MB&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;前台启动服务&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; docker&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;compose up
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  Created                                                                                          &lt;span class=&quot;token number&quot;&gt;0.2s&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    Created                                                                                          &lt;span class=&quot;token number&quot;&gt;0.2s&lt;/span&gt;
+Attaching to &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;C &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.879&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;C &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.881&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; Redis version&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;7.0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; bits&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; commit&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;00000000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; modified&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pid&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; just started
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;C &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.882&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; Warning&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; no config file specified&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; using the default config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; In order to specify a config file use redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server &lt;span class=&quot;token file-path string&quot;&gt;/path/to/redis.conf&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;M &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.883&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; monotonic clock&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; POSIX clock_gettime
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;M &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.889&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Running mode&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;standalone&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; port&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;6379&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;M &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.889&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; Server initialized
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;M &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.889&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;token level warning important&quot;&gt;WARNING&lt;/span&gt; overcommit_memory is set to &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; Background save may fail under low memory condition&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; To fix this issue add &lt;span class=&quot;token string&quot;&gt;&apos;vm.overcommit_memory = 1&apos;&lt;/span&gt; to &lt;span class=&quot;token file-path string&quot;&gt;/etc/sysctl.conf&lt;/span&gt; and then reboot or run the command &lt;span class=&quot;token string&quot;&gt;&apos;sysctl vm.overcommit_memory=1&apos;&lt;/span&gt; for this to take effect&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;M &lt;span class=&quot;token date number&quot;&gt;05 Dec 2022&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;11:14:19.892&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Ready to accept connections
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Serving Flask app &lt;span class=&quot;token string&quot;&gt;&apos;app.py&apos;&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Debug mode&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; off
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token level warning important&quot;&gt;WARNING&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; This is a development server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; Do not use it in a production deployment&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; Use a production WSGI server instead&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Running on all addresses &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token ip-address constant&quot;&gt;0.0.0.0&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Running on &lt;span class=&quot;token url&quot;&gt;http://127.0.0.1:5000&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Running on &lt;span class=&quot;token url&quot;&gt;http://172.22.0.2:5000&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; Press CTRL&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;C to quit&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;容器名字以文件夹的名字 215 作为前缀，-1 作为后缀&lt;/p&gt;
+&lt;p&gt;后台启动服务&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/2
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-redis-server-1  Started                                                                                          &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;.2s
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-flask-demo-1    Started                                                                                          &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;.3s
+ 
+➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;
+NAME                 COMMAND                  SERVICE             STATUS              PORTS
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-flask-demo-1     &lt;span class=&quot;token string&quot;&gt;&quot;flask run -h 0.0.0.0&quot;&lt;/span&gt;   flask-demo          running             &lt;span class=&quot;token number&quot;&gt;0.0&lt;/span&gt;.0.0:80-&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;/tcp, :::80-&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;/tcp
+&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-redis-server-1   &lt;span class=&quot;token string&quot;&gt;&quot;docker-entrypoint.s…&quot;&lt;/span&gt;   redis-server        running             &lt;span class=&quot;token number&quot;&gt;6379&lt;/span&gt;/tcp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果在启动服务的时候，不通过 -p 来指定 yml 文件，则 docker-compose 命令的执行需要在包含 yml 文件的文件夹下，且名字必须为 docker-compose.yml&lt;/p&gt;
+&lt;h2&gt;7.5 docker-compose 镜像构建和拉取&lt;/h2&gt;
+&lt;p&gt;目录结构&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; tree &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+├── docker-compose.yml
+└── flask
+    ├── app.py
+    └── Dockerfile.dev
+
+&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; directory, &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; files&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改后的 docker-compose.yml 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;flask-demo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./flask
+      &lt;span class=&quot;token key atrule&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Dockerfile.dev
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_HOST=redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; 80&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;redis-server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行 docker-compose build&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; docker&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;compose build
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Building &lt;span class=&quot;token number&quot;&gt;95.1s&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; FINISHED
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load build definition from Dockerfile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dev                                                                          &lt;span class=&quot;token number&quot;&gt;0.1s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring dockerfile&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;348B&lt;/span&gt;                                                                                              &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dockerignore                                                                                                 &lt;span class=&quot;token number&quot;&gt;0.1s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring context&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2B&lt;/span&gt;                                                                                                   &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load metadata for docker&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;library&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;python&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.9.5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;slim                                                              &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; FROM docker&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;library&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;python&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.9.5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;slim                                                                                &lt;span class=&quot;token number&quot;&gt;0.2s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load build context                                                                                                 &lt;span class=&quot;token number&quot;&gt;0.1s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring context&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;398B&lt;/span&gt;                                                                                                 &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; RUN pip install flask redis &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;     groupadd &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;r flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; useradd &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;g flask flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;     mkdir &lt;span class=&quot;token file-path string&quot;&gt;/src&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;     chown &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;R f  &lt;span class=&quot;token number&quot;&gt;94.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; COPY &lt;span class=&quot;token domain constant&quot;&gt;app.py&lt;/span&gt; &lt;span class=&quot;token file-path string&quot;&gt;/src/app.py&lt;/span&gt;                                                                                                 &lt;span class=&quot;token number&quot;&gt;0.2s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; WORKDIR &lt;span class=&quot;token file-path string&quot;&gt;/src&lt;/span&gt;                                                                                                            &lt;span class=&quot;token number&quot;&gt;0.1s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting to image                                                                                                            &lt;span class=&quot;token number&quot;&gt;0.3s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting layers                                                                                                           &lt;span class=&quot;token number&quot;&gt;0.3s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; writing image sha256&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token hash constant&quot;&gt;c6b31294143743369f2709bbbfaf2506f4ed97eaaa54e4fb8ecae454ccc934c6&lt;/span&gt;                                      &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; naming to docker&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;library&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;latest                                                                              &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+
+Use &lt;span class=&quot;token string&quot;&gt;&apos;docker scan&apos;&lt;/span&gt; to run Snyk tests against images to find vulnerabilities and learn how to fix them&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行 docker-compose pull&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; pull --ignore-pull-failures
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;/8
+ ⠿ redis-server Pulled                                                                                                           &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;.3s
+   ⠿ a603fa5e3b41 Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;.5s
+   ⠿ 77631c3ef092 Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;.6s
+   ⠿ ed3847cf62b8 Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;.8s
+   ⠿ 261a8b530567 Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;.6s
+   ⠿ 7d9005a8af6d Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;.7s
+   ⠿ 828da1afb5be Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;.8s
+ ⠿ flask-demo Warning                                                                                                             &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;.1s
+Pulling flask-demo: Error response from daemon: pull access denied &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; flask-demo, repository does not exist or may require &lt;span class=&quot;token string&quot;&gt;&apos;docker login&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; denied: requested access to the resource is denied&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在拉 flask-demo 的时候会报错，退出进程，从而拉取 redis 失败。可以添加 &lt;code class=&quot;language-text&quot;&gt;--ignore-pull-failures&lt;/code&gt;参数忽略错误，继续拉。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; docker image ls
+REPOSITORY   TAG          IMAGE ID       CREATED          SIZE
+flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo   latest       c6b312941437   &lt;span class=&quot;token number&quot;&gt;40&lt;/span&gt; minutes ago   &lt;span class=&quot;token number&quot;&gt;128MB&lt;/span&gt;
+redis        latest       &lt;span class=&quot;token number&quot;&gt;3358aea34e8c&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; weeks ago      &lt;span class=&quot;token number&quot;&gt;117MB&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果不提前构建镜像，直接起服务，docker-compose up 会自动 build 或者 pull 镜像。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; docker&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;compose up &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;d
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;
+ ⠿ flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo Warning                                                                                                             &lt;span class=&quot;token number&quot;&gt;3.3s&lt;/span&gt;
+ ⠿ redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server Pulled                                                                                                           &lt;span class=&quot;token number&quot;&gt;16.9s&lt;/span&gt;
+   ⠿ a603fa5e3b41 Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;13.1s&lt;/span&gt;
+   ⠿ &lt;span class=&quot;token number&quot;&gt;77631c3ef092&lt;/span&gt; Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;13.3s&lt;/span&gt;
+   ⠿ ed3847cf62b8 Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;13.4s&lt;/span&gt;
+   ⠿ &lt;span class=&quot;token number&quot;&gt;261a8b530567&lt;/span&gt; Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;14.1s&lt;/span&gt;
+   ⠿ &lt;span class=&quot;token number&quot;&gt;7d9005a8af6d&lt;/span&gt; Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;14.2s&lt;/span&gt;
+   ⠿ &lt;span class=&quot;token number&quot;&gt;828da1afb5be&lt;/span&gt; Pull complete                                                                                                  &lt;span class=&quot;token number&quot;&gt;14.3s&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Building &lt;span class=&quot;token number&quot;&gt;0.2s&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; FINISHED
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load build definition from Dockerfile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dev                                                                          &lt;span class=&quot;token number&quot;&gt;0.1s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring dockerfile&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;36B&lt;/span&gt;                                                                                               &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dockerignore                                                                                                 &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring context&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2B&lt;/span&gt;                                                                                                   &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load metadata for docker&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;library&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;python&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.9.5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;slim                                                              &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; FROM docker&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;library&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;python&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.9.5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;slim                                                                                &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load build context                                                                                                 &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring context&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;28B&lt;/span&gt;                                                                                                  &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; CACHED &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; RUN pip install flask redis &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;     groupadd &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;r flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; useradd &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;g flask flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;     mkdir &lt;span class=&quot;token file-path string&quot;&gt;/src&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;     chow  &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; CACHED &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; COPY &lt;span class=&quot;token domain constant&quot;&gt;app.py&lt;/span&gt; &lt;span class=&quot;token file-path string&quot;&gt;/src/app.py&lt;/span&gt;                                                                                          &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; CACHED &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; WORKDIR &lt;span class=&quot;token file-path string&quot;&gt;/src&lt;/span&gt;                                                                                                     &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting to image                                                                                                            &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting layers                                                                                                           &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; writing image sha256&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token hash constant&quot;&gt;c6b31294143743369f2709bbbfaf2506f4ed97eaaa54e4fb8ecae454ccc934c6&lt;/span&gt;                                      &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; naming to docker&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;library&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;latest                                                                              &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+
+Use &lt;span class=&quot;token string&quot;&gt;&apos;docker scan&apos;&lt;/span&gt; to run Snyk tests against images to find vulnerabilities and learn how to fix them
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    Started                                                                                          &lt;span class=&quot;token number&quot;&gt;1.8s&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  Started&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7.6 docker-compose 服务更新&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 删除在 yml 文件中移除的 service&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; --remove-orphans
+
+&lt;span class=&quot;token comment&quot;&gt;# 如果修改了 volume 中的配置文件，restart 重新启动容器，加载配置文件，不会重新 build。&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; restart
+
+&lt;span class=&quot;token comment&quot;&gt;# 修改了镜像文件，重新构建 image&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--build&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改上面的 docker-compose yml文件。添加一个 busybox 服务。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;flask-demo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./flak
+      &lt;span class=&quot;token key atrule&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Dockerfile.dev
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_HOST=redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; 80&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;redis-server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+  &lt;span class=&quot;token key atrule&quot;&gt;busybox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; busybox&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; sh &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;c &quot;while true; do sleep 3600; done&quot;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  demo&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;network&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;重新启动，发现 docker 会自动拉取新的镜像。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; docker&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;compose up &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;d
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+ ⠿ busybox Pulled                                                                                                                 &lt;span class=&quot;token number&quot;&gt;9.6s&lt;/span&gt;
+   ⠿ &lt;span class=&quot;token number&quot;&gt;405fecb6a2fa&lt;/span&gt; Pull complete                                                                                                   &lt;span class=&quot;token number&quot;&gt;5.5s&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;  Running                                                                                          &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;busybox&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;       Started                                                                                          &lt;span class=&quot;token number&quot;&gt;0.8s&lt;/span&gt;
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;    Running                                                                                          &lt;span class=&quot;token number&quot;&gt;0.0s&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果将上面的 busybox 从 yml 文件中移除，重新构建服务，会有如下提示。需要使用 —remove-orphans 选项进行清理。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;
+WARN&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;0000&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Found orphan containers &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-busybox-1&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; this project. If you removed or renamed this &lt;span class=&quot;token function&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; your compose file, you can run this &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; with the --remove-orphans flag to clean it up.
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/0
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-redis-server-1  Running                                                                                          &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-flask-demo-1    Running&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.15&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; --remove-orphans
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Running &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/1
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-busybox-1       Removed                                                                                         &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;.3s
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-flask-demo-1    Running                                                                                          &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ ⠿ Container &lt;span class=&quot;token number&quot;&gt;215&lt;/span&gt;-redis-server-1  Running                                                                                          &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7.7 docker-compose 的网络&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;box1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; xiaopeng163/net&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;box&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /bin/sh &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;c &quot;while true; do sleep 3600; done&quot;
+  &lt;span class=&quot;token key atrule&quot;&gt;box2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; xiaopeng163/net&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;box&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /bin/sh &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;c &quot;while true; do sleep 3600; done&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.16&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+&lt;span class=&quot;token number&quot;&gt;216&lt;/span&gt;-box1-1          &lt;span class=&quot;token string&quot;&gt;&quot;/bin/sh -c &apos;while t…&quot;&lt;/span&gt;   box1                running
+&lt;span class=&quot;token number&quot;&gt;216&lt;/span&gt;-box2-1          &lt;span class=&quot;token string&quot;&gt;&quot;/bin/sh -c &apos;while t…&quot;&lt;/span&gt;   box2                running&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;进入到 box1 容器，ping box2，测试联通性&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.16&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;216&lt;/span&gt;-box1-1 &lt;span class=&quot;token function&quot;&gt;sh&lt;/span&gt;
+/omd &lt;span class=&quot;token comment&quot;&gt;# ping box2&lt;/span&gt;
+PING box2 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;172.25&lt;/span&gt;.0.2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;token number&quot;&gt;56&lt;/span&gt; data bytes
+&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt; bytes from &lt;span class=&quot;token number&quot;&gt;172.25&lt;/span&gt;.0.2: &lt;span class=&quot;token assign-left variable&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.076&lt;/span&gt; ms
+&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt; bytes from &lt;span class=&quot;token number&quot;&gt;172.25&lt;/span&gt;.0.2: &lt;span class=&quot;token assign-left variable&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.113&lt;/span&gt; ms
+&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt; bytes from &lt;span class=&quot;token number&quot;&gt;172.25&lt;/span&gt;.0.2: &lt;span class=&quot;token assign-left variable&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.115&lt;/span&gt; ms
+^C
+--- box2 &lt;span class=&quot;token function&quot;&gt;ping&lt;/span&gt; statistics ---
+&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; packets transmitted, &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; packets received, &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;% packet loss
+round-trip min/avg/max &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.076&lt;/span&gt;/0.101/0.115 ms&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看 box1 的 dns 服务器&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;&lt;span class=&quot;token file-path string&quot;&gt;/omd&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; dig box2
+
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; DiG &lt;span class=&quot;token number&quot;&gt;9.16.33&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; box2
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; global options&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;cmd
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; Got answer&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;HEADER&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; opcode&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; QUERY&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; status&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; NOERROR&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; id&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;14452&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; flags&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; qr rd ra&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; QUERY&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ANSWER&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; AUTHORITY&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ADDITIONAL&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; QUESTION SECTION&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;box2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;                          IN      A
+
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; ANSWER SECTION&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+box2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;                   &lt;span class=&quot;token number&quot;&gt;600&lt;/span&gt;     IN      A       &lt;span class=&quot;token ip-address constant&quot;&gt;172.25.0.2&lt;/span&gt;
+
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; Query time&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; msec
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; SERVER&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token ip-address constant&quot;&gt;127.0.0.11&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;53&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token ip-address constant&quot;&gt;127.0.0.11&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; WHEN&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token date number&quot;&gt;Tue Dec 06&lt;/span&gt; &lt;span class=&quot;token time number&quot;&gt;08:54:55&lt;/span&gt; UTC &lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;;&lt;/span&gt; MSG SIZE  rcvd&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;42&lt;/span&gt;
+
+&lt;span class=&quot;token file-path string&quot;&gt;/omd&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;#&lt;/span&gt; more &lt;span class=&quot;token file-path string&quot;&gt;/etc/resolv.conf&lt;/span&gt;
+nameserver &lt;span class=&quot;token ip-address constant&quot;&gt;127.0.0.11&lt;/span&gt;
+options timeout&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; attempts&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; rotate single&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;request&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;reopen ndots&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看宿主机上的 dns 服务器&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.16&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;more&lt;/span&gt; /etc/resolv.conf
+&lt;span class=&quot;token comment&quot;&gt;# Dynamic resolv.conf(5) file for glibc resolver(3) generated by resolvconf(8)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;#     DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# 127.0.0.53 is the systemd-resolved stub resolver.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# run &quot;systemd-resolve --status&quot; to see details about the actual nameservers.&lt;/span&gt;
+
+nameserver &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.53
+options timeout:2 attempts:3 rotate single-request-reopen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过 docker-compose 创建的服务，在容器内部可通过服务的名称（本例为在 yml 文件中定义的 box1，box2)进行相互访问。docker 会自动创建一个 bridge 网络，并会通过自建的 dns 服务器解析 host。&lt;/p&gt;
+&lt;p&gt;如果在容器内访问的是外部的网站，例如百度。docker 会先通过自己的创建 dns 来进行解析，解析失败后，会继续用宿主机上的 dns 来进行解析。&lt;/p&gt;
+&lt;p&gt;自定义容器所使用的网络&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;box1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; xiaopeng163/net&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;box&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /bin/sh &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;c &quot;while true; do sleep 3600; done&quot;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; mynetwork1
+  &lt;span class=&quot;token key atrule&quot;&gt;box2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; xiaopeng163/net&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;box&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /bin/sh &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;c &quot;while true; do sleep 3600; done&quot;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; mynetwork1
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; mynetwork2
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;mynetwork1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;ipam&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; default
+      &lt;span class=&quot;token key atrule&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;subnent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;172.18.238.0/24&quot;&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;mynetwork2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;ipam&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; default&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/compose/networking/&quot;&gt;https://docs.docker.com/compose/networking/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;配置自定义网络，可以实现容器间的网络隔离。&lt;/p&gt;
+&lt;h2&gt;7. docker-compose 水平扩展和负载均衡&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--scale&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.17&lt;/span&gt; git&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; tree &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;l &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+├── &lt;span class=&quot;token domain constant&quot;&gt;docker-compose.yml&lt;/span&gt;
+├── flask
+│   ├── &lt;span class=&quot;token domain constant&quot;&gt;app.py&lt;/span&gt;
+│   └── Dockerfile
+├── nginx
+│   └── nginx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;app.py 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; flask &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Flask
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; redis &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Redis
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; os
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; socket
+
+app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Flask&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;__name__&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+redis &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Redis&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;host&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;environ&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;REDIS_HOST&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;127.0.0.1&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; port&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;6379&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;token decorator annotation punctuation&quot;&gt;@app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;route&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    redis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;incr&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hits&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token string-interpolation&quot;&gt;&lt;span class=&quot;token string&quot;&gt;f&quot;Hello Container World! I have been seen &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;redis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hits&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;decode&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;utf-8&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; times and my hostname is &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;socket&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;gethostname&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;.\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;dockerfile 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; python:3.9.5-slim&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; pip install flask redis &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    groupadd -r flask &amp;amp;&amp;amp; useradd -r -g flask flask &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    mkdir /src &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    chown -R flask:flask /src&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; flask&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; app.py /src/app.py&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /src&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENV&lt;/span&gt; FLASK=app.py REDIS_HOST=redis&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 5000&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;flask&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;run&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;-h&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;0.0.0.0&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;dokcer-compose.yml 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./flask
+      &lt;span class=&quot;token key atrule&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Dockerfile
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_HOST=redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backend
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; frontend
+  &lt;span class=&quot;token key atrule&quot;&gt;redis-server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backend
+
+  &lt;span class=&quot;token key atrule&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; nginx&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;stable&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;alpine
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token datetime number&quot;&gt;80:80&lt;/span&gt;
+	&lt;span class=&quot;token comment&quot;&gt;# 依赖，只有 flask 容器启动后，才能启动 nginx 容器&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; flask
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./nginx/nginx.conf&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/etc/nginx/conf.d/default.conf&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;ro
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./var/log/nginx&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/var/log/nginx
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; frontend
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  frontend&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动 docker-compose，生成3个 flask 容器，由 nginx 做前面的 proxy，由 docker 实现负载均衡。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--scale&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;打开浏览器，访问宿主机的 80 端口，每次刷新，hostname 都会在三个不同的值之间随机变化。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fc4f9ca541f254a66807ca18e1b37f02/b1ffc/docker-balance-achive.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 20.88607594936709%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAcUlEQVQY061PSwoFIQzz/rf0189CEBUUNxnqCHOA9wohoSlt48YYIGKIyAGzaQWz3J5+rHo9hqqCiC4YpRT03uFqrcg5H8M4pXSGja33HpCj34OCEMKdyfDeI8aIvTfsObfWwr9qzglnW1trP8PiWuQHJfcxEMr+nw0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;docker-balance-achive&quot;
+        title=&quot;docker-balance-achive&quot;
+        src=&quot;/static/fc4f9ca541f254a66807ca18e1b37f02/f058b/docker-balance-achive.png&quot;
+        srcset=&quot;/static/fc4f9ca541f254a66807ca18e1b37f02/c26ae/docker-balance-achive.png 158w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/6bdcf/docker-balance-achive.png 315w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/f058b/docker-balance-achive.png 630w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/40601/docker-balance-achive.png 945w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/78612/docker-balance-achive.png 1260w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/b1ffc/docker-balance-achive.png 1492w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;7.9 docker-compose 环境变量&lt;/h2&gt;
+&lt;p&gt;修改 docker-compose.yml 文件，让 redis 的连接密码从环境变量中读取&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./flask
+      &lt;span class=&quot;token key atrule&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Dockerfile
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_HOST=redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_PASS=$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;REDIS_PASS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backend
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; frontend
+  &lt;span class=&quot;token key atrule&quot;&gt;redis-server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;requirepass $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;REDIS_PASS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backend
+
+  &lt;span class=&quot;token key atrule&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; nginx&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;stable&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;alpine
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token datetime number&quot;&gt;80:80&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; flask
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./nginx/nginx.conf&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/etc/nginx/conf.d/default.conf&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;ro
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./var/log/nginx&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/var/log/nginx
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; frontend
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  frontend&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;创建 .env 文件，并将文件添加到 .gitignore 中。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;env&quot;&gt;&lt;pre class=&quot;language-env&quot;&gt;&lt;code class=&quot;language-env&quot;&gt;REDIS_PASS=abc123&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;docker-compose config&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  &lt;span class=&quot;token number&quot;&gt;2.17&lt;/span&gt; git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; ✗ &lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt;  config
+name: &lt;span class=&quot;token string&quot;&gt;&quot;217&quot;&lt;/span&gt;
+services:
+  flask:
+    build:
+      context: /root/docker/2/2.17/flask
+      dockerfile: Dockerfile
+    environment:
+      REDIS_HOST: redis-server
+      REDIS_PASS: abc123
+    image: flask-demo:latest
+    networks:
+      backend: null
+      frontend: null
+  nginx:
+    depends_on:
+      flask:
+        condition: service_started
+    image: nginx:stable-alpine
+    networks:
+      frontend: null
+    ports:
+    - mode: ingress
+      target: &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;
+      published: &lt;span class=&quot;token string&quot;&gt;&quot;80&quot;&lt;/span&gt;
+      protocol: tcp
+    volumes:
+    - type: &lt;span class=&quot;token builtin class-name&quot;&gt;bind&lt;/span&gt;
+      source: /root/docker/2/2.17/nginx/nginx.conf
+      target: /etc/nginx/conf.d/default.conf
+      read_only: &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+      bind:
+        create_host_path: &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    - type: &lt;span class=&quot;token builtin class-name&quot;&gt;bind&lt;/span&gt;
+      source: /root/docker/2/2.17/var/log/nginx
+      target: /var/log/nginx
+      bind:
+        create_host_path: &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  redis-server:
+    command:
+    - redis-server
+    - &lt;span class=&quot;token parameter variable&quot;&gt;--requirepass&lt;/span&gt;
+    - abc123
+    image: redis:latest
+    networks:
+      backend: null
+networks:
+  backend:
+    name: 217_backend
+  frontend:
+    name: 217_frontend&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;也可以指定单独的配置文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;REDIS_PASS=abc123&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; myenv
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; --env-file ./myenv config
+&lt;span class=&quot;token function&quot;&gt;docker-compose&lt;/span&gt; up &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; --env-file ./myenv&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7.10 服务依赖和健康检查&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/engine/reference/builder/&quot;&gt;https://docs.docker.com/engine/reference/builder/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;7.10.1 在 dockerfile 中使用 healthcheck&lt;/h3&gt;
+&lt;p&gt;将上面 dockerfile 构建镜像中使用健康检查&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; python:3.9.5-slim&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; pip install flask redis &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    apt-get update &amp;amp;&amp;amp; apt-get install -y curl &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    groupadd -r flask &amp;amp;&amp;amp; useradd -r -g flask flask &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    mkdir /src &amp;amp;&amp;amp; &lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+    chown -R flask:flask /src&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; flask&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; app.py /src/app.py&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /src&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENV&lt;/span&gt; FLASK=app.py REDIS_HOST=redis&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 5000&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# 健康检查，测试当前容器服务的连通性&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;HEALTHCHECK&lt;/span&gt; &lt;span class=&quot;token options&quot;&gt;&lt;span class=&quot;token property&quot;&gt;--interval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;30s&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;--timeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;3s&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; curl -f http://localhost:5000/ || exit 1&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;flask&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;run&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;-h&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;0.0.0.0&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 构建镜像&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; image build &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt; flask-demo &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# 创建网络&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; network create mybridge
+
+&lt;span class=&quot;token comment&quot;&gt;# 生成容器&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container run &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--name&lt;/span&gt; flask1 &lt;span class=&quot;token parameter variable&quot;&gt;--env&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;REDIS_HOST&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;redis-server flask-demo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;由于 redis 服务未启动，服务内部报错，状态为 unhealth&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;➜  flask git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; ✗ &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-a&lt;/span&gt;
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                     PORTS      NAMES
+ebfaba12bd86   flask-demo   &lt;span class=&quot;token string&quot;&gt;&quot;flask run -h 0.0.0.0&quot;&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; minutes ago   Up &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; minutes &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;unhealthy&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;/tcp   flask1
+
+&lt;span class=&quot;token comment&quot;&gt;# 查看容器详细信息，可看到容器健康检查的日志&lt;/span&gt;
+➜  flask git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; ✗ &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container inspect flask1
+&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+&lt;span class=&quot;token string&quot;&gt;&quot;Health&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;Status&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;unhealthy&quot;&lt;/span&gt;,
+                &lt;span class=&quot;token string&quot;&gt;&quot;FailingStreak&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;,
+                &lt;span class=&quot;token string&quot;&gt;&quot;Log&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                   &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;token string&quot;&gt;&quot;Start&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2022-12-06T20:33:32.959059252+08:00&quot;&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;End&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2022-12-06T20:33:33.115911813+08:00&quot;&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;ExitCode&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;Output&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;                                 Dload  Upload   Total   Spent    Left  Speed&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;token entity&quot; title=&quot;\r&quot;&gt;\r&lt;/span&gt;  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;span class=&quot;token entity&quot; title=&quot;\r&quot;&gt;\r&lt;/span&gt;  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;curl: (22) The requested URL returned error: 500 INTERNAL SERVER ERROR&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&quot;&lt;/span&gt;
+                    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+                    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;token string&quot;&gt;&quot;Start&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2022-12-06T20:34:03.129901079+08:00&quot;&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;End&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2022-12-06T20:34:03.243209393+08:00&quot;&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;ExitCode&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;Output&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;                                 Dload  Upload   Total   Spent    Left  Speed&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;token entity&quot; title=&quot;\r&quot;&gt;\r&lt;/span&gt;  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;span class=&quot;token entity&quot; title=&quot;\r&quot;&gt;\r&lt;/span&gt;  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;curl: (22) The requested URL returned error: 500 INTERNAL SERVER ERROR&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&quot;&lt;/span&gt;
+                    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+                    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;token string&quot;&gt;&quot;Start&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2022-12-06T20:34:33.253949717+08:00&quot;&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;End&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2022-12-06T20:34:33.376348565+08:00&quot;&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;ExitCode&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;,
+                        &lt;span class=&quot;token string&quot;&gt;&quot;Output&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;                                 Dload  Upload   Total   Spent    Left  Speed&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;token entity&quot; title=&quot;\r&quot;&gt;\r&lt;/span&gt;  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;span class=&quot;token entity&quot; title=&quot;\r&quot;&gt;\r&lt;/span&gt;  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;curl: (22) The requested URL returned error: 500 INTERNAL SERVER ERROR&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&quot;&lt;/span&gt;
+                    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;拉取 redis 镜像，构建 redis 容器&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; image pull redis:latest
+
+&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container run &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--name&lt;/span&gt; redis-server &lt;span class=&quot;token parameter variable&quot;&gt;--env&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;REDIS_PASS&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;abc123 redis:latest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;重新启动 flask1 容器，状态为 health&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜  flask git&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; ✗ docker container ps &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         &lt;span class=&quot;token level info keyword&quot;&gt;STATUS&lt;/span&gt;                     PORTS      NAMES
+d1a69c24a087   redis        &lt;span class=&quot;token string&quot;&gt;&quot;docker-entrypoint.s…&quot;&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; minutes ago   Up &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; minutes               &lt;span class=&quot;token number&quot;&gt;6379&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;tcp   redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server
+&lt;span class=&quot;token number&quot;&gt;8d02dfd1b4fb&lt;/span&gt;   flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo   &lt;span class=&quot;token string&quot;&gt;&quot;flask run -h 0.0.0.0&quot;&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; minutes ago   Up &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; minutes &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;unhealthy&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;tcp   flask1
+
+➜  flask git&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; ✗ docker container restart &lt;span class=&quot;token number&quot;&gt;8d0&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;8d0&lt;/span&gt;
+
+➜  flask git&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; ✗ docker container ps &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         &lt;span class=&quot;token level info keyword&quot;&gt;STATUS&lt;/span&gt;                             PORTS      NAMES
+d1a69c24a087   redis        &lt;span class=&quot;token string&quot;&gt;&quot;docker-entrypoint.s…&quot;&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; minutes ago   Up &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; minutes                       &lt;span class=&quot;token number&quot;&gt;6379&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;tcp   redis&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;server
+&lt;span class=&quot;token number&quot;&gt;8d02dfd1b4fb&lt;/span&gt;   flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;demo   &lt;span class=&quot;token string&quot;&gt;&quot;flask run -h 0.0.0.0&quot;&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; minutes ago   Up &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt; seconds &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;health&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; starting&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;tcp   flask1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;7.10.2 在 docker-compose.yml 中使用健康检查&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/compose/compose-file/&quot;&gt;https://docs.docker.com/compose/compose-file/&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.8&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./flask
+      &lt;span class=&quot;token key atrule&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Dockerfile
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_HOST=redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; REDIS_PASS=$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;REDIS_PASS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;healthcheck&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;CMD&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;curl&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;-f&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;http://localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 30s
+      &lt;span class=&quot;token key atrule&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 3s
+      &lt;span class=&quot;token key atrule&quot;&gt;retries&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;start_period&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 40s
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backend
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; frontend
+
+  &lt;span class=&quot;token key atrule&quot;&gt;redis-server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; redis&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;server &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;requirepass $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;REDIS_PASS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backend
+
+  &lt;span class=&quot;token key atrule&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; nginx&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;stable&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;alpine
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token datetime number&quot;&gt;80:80&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; service_healthy
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./nginx/nginx.conf&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/etc/nginx/conf.d/default.conf&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;ro
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./var/log/nginx&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/var/log/nginx
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; frontend
+
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;frontend&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;condition： 只有在 flask 服务健康检测通过之后，才会继续构建 redis 容器。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; service_healthy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7.11 docker-compose 练习&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[6.Docker学习之网络]]></title><description><![CDATA[6.1 网络基础知识 ip、子网掩码、网关、dns、端口号 6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？ 原文：Traffic example, the full picture 6.2 网络常用命令 6.2.1 IP 地址的查看 widows linux 或者…]]></description><link>https://weishenggao.com/docker/docker网络/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker网络/</guid><pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;6.1 网络基础知识&lt;/h2&gt;
 &lt;p&gt;ip、子网掩码、网关、dns、端口号&lt;/p&gt;
 &lt;h3&gt;6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.homenethowto.com/advanced-topics/traffic-example-the-full-picture/&quot;&gt;原文：Traffic example, the full picture&lt;/a&gt;&lt;/p&gt;
@@ -597,7 +1303,7 @@ PING &lt;span class=&quot;token number&quot;&gt;172.17&lt;/span&gt;.1.2 &lt;span
 &lt;p&gt;todo: 不知道为啥 ping 会丢包&lt;/p&gt;
 &lt;h3&gt;对外通信&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.karlrupp.net/en/computer/nat_tutorial&quot;&gt;对外通信： 原文 https://www.karlrupp.net/en/computer/nat_tutorial&lt;/a&gt;&lt;/p&gt;
-&lt;iframe border=0 frameborder=0 height=600 width=&quot;100%&quot; src=&quot;https://www.karlrupp.net/en/computer/nat_tutorial&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[5.Docker学习之docker的存储]]></title><description><![CDATA[5.1 Docker 存储简介 默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层： 如果容器被删除了，则数据也没有了 这个可写的容器层是和特定的容器绑定的，也就是这些数据无法方便的和其他容器共享 Docker 提供两种方式做数据持久化 -Data Volume…]]></description><link>https://weishenggao.com/docker/docker的存储/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker的存储/</guid><pubDate>Fri, 02 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;5.1 Docker 存储简介&lt;/h2&gt;
+&lt;iframe border=0 frameborder=0 height=600 width=&quot;100%&quot; src=&quot;https://www.karlrupp.net/en/computer/nat_tutorial&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[5.Docker学习之存储]]></title><description><![CDATA[5.1 Docker 存储简介 默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层： 如果容器被删除了，则数据也没有了 这个可写的容器层是和特定的容器绑定的，也就是这些数据无法方便的和其他容器共享 Docker 提供两种方式做数据持久化 -Data Volume…]]></description><link>https://weishenggao.com/docker/docker的存储/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker的存储/</guid><pubDate>Fri, 02 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;5.1 Docker 存储简介&lt;/h2&gt;
 &lt;p&gt;默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;如果容器被删除了，则数据也没有了&lt;/li&gt;
@@ -2162,6 +2868,46 @@ BFC 是 web 页面的可视化 css 渲染的一部分，是布局过程中生成
 &lt;ol&gt;
 &lt;li&gt;margin-top 设置为百分数时，其高度是相对于容纳块（父元素）的高度而言的。此时子元素的顶部是中心对齐的，但是整体不是。&lt;/li&gt;
 &lt;li&gt;transform 进行自身的宽度和高度的偏移。&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[float]]></title><description><![CDATA[概念 定义 取值：left | right | none
+初始值： none…]]></description><link>https://weishenggao.com/web/css/float/</link><guid isPermaLink="false">https://weishenggao.com/web/css/float/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;概念&lt;/h2&gt;
+&lt;p&gt;定义&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;取值：left | right | none
+初始值： none
+适用于：所有元素
+计算值：指定的值
+继承性：否
+动画性：否&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;浮动的元素&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;浮动的元素脱离了文档流，但对布局仍然有影响。
+&lt;ul&gt;
+&lt;li&gt;原因是因为其他内容将围绕着他流动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;浮动元素四周的外边距不折叠。&lt;/li&gt;
+&lt;li&gt;浮动的非置换元素，要为元素设定宽度。否则，根据 css 规范，元素的宽度趋近于 0。&lt;/li&gt;
+&lt;li&gt;float:none 彻底禁止元素浮动。使用场景如下：
+&lt;ol&gt;
+&lt;li&gt;元素默认为 none。初始化元素的默认状态。&lt;/li&gt;
+&lt;li&gt;在内联样式中强制修改元素的浮动属性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;浮动详解&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;浮动元素的坐（或右）外边界不能超过容纳块的左（或右）内边界。&lt;/li&gt;
+&lt;li&gt;文档中浮动的元素，后面的将靠近前面的外边界。不会发生重叠。
+&lt;ol&gt;
+&lt;li&gt;? 除非后一个元素的顶边在前一个元素的底边以下。那么后浮动的元素将会将直达父元素的内边界。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;属性为 left 和 right 的元素不会发生重叠。&lt;/li&gt;
+&lt;li&gt;浮动元素的顶边不能超过父元素的内顶边高。？如果浮动元素位于两个折叠的外边距之间，在两个元素之间放置时，将视其有个块级元素。&lt;/li&gt;
+&lt;li&gt;浮动元素的顶边不能比任何一个浮动元素或者块级元素的顶边高。&lt;/li&gt;
+&lt;li&gt;？浮动元素的顶边不能高于文档源码中出现在浮动元素之前的元素生成的框体所在的行框的顶边。&lt;/li&gt;
+&lt;li&gt;浮动元素不能超出容纳元素的边界。&lt;/li&gt;
 &lt;/ol&gt;</content:encoded></item><item><title><![CDATA[深入理解 CSS 外边距折叠（margin collapse）]]></title><description><![CDATA[概念 In CSS, the adjoining margins of two or more boxes (which might or might not be siblings) can combine to form a single margin. Margins…]]></description><link>https://weishenggao.com/web/css/margin/</link><guid isPermaLink="false">https://weishenggao.com/web/css/margin/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;概念&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In CSS, the adjoining margins of two or more boxes (which might or might not be siblings) can combine to form a single margin. Margins that combine this way are said to collapse, and the resulting combined margin is called a collapsed margin.&lt;/p&gt;
@@ -2337,47 +3083,7 @@ w3c 对毗邻的外边距的定义。&lt;/li&gt;
 &lt;h2&gt;处理背面&lt;/h2&gt;
 &lt;p&gt;backface-visibility: visible | hidden
 使用场景：翻转效果。当使用 rotate 函数进行 180 度大翻转时，会看到所翻转元素的背面。设置为 hidden 可以让元素的背面朝向我们时不渲染背面。
-&lt;strong&gt;需要给元素或其父元素添加属性 transform-style: preserve-3d; 否则看不见效果&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[float]]></title><description><![CDATA[概念 定义 取值：left | right | none
-初始值： none…]]></description><link>https://weishenggao.com/web/css/float/</link><guid isPermaLink="false">https://weishenggao.com/web/css/float/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;概念&lt;/h2&gt;
-&lt;p&gt;定义&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;取值：left | right | none
-初始值： none
-适用于：所有元素
-计算值：指定的值
-继承性：否
-动画性：否&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;浮动的元素&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;浮动的元素脱离了文档流，但对布局仍然有影响。
-&lt;ul&gt;
-&lt;li&gt;原因是因为其他内容将围绕着他流动。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;浮动元素四周的外边距不折叠。&lt;/li&gt;
-&lt;li&gt;浮动的非置换元素，要为元素设定宽度。否则，根据 css 规范，元素的宽度趋近于 0。&lt;/li&gt;
-&lt;li&gt;float:none 彻底禁止元素浮动。使用场景如下：
-&lt;ol&gt;
-&lt;li&gt;元素默认为 none。初始化元素的默认状态。&lt;/li&gt;
-&lt;li&gt;在内联样式中强制修改元素的浮动属性。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;浮动详解&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;浮动元素的坐（或右）外边界不能超过容纳块的左（或右）内边界。&lt;/li&gt;
-&lt;li&gt;文档中浮动的元素，后面的将靠近前面的外边界。不会发生重叠。
-&lt;ol&gt;
-&lt;li&gt;? 除非后一个元素的顶边在前一个元素的底边以下。那么后浮动的元素将会将直达父元素的内边界。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;属性为 left 和 right 的元素不会发生重叠。&lt;/li&gt;
-&lt;li&gt;浮动元素的顶边不能超过父元素的内顶边高。？如果浮动元素位于两个折叠的外边距之间，在两个元素之间放置时，将视其有个块级元素。&lt;/li&gt;
-&lt;li&gt;浮动元素的顶边不能比任何一个浮动元素或者块级元素的顶边高。&lt;/li&gt;
-&lt;li&gt;？浮动元素的顶边不能高于文档源码中出现在浮动元素之前的元素生成的框体所在的行框的顶边。&lt;/li&gt;
-&lt;li&gt;浮动元素不能超出容纳元素的边界。&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[两栏布局]]></title><description><![CDATA[常用的后台布局方式。左侧固定，右侧宽度自适应屏幕。 实现方式 BFC。运用 BFC 不和 float 块重叠的特点 position 布局。right 块 absolute,让 left 为 right 的宽度 自适应布局。right 不设置宽度。用 margin…]]></description><link>https://weishenggao.com/web/css/two-column-layout/</link><guid isPermaLink="false">https://weishenggao.com/web/css/two-column-layout/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;strong&gt;需要给元素或其父元素添加属性 transform-style: preserve-3d; 否则看不见效果&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[两栏布局]]></title><description><![CDATA[常用的后台布局方式。左侧固定，右侧宽度自适应屏幕。 实现方式 BFC。运用 BFC 不和 float 块重叠的特点 position 布局。right 块 absolute,让 left 为 right 的宽度 自适应布局。right 不设置宽度。用 margin…]]></description><link>https://weishenggao.com/web/css/two-column-layout/</link><guid isPermaLink="false">https://weishenggao.com/web/css/two-column-layout/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;常用的后台布局方式。左侧固定，右侧宽度自适应屏幕。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;实现方式&lt;/h2&gt;

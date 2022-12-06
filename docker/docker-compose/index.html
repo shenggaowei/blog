@@ -1,0 +1,710 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.24.8"/><meta data-react-helmet="true" name="description" content="docker 学习笔记"/><meta data-react-helmet="true" property="og:title" content="7.Docker学习之docker-compose"/><meta data-react-helmet="true" property="og:description" content="docker 学习笔记"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="@n5vUQwiGmToOSDw"/><meta data-react-helmet="true" name="twitter:title" content="7.Docker学习之docker-compose"/><meta data-react-helmet="true" name="twitter:description" content="docker 学习笔记"/><style data-href="/styles.d5398f631092b7352dc3.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}
+
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none;display:block;width:100%}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:42rem;--maxWidth-3xl:48rem;--maxWidth-4xl:56rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Merriweather","Georgia",Cambria,"Times New Roman",Times,serif;--font-body:var(--fontFamily-serif);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-medium:500;--fontWeight-semibold:600;--fontWeight-bold:700;--fontWeight-extrabold:800;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-norma:1.5;--lineHeight-relaxed:1.625;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#ff69b4;--color-text-gray:#8a8f8d;--color-text:#2e353f;--color-text-light:#4f5969;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:var(--font-body);font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{color:var(--color-heading-black);font-size:var(--fontSize-6);font-weight:var(--fontWeight-black)}h2{font-size:var(--fontSize-5)}h3{font-size:var(--fontSize-4)}h4{font-size:var(--fontSize-3)}h5{font-size:var(--fontSize-2)}h6{font-size:var(--fontSize-1)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-relaxed);margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-4);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-4)/2)}li>ul{margin-left:var(--spacing-4);margin-top:calc(var(--spacing-4)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:inside}table{border-collapse:collapse;border-spacing:.25rem;margin-bottom:var(--spacing-8);width:100%}table thead tr th{border-bottom:1px solid var(--color-accent)}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.global-wrapper{margin:var(--spacing-0) auto;max-width:var(--maxWidth-wrapper);padding:var(--spacing-10) var(--spacing-5)}.global-wrapper[data-is-root-path=true] .bio{margin-bottom:var(--spacing-20)}.global-header{margin-bottom:var(--spacing-12)}.global-header a{color:var(--color-text)}.main-heading{font-size:var(--fontSize-7);margin:0}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h4{color:#374151;font-size:var(--fontSize-1);font-weight:var(--fontWeight-medium);margin-bottom:var(--spacing-1);margin-top:var(--spacing-0)}.post-list-item h4 .title{color:#3eaf7c;letter-spacing:.01rem;margin-left:var(--spacing-3)}.post-list-item small{color:#999;display:inline-block;font-size:var(--fontSize-0);font-weight:var(--fontWeight-medium)}.post-list-item{margin-bottom:var(--spacing-4)}.header-link-home{font-family:var(--font-heading);font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{display:flex;margin-bottom:var(--spacing-16)}.bio p,.bio-avatar{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:var(--font-heading);font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-4)}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:inside}}@-webkit-keyframes shake{0%,to{-webkit-transform:translate(-1px);transform:translate(-1px)}10%{-webkit-transform:translate(2px,1px);transform:translate(2px,1px)}30%{-webkit-transform:translate(-3px,2px);transform:translate(-3px,2px)}35%{-webkit-filter:blur(4px);filter:blur(4px);-webkit-transform:translate(2px,-3px);transform:translate(2px,-3px)}45%{-webkit-filter:blur(0);filter:blur(0);-webkit-transform:translate(2px,2px) skewY(-8deg) scaleX(.96);transform:translate(2px,2px) skewY(-8deg) scaleX(.96)}50%{-webkit-transform:translate(-3px,1px);transform:translate(-3px,1px)}}@keyframes shake{0%,to{-webkit-transform:translate(-1px);transform:translate(-1px)}10%{-webkit-transform:translate(2px,1px);transform:translate(2px,1px)}30%{-webkit-transform:translate(-3px,2px);transform:translate(-3px,2px)}35%{-webkit-filter:blur(4px);filter:blur(4px);-webkit-transform:translate(2px,-3px);transform:translate(2px,-3px)}45%{-webkit-filter:blur(0);filter:blur(0);-webkit-transform:translate(2px,2px) skewY(-8deg) scaleX(.96);transform:translate(2px,2px) skewY(-8deg) scaleX(.96)}50%{-webkit-transform:translate(-3px,1px);transform:translate(-3px,1px)}}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#000;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;text-shadow:0 1px #fff;white-space:pre;word-break:normal;word-spacing:normal}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#b3d4fc;text-shadow:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{background:hsla(0,0%,100%,.5);color:#9a6e3a}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="alternate" type="application/rss+xml" title="Gatsby Starter Blog RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=a734c8499d46a805fac40a1f8937edef" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=a734c8499d46a805fac40a1f8937edef"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=a734c8499d46a805fac40a1f8937edef"/><title data-react-helmet="true">7.Docker学习之docker-compose | 升高</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">7.Docker学习之docker-compose</h1></header><section itemProp="articleBody"><h2>7.1 docker-compose 简介</h2>
+<p><img src="./asset/docker-compose-intro.webp" alt="dokcer-compose"></p>
+<p>处理多个容器的启动和关闭。可以不用自己去写脚本处理。</p>
+<h2>7.2 docker-compose 的安装</h2>
+<p>mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose。</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">docker-compose</span> <span class="token parameter variable">--version</span></code></pre></div>
+<p>上面命令会打印出 docker-compose 的版本信息</p>
+<p>linux 可以在 <a href="https://github.com/docker/compose/releases">github release</a> 页面下载安装。</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token comment"># 下载 docker-compose，放到 /usr/local/bin 下</span>
+<span class="token function">sudo</span> <span class="token function">curl</span> <span class="token parameter variable">-L</span> <span class="token string">"https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-s</span><span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-m</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-o</span> /usr/local/bin/docker-compose
+
+<span class="token comment"># 如果 curl 下载贼慢，或者本地下载好后，用 scp 传上去</span>
+<span class="token function">scp</span> ~/Downloads/docker-compose-linux-x86_64 root@8.131.101.166:/usr/loca
+l/bin/docker-compose
+
+<span class="token comment"># 添加文件的可执行权限</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+
+<span class="token comment"># 查看版本信息，确定已经安装</span>
+<span class="token function">docker-compose</span> <span class="token parameter variable">--version</span></code></pre></div>
+<h2>7.3 compose 文件的结构和版本</h2>
+<p>文档： <a href="https://docs.docker.com/compose/compose-file/">https://docs.docker.com/compose/compose-file/</a></p>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># docker-compose 的语法版本</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span> <span class="token comment"># 容器</span>
+  <span class="token key atrule">servicename</span><span class="token punctuation">:</span> <span class="token comment"># 服务名字，这个名字也是内部 bridge网络可以使用的 DNS name</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token comment"># 镜像的名字</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token comment"># 可选，如果设置，则会覆盖默认镜像里的 CMD命令</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span> <span class="token comment"># 可选，相当于 docker run里的 --env</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span> <span class="token comment"># 可选，相当于docker run里的 -v</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span> <span class="token comment"># 可选，相当于 docker run里的 --network</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span> <span class="token comment"># 可选，相当于 docker run里的 -p</span>
+  <span class="token key atrule">servicename2</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span> <span class="token comment"># 可选，相当于 docker volume create</span>
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span> <span class="token comment"># 可选，相当于 docker network create</span></code></pre></div>
+<p>以第六节 docker 网络中 python-flask + redis 的脚本 demo为例子，改造成一个 docker-compose 文件</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token comment"># prepare image</span>
+<span class="token function">docker</span> image pull redis
+<span class="token function">docker</span> image build <span class="token parameter variable">-t</span> flask-demo <span class="token builtin class-name">.</span>
+
+<span class="token comment"># create network</span>
+<span class="token function">docker</span> network create <span class="token parameter variable">-d</span> bridge demo-network
+
+<span class="token comment"># create container</span>
+<span class="token function">docker</span> container run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> redis-server <span class="token parameter variable">--network</span> demo-network redis
+<span class="token function">docker</span> container run <span class="token parameter variable">-d</span> <span class="token parameter variable">--network</span> demo-network <span class="token parameter variable">--name</span> flask-demo <span class="token parameter variable">--env</span> <span class="token assign-left variable">REDIS_HOST</span><span class="token operator">=</span>redis-server <span class="token parameter variable">-p</span> <span class="token number">80</span>:5000 flask-demo</code></pre></div>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flask-demo</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> flask<span class="token punctuation">-</span>demo<span class="token punctuation">:</span>latest
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_HOST=redis<span class="token punctuation">-</span>server
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span> <span class="token punctuation">-</span>8080<span class="token punctuation">:</span><span class="token number">5000</span>
+    <span class="token key atrule">redis-server</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+      <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  demo<span class="token punctuation">-</span>network<span class="token punctuation">:</span></code></pre></div>
+<h2>7.4 docker-compose 命令行基本使用</h2>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token comment"># 前台启动服务</span>
+<span class="token function">docker-compose</span> up 
+
+<span class="token comment"># 后台启动服务</span>
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span>
+
+<span class="token comment"># 停止服务</span>
+<span class="token function">docker-compose</span> stop
+
+<span class="token comment"># 删除后台已经停止的容器</span>
+<span class="token function">docker-compose</span> <span class="token function">rm</span>
+
+<span class="token comment"># -p 指令修改容器的前缀，也可在 yml 文件中指定 container_name 写死。</span>
+<span class="token function">docker-compose</span> <span class="token parameter variable">-p</span> myproject up <span class="token parameter variable">-d</span></code></pre></div>
+<p>查看镜像</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.15</span> docker image ls
+REPOSITORY   TAG          IMAGE ID       CREATED          SIZE
+flask<span class="token operator">-</span>demo   latest       <span class="token number">0fe4a5f0a768</span>   <span class="token number">21</span> minutes ago   <span class="token number">128MB</span>
+redis        latest       <span class="token number">3358aea34e8c</span>   <span class="token number">2</span> weeks ago      <span class="token number">117MB</span></code></pre></div>
+<p>前台启动服务</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.15</span> docker<span class="token operator">-</span>compose up
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Running <span class="token number">2</span><span class="token operator">/</span><span class="token number">2</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  Created                                                                                          <span class="token number">0.2s</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    Created                                                                                          <span class="token number">0.2s</span>
+Attaching to <span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>C <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.879</span> <span class="token operator">#</span> oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>C <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.881</span> <span class="token operator">#</span> Redis version<span class="token operator">=</span><span class="token number">7.0.5</span><span class="token punctuation">,</span> bits<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> commit<span class="token operator">=</span><span class="token number">00000000</span><span class="token punctuation">,</span> modified<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> pid<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> just started
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>C <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.882</span> <span class="token operator">#</span> Warning<span class="token operator">:</span> no config file specified<span class="token punctuation">,</span> using the default config<span class="token punctuation">.</span> In order to specify a config file use redis<span class="token operator">-</span>server <span class="token file-path string">/path/to/redis.conf</span>
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>M <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.883</span> <span class="token operator">*</span> monotonic clock<span class="token operator">:</span> POSIX clock_gettime
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>M <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.889</span> <span class="token operator">*</span> Running mode<span class="token operator">=</span>standalone<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">.</span>
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>M <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.889</span> <span class="token operator">#</span> Server initialized
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>M <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.889</span> <span class="token operator">#</span> <span class="token level warning important">WARNING</span> overcommit_memory is set to <span class="token number">0</span><span class="token operator">!</span> Background save may fail under low memory condition<span class="token punctuation">.</span> To fix this issue add <span class="token string">'vm.overcommit_memory = 1'</span> to <span class="token file-path string">/etc/sysctl.conf</span> and then reboot or run the command <span class="token string">'sysctl vm.overcommit_memory=1'</span> for this to take effect<span class="token punctuation">.</span>
+<span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">|</span> <span class="token number">1</span><span class="token operator">:</span>M <span class="token date number">05 Dec 2022</span> <span class="token time number">11:14:19.892</span> <span class="token operator">*</span> Ready to accept connections
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span>  <span class="token operator">*</span> Serving Flask app <span class="token string">'app.py'</span>
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span>  <span class="token operator">*</span> Debug mode<span class="token operator">:</span> off
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span> <span class="token level warning important">WARNING</span><span class="token operator">:</span> This is a development server<span class="token punctuation">.</span> Do not use it in a production deployment<span class="token punctuation">.</span> Use a production WSGI server instead<span class="token punctuation">.</span>
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span>  <span class="token operator">*</span> Running on all addresses <span class="token operator">(</span><span class="token ip-address constant">0.0.0.0</span><span class="token operator">)</span>
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span>  <span class="token operator">*</span> Running on <span class="token url">http://127.0.0.1:5000</span>
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span>  <span class="token operator">*</span> Running on <span class="token url">http://172.22.0.2:5000</span>
+<span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    <span class="token operator">|</span> Press CTRL<span class="token operator">+</span>C to quit</code></pre></div>
+<p>容器名字以文件夹的名字 215 作为前缀，-1 作为后缀</p>
+<p>后台启动服务</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.15</span> <span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span>
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> Running <span class="token number">2</span>/2
+ ⠿ Container <span class="token number">215</span>-redis-server-1  Started                                                                                          <span class="token number">1</span>.2s
+ ⠿ Container <span class="token number">215</span>-flask-demo-1    Started                                                                                          <span class="token number">1</span>.3s
+ 
+➜  <span class="token number">2.15</span> <span class="token function">docker-compose</span> <span class="token function">ps</span>
+NAME                 COMMAND                  SERVICE             STATUS              PORTS
+<span class="token number">215</span>-flask-demo-1     <span class="token string">"flask run -h 0.0.0.0"</span>   flask-demo          running             <span class="token number">0.0</span>.0.0:80-<span class="token operator">></span><span class="token number">5000</span>/tcp, :::80-<span class="token operator">></span><span class="token number">5000</span>/tcp
+<span class="token number">215</span>-redis-server-1   <span class="token string">"docker-entrypoint.s…"</span>   redis-server        running             <span class="token number">6379</span>/tcp</code></pre></div>
+<p>如果在启动服务的时候，不通过 -p 来指定 yml 文件，则 docker-compose 命令的执行需要在包含 yml 文件的文件夹下，且名字必须为 docker-compose.yml</p>
+<h2>7.5 docker-compose 镜像构建和拉取</h2>
+<p>目录结构</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.15</span> tree <span class="token builtin class-name">.</span> <span class="token parameter variable">-L</span> <span class="token number">2</span>
+<span class="token builtin class-name">.</span>
+├── docker-compose.yml
+└── flask
+    ├── app.py
+    └── Dockerfile.dev
+
+<span class="token number">1</span> directory, <span class="token number">3</span> files</code></pre></div>
+<p>修改后的 docker-compose.yml 文件</p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flask-demo</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./flask
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile.dev
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> flask<span class="token punctuation">-</span>demo<span class="token punctuation">:</span>latest
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_HOST=redis<span class="token punctuation">-</span>server
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 80<span class="token punctuation">:</span><span class="token number">5000</span>
+  <span class="token key atrule">redis-server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  demo<span class="token punctuation">-</span>network<span class="token punctuation">:</span></code></pre></div>
+<p>执行 docker-compose build</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.15</span> docker<span class="token operator">-</span>compose build
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Building <span class="token number">95.1s</span> <span class="token operator">(</span><span class="token number">9</span><span class="token operator">/</span><span class="token number">9</span><span class="token operator">)</span> FINISHED
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load build definition from Dockerfile<span class="token punctuation">.</span>dev                                                                          <span class="token number">0.1s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring dockerfile<span class="token operator">:</span> <span class="token number">348B</span>                                                                                              <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load <span class="token punctuation">.</span>dockerignore                                                                                                 <span class="token number">0.1s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring context<span class="token operator">:</span> <span class="token number">2B</span>                                                                                                   <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load metadata for docker<span class="token punctuation">.</span>io<span class="token operator">/</span>library<span class="token operator">/</span>python<span class="token operator">:</span><span class="token number">3.9.5</span><span class="token operator">-</span>slim                                                              <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> FROM docker<span class="token punctuation">.</span>io<span class="token operator">/</span>library<span class="token operator">/</span>python<span class="token operator">:</span><span class="token number">3.9.5</span><span class="token operator">-</span>slim                                                                                <span class="token number">0.2s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load build context                                                                                                 <span class="token number">0.1s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring context<span class="token operator">:</span> <span class="token number">398B</span>                                                                                                 <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> RUN pip install flask redis <span class="token operator">&amp;</span><span class="token operator">&amp;</span>     groupadd <span class="token operator">-</span>r flask <span class="token operator">&amp;</span><span class="token operator">&amp;</span> useradd <span class="token operator">-</span>r <span class="token operator">-</span>g flask flask <span class="token operator">&amp;</span><span class="token operator">&amp;</span>     mkdir <span class="token file-path string">/src</span> <span class="token operator">&amp;</span><span class="token operator">&amp;</span>     chown <span class="token operator">-</span>R f  <span class="token number">94.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> COPY <span class="token domain constant">app.py</span> <span class="token file-path string">/src/app.py</span>                                                                                                 <span class="token number">0.2s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> WORKDIR <span class="token file-path string">/src</span>                                                                                                            <span class="token number">0.1s</span>
+ <span class="token operator">=</span><span class="token operator">></span> exporting to image                                                                                                            <span class="token number">0.3s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> exporting layers                                                                                                           <span class="token number">0.3s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> writing image sha256<span class="token operator">:</span><span class="token hash constant">c6b31294143743369f2709bbbfaf2506f4ed97eaaa54e4fb8ecae454ccc934c6</span>                                      <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> naming to docker<span class="token punctuation">.</span>io<span class="token operator">/</span>library<span class="token operator">/</span>flask<span class="token operator">-</span>demo<span class="token operator">:</span>latest                                                                              <span class="token number">0.0s</span>
+
+Use <span class="token string">'docker scan'</span> to run Snyk tests against images to find vulnerabilities and learn how to fix them</code></pre></div>
+<p>执行 docker-compose pull</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.15</span> <span class="token function">docker-compose</span> pull --ignore-pull-failures
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> Running <span class="token number">7</span>/8
+ ⠿ redis-server Pulled                                                                                                           <span class="token number">16</span>.3s
+   ⠿ a603fa5e3b41 Pull complete                                                                                                  <span class="token number">12</span>.5s
+   ⠿ 77631c3ef092 Pull complete                                                                                                  <span class="token number">12</span>.6s
+   ⠿ ed3847cf62b8 Pull complete                                                                                                  <span class="token number">12</span>.8s
+   ⠿ 261a8b530567 Pull complete                                                                                                  <span class="token number">13</span>.6s
+   ⠿ 7d9005a8af6d Pull complete                                                                                                  <span class="token number">13</span>.7s
+   ⠿ 828da1afb5be Pull complete                                                                                                  <span class="token number">13</span>.8s
+ ⠿ flask-demo Warning                                                                                                             <span class="token number">3</span>.1s
+Pulling flask-demo: Error response from daemon: pull access denied <span class="token keyword">for</span> flask-demo, repository does not exist or may require <span class="token string">'docker login'</span><span class="token builtin class-name">:</span> denied: requested access to the resource is denied</code></pre></div>
+<p>在拉 flask-demo 的时候会报错，退出进程，从而拉取 redis 失败。可以添加 <code class="language-text">--ignore-pull-failures</code>参数忽略错误，继续拉。</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.15</span> docker image ls
+REPOSITORY   TAG          IMAGE ID       CREATED          SIZE
+flask<span class="token operator">-</span>demo   latest       c6b312941437   <span class="token number">40</span> minutes ago   <span class="token number">128MB</span>
+redis        latest       <span class="token number">3358aea34e8c</span>   <span class="token number">2</span> weeks ago      <span class="token number">117MB</span></code></pre></div>
+<p>如果不提前构建镜像，直接起服务，docker-compose up 会自动 build 或者 pull 镜像。</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.15</span> docker<span class="token operator">-</span>compose up <span class="token operator">-</span>d
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Running <span class="token number">7</span><span class="token operator">/</span><span class="token number">8</span>
+ ⠿ flask<span class="token operator">-</span>demo Warning                                                                                                             <span class="token number">3.3s</span>
+ ⠿ redis<span class="token operator">-</span>server Pulled                                                                                                           <span class="token number">16.9s</span>
+   ⠿ a603fa5e3b41 Pull complete                                                                                                  <span class="token number">13.1s</span>
+   ⠿ <span class="token number">77631c3ef092</span> Pull complete                                                                                                  <span class="token number">13.3s</span>
+   ⠿ ed3847cf62b8 Pull complete                                                                                                  <span class="token number">13.4s</span>
+   ⠿ <span class="token number">261a8b530567</span> Pull complete                                                                                                  <span class="token number">14.1s</span>
+   ⠿ <span class="token number">7d9005a8af6d</span> Pull complete                                                                                                  <span class="token number">14.2s</span>
+   ⠿ <span class="token number">828da1afb5be</span> Pull complete                                                                                                  <span class="token number">14.3s</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Building <span class="token number">0.2s</span> <span class="token operator">(</span><span class="token number">9</span><span class="token operator">/</span><span class="token number">9</span><span class="token operator">)</span> FINISHED
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load build definition from Dockerfile<span class="token punctuation">.</span>dev                                                                          <span class="token number">0.1s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring dockerfile<span class="token operator">:</span> <span class="token number">36B</span>                                                                                               <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load <span class="token punctuation">.</span>dockerignore                                                                                                 <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring context<span class="token operator">:</span> <span class="token number">2B</span>                                                                                                   <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load metadata for docker<span class="token punctuation">.</span>io<span class="token operator">/</span>library<span class="token operator">/</span>python<span class="token operator">:</span><span class="token number">3.9.5</span><span class="token operator">-</span>slim                                                              <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> FROM docker<span class="token punctuation">.</span>io<span class="token operator">/</span>library<span class="token operator">/</span>python<span class="token operator">:</span><span class="token number">3.9.5</span><span class="token operator">-</span>slim                                                                                <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load build context                                                                                                 <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring context<span class="token operator">:</span> <span class="token number">28B</span>                                                                                                  <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> CACHED <span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> RUN pip install flask redis <span class="token operator">&amp;</span><span class="token operator">&amp;</span>     groupadd <span class="token operator">-</span>r flask <span class="token operator">&amp;</span><span class="token operator">&amp;</span> useradd <span class="token operator">-</span>r <span class="token operator">-</span>g flask flask <span class="token operator">&amp;</span><span class="token operator">&amp;</span>     mkdir <span class="token file-path string">/src</span> <span class="token operator">&amp;</span><span class="token operator">&amp;</span>     chow  <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> CACHED <span class="token punctuation">[</span><span class="token number">3</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> COPY <span class="token domain constant">app.py</span> <span class="token file-path string">/src/app.py</span>                                                                                          <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> CACHED <span class="token punctuation">[</span><span class="token number">4</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">]</span> WORKDIR <span class="token file-path string">/src</span>                                                                                                     <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> exporting to image                                                                                                            <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> exporting layers                                                                                                           <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> writing image sha256<span class="token operator">:</span><span class="token hash constant">c6b31294143743369f2709bbbfaf2506f4ed97eaaa54e4fb8ecae454ccc934c6</span>                                      <span class="token number">0.0s</span>
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> naming to docker<span class="token punctuation">.</span>io<span class="token operator">/</span>library<span class="token operator">/</span>flask<span class="token operator">-</span>demo<span class="token operator">:</span>latest                                                                              <span class="token number">0.0s</span>
+
+Use <span class="token string">'docker scan'</span> to run Snyk tests against images to find vulnerabilities and learn how to fix them
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Running <span class="token number">2</span><span class="token operator">/</span><span class="token number">2</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    Started                                                                                          <span class="token number">1.8s</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  Started</code></pre></div>
+<h2>7.6 docker-compose 服务更新</h2>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token comment"># 删除在 yml 文件中移除的 service</span>
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> --remove-orphans
+
+<span class="token comment"># 如果修改了 volume 中的配置文件，restart 重新启动容器，加载配置文件，不会重新 build。</span>
+<span class="token function">docker-compose</span> restart
+
+<span class="token comment"># 修改了镜像文件，重新构建 image</span>
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> <span class="token parameter variable">--build</span></code></pre></div>
+<p>修改上面的 docker-compose yml文件。添加一个 busybox 服务。</p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flask-demo</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./flak
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile.dev
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> flask<span class="token punctuation">-</span>demo<span class="token punctuation">:</span>latest
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_HOST=redis<span class="token punctuation">-</span>server
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 80<span class="token punctuation">:</span><span class="token number">5000</span>
+  <span class="token key atrule">redis-server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+  <span class="token key atrule">busybox</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> sh <span class="token punctuation">-</span>c "while true; do sleep 3600; done"
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> demo<span class="token punctuation">-</span>network
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  demo<span class="token punctuation">-</span>network<span class="token punctuation">:</span></code></pre></div>
+<p>重新启动，发现 docker 会自动拉取新的镜像。</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.15</span> docker<span class="token operator">-</span>compose up <span class="token operator">-</span>d
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Running <span class="token number">2</span><span class="token operator">/</span><span class="token number">2</span>
+ ⠿ busybox Pulled                                                                                                                 <span class="token number">9.6s</span>
+   ⠿ <span class="token number">405fecb6a2fa</span> Pull complete                                                                                                   <span class="token number">5.5s</span>
+<span class="token punctuation">[</span><span class="token operator">+</span><span class="token punctuation">]</span> Running <span class="token number">3</span><span class="token operator">/</span><span class="token number">3</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>redis<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">1</span>  Running                                                                                          <span class="token number">0.0s</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>busybox<span class="token operator">-</span><span class="token number">1</span>       Started                                                                                          <span class="token number">0.8s</span>
+ ⠿ Container <span class="token number">215</span><span class="token operator">-</span>flask<span class="token operator">-</span>demo<span class="token operator">-</span><span class="token number">1</span>    Running                                                                                          <span class="token number">0.0s</span></code></pre></div>
+<p>如果将上面的 busybox 从 yml 文件中移除，重新构建服务，会有如下提示。需要使用 —remove-orphans 选项进行清理。</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.15</span> <span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span>
+WARN<span class="token punctuation">[</span>0000<span class="token punctuation">]</span> Found orphan containers <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">215</span>-busybox-1<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> this project. If you removed or renamed this <span class="token function">service</span> <span class="token keyword">in</span> your compose file, you can run this <span class="token builtin class-name">command</span> with the --remove-orphans flag to clean it up.
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> Running <span class="token number">2</span>/0
+ ⠿ Container <span class="token number">215</span>-redis-server-1  Running                                                                                          <span class="token number">0</span>.0s
+ ⠿ Container <span class="token number">215</span>-flask-demo-1    Running</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.15</span> <span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> --remove-orphans
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> Running <span class="token number">3</span>/1
+ ⠿ Container <span class="token number">215</span>-busybox-1       Removed                                                                                         <span class="token number">10</span>.3s
+ ⠿ Container <span class="token number">215</span>-flask-demo-1    Running                                                                                          <span class="token number">0</span>.0s
+ ⠿ Container <span class="token number">215</span>-redis-server-1  Running                                                                                          <span class="token number">0</span>.0s</code></pre></div>
+<h2>7.7 docker-compose 的网络</h2>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">box1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> xiaopeng163/net<span class="token punctuation">-</span>box<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> /bin/sh <span class="token punctuation">-</span>c "while true; do sleep 3600; done"
+  <span class="token key atrule">box2</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> xiaopeng163/net<span class="token punctuation">-</span>box<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> /bin/sh <span class="token punctuation">-</span>c "while true; do sleep 3600; done"</code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span></code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.16</span> <span class="token function">docker-compose</span> <span class="token function">ps</span>
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+<span class="token number">216</span>-box1-1          <span class="token string">"/bin/sh -c 'while t…"</span>   box1                running
+<span class="token number">216</span>-box2-1          <span class="token string">"/bin/sh -c 'while t…"</span>   box2                running</code></pre></div>
+<p>进入到 box1 容器，ping box2，测试联通性</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.16</span> <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> <span class="token number">216</span>-box1-1 <span class="token function">sh</span>
+/omd <span class="token comment"># ping box2</span>
+PING box2 <span class="token punctuation">(</span><span class="token number">172.25</span>.0.2<span class="token punctuation">)</span>: <span class="token number">56</span> data bytes
+<span class="token number">64</span> bytes from <span class="token number">172.25</span>.0.2: <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">0.076</span> ms
+<span class="token number">64</span> bytes from <span class="token number">172.25</span>.0.2: <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">0.113</span> ms
+<span class="token number">64</span> bytes from <span class="token number">172.25</span>.0.2: <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">2</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">0.115</span> ms
+^C
+--- box2 <span class="token function">ping</span> statistics ---
+<span class="token number">3</span> packets transmitted, <span class="token number">3</span> packets received, <span class="token number">0</span>% packet loss
+round-trip min/avg/max <span class="token operator">=</span> <span class="token number">0.076</span>/0.101/0.115 ms</code></pre></div>
+<p>查看 box1 的 dns 服务器</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log"><span class="token file-path string">/omd</span> <span class="token operator">#</span> dig box2
+
+<span class="token operator">;</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token operator">></span> DiG <span class="token number">9.16.33</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token operator">></span> box2
+<span class="token operator">;</span><span class="token operator">;</span> global options<span class="token operator">:</span> <span class="token operator">+</span>cmd
+<span class="token operator">;</span><span class="token operator">;</span> Got answer<span class="token operator">:</span>
+<span class="token operator">;</span><span class="token operator">;</span> <span class="token operator">-</span><span class="token operator">></span><span class="token operator">></span>HEADER<span class="token operator">&lt;</span><span class="token operator">&lt;</span><span class="token operator">-</span> opcode<span class="token operator">:</span> QUERY<span class="token punctuation">,</span> status<span class="token operator">:</span> NOERROR<span class="token punctuation">,</span> id<span class="token operator">:</span> <span class="token number">14452</span>
+<span class="token operator">;</span><span class="token operator">;</span> flags<span class="token operator">:</span> qr rd ra<span class="token operator">;</span> QUERY<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> ANSWER<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> AUTHORITY<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> ADDITIONAL<span class="token operator">:</span> <span class="token number">0</span>
+
+<span class="token operator">;</span><span class="token operator">;</span> QUESTION SECTION<span class="token operator">:</span>
+<span class="token operator">;</span>box2<span class="token punctuation">.</span>                          IN      A
+
+<span class="token operator">;</span><span class="token operator">;</span> ANSWER SECTION<span class="token operator">:</span>
+box2<span class="token punctuation">.</span>                   <span class="token number">600</span>     IN      A       <span class="token ip-address constant">172.25.0.2</span>
+
+<span class="token operator">;</span><span class="token operator">;</span> Query time<span class="token operator">:</span> <span class="token number">0</span> msec
+<span class="token operator">;</span><span class="token operator">;</span> SERVER<span class="token operator">:</span> <span class="token ip-address constant">127.0.0.11</span><span class="token operator">#</span><span class="token number">53</span><span class="token operator">(</span><span class="token ip-address constant">127.0.0.11</span><span class="token operator">)</span>
+<span class="token operator">;</span><span class="token operator">;</span> WHEN<span class="token operator">:</span> <span class="token date number">Tue Dec 06</span> <span class="token time number">08:54:55</span> UTC <span class="token number">2022</span>
+<span class="token operator">;</span><span class="token operator">;</span> MSG SIZE  rcvd<span class="token operator">:</span> <span class="token number">42</span>
+
+<span class="token file-path string">/omd</span> <span class="token operator">#</span> more <span class="token file-path string">/etc/resolv.conf</span>
+nameserver <span class="token ip-address constant">127.0.0.11</span>
+options timeout<span class="token operator">:</span><span class="token number">2</span> attempts<span class="token operator">:</span><span class="token number">3</span> rotate single<span class="token operator">-</span>request<span class="token operator">-</span>reopen ndots<span class="token operator">:</span><span class="token number">0</span></code></pre></div>
+<p>查看宿主机上的 dns 服务器</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.16</span> <span class="token function">more</span> /etc/resolv.conf
+<span class="token comment"># Dynamic resolv.conf(5) file for glibc resolver(3) generated by resolvconf(8)</span>
+<span class="token comment">#     DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN</span>
+<span class="token comment"># 127.0.0.53 is the systemd-resolved stub resolver.</span>
+<span class="token comment"># run "systemd-resolve --status" to see details about the actual nameservers.</span>
+
+nameserver <span class="token number">127.0</span>.0.53
+options timeout:2 attempts:3 rotate single-request-reopen</code></pre></div>
+<p>通过 docker-compose 创建的服务，在容器内部可通过服务的名称（本例为在 yml 文件中定义的 box1，box2)进行相互访问。docker 会自动创建一个 bridge 网络，并会通过自建的 dns 服务器解析 host。</p>
+<p>如果在容器内访问的是外部的网站，例如百度。docker 会先通过自己的创建 dns 来进行解析，解析失败后，会继续用宿主机上的 dns 来进行解析。</p>
+<p>自定义容器所使用的网络</p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">box1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> xiaopeng163/net<span class="token punctuation">-</span>box<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> /bin/sh <span class="token punctuation">-</span>c "while true; do sleep 3600; done"
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mynetwork1
+  <span class="token key atrule">box2</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> xiaopeng163/net<span class="token punctuation">-</span>box<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> /bin/sh <span class="token punctuation">-</span>c "while true; do sleep 3600; done"
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mynetwork1
+      <span class="token punctuation">-</span> mynetwork2
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mynetwork1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ipam</span><span class="token punctuation">:</span>
+      <span class="token key atrule">driver</span><span class="token punctuation">:</span> default
+      <span class="token key atrule">config</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">subnent</span><span class="token punctuation">:</span> <span class="token string">"172.18.238.0/24"</span>
+  <span class="token key atrule">mynetwork2</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ipam</span><span class="token punctuation">:</span>
+      <span class="token key atrule">driver</span><span class="token punctuation">:</span> default</code></pre></div>
+<p><a href="https://docs.docker.com/compose/networking/">https://docs.docker.com/compose/networking/</a></p>
+<p>配置自定义网络，可以实现容器间的网络隔离。</p>
+<h2>7. docker-compose 水平扩展和负载均衡</h2>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> <span class="token parameter variable">--scale</span> <span class="token assign-left variable">flask</span><span class="token operator">=</span><span class="token number">3</span></code></pre></div>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  <span class="token number">2.17</span> git<span class="token operator">:</span><span class="token operator">(</span>master<span class="token operator">)</span> tree <span class="token punctuation">.</span> <span class="token operator">-</span>l <span class="token number">2</span>
+<span class="token punctuation">.</span>
+├── <span class="token domain constant">docker-compose.yml</span>
+├── flask
+│   ├── <span class="token domain constant">app.py</span>
+│   └── Dockerfile
+├── nginx
+│   └── nginx<span class="token punctuation">.</span>conf</code></pre></div>
+<p>app.py 文件</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">from</span> redis <span class="token keyword">import</span> Redis
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> socket
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+redis <span class="token operator">=</span> Redis<span class="token punctuation">(</span>host<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'REDIS_HOST'</span><span class="token punctuation">,</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    redis<span class="token punctuation">.</span>incr<span class="token punctuation">(</span><span class="token string">'hits'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f"Hello Container World! I have been seen </span><span class="token interpolation"><span class="token punctuation">{</span>redis<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'hits'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string"> times and my hostname is </span><span class="token interpolation"><span class="token punctuation">{</span>socket<span class="token punctuation">.</span>gethostname<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">.\n"</span></span></code></pre></div>
+<p>dockerfile 文件</p>
+<div class="gatsby-highlight" data-language="dockerfile"><pre class="language-dockerfile"><code class="language-dockerfile"><span class="token instruction"><span class="token keyword">FROM</span> python:3.9.5-slim</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> pip install flask redis &amp;&amp; <span class="token operator">\</span>
+    groupadd -r flask &amp;&amp; useradd -r -g flask flask &amp;&amp; <span class="token operator">\</span>
+    mkdir /src &amp;&amp; <span class="token operator">\</span>
+    chown -R flask:flask /src</span>
+
+<span class="token instruction"><span class="token keyword">USER</span> flask</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> app.py /src/app.py</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /src</span>
+
+<span class="token instruction"><span class="token keyword">ENV</span> FLASK=app.py REDIS_HOST=redis</span>
+
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 5000</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"flask"</span>, <span class="token string">"run"</span>, <span class="token string">"-h"</span>, <span class="token string">"0.0.0.0"</span>]</span></code></pre></div>
+<p>dokcer-compose.yml 文件</p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flask</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./flask
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> flask<span class="token punctuation">-</span>demo<span class="token punctuation">:</span>latest
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_HOST=redis<span class="token punctuation">-</span>server
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> backend
+      <span class="token punctuation">-</span> frontend
+  <span class="token key atrule">redis-server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> backend
+
+  <span class="token key atrule">nginx</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>stable<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token datetime number">80:80</span>
+	<span class="token comment"># 依赖，只有 flask 容器启动后，才能启动 nginx 容器</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> flask
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./nginx/nginx.conf<span class="token punctuation">:</span>/etc/nginx/conf.d/default.conf<span class="token punctuation">:</span>ro
+      <span class="token punctuation">-</span> ./var/log/nginx<span class="token punctuation">:</span>/var/log/nginx
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> frontend
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">backend</span><span class="token punctuation">:</span>
+  frontend<span class="token punctuation">:</span></code></pre></div>
+<p>启动 docker-compose，生成3个 flask 容器，由 nginx 做前面的 proxy，由 docker 实现负载均衡。</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> <span class="token parameter variable">--scale</span> <span class="token assign-left variable">flask</span><span class="token operator">=</span><span class="token number">3</span></code></pre></div>
+<p>打开浏览器，访问宿主机的 80 端口，每次刷新，hostname 都会在三个不同的值之间随机变化。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/fc4f9ca541f254a66807ca18e1b37f02/b1ffc/docker-balance-achive.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.88607594936709%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAcUlEQVQY061PSwoFIQzz/rf0189CEBUUNxnqCHOA9wohoSlt48YYIGKIyAGzaQWz3J5+rHo9hqqCiC4YpRT03uFqrcg5H8M4pXSGja33HpCj34OCEMKdyfDeI8aIvTfsObfWwr9qzglnW1trP8PiWuQHJfcxEMr+nw0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="docker-balance-achive"
+        title="docker-balance-achive"
+        src="/static/fc4f9ca541f254a66807ca18e1b37f02/f058b/docker-balance-achive.png"
+        srcset="/static/fc4f9ca541f254a66807ca18e1b37f02/c26ae/docker-balance-achive.png 158w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/6bdcf/docker-balance-achive.png 315w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/f058b/docker-balance-achive.png 630w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/40601/docker-balance-achive.png 945w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/78612/docker-balance-achive.png 1260w,
+/static/fc4f9ca541f254a66807ca18e1b37f02/b1ffc/docker-balance-achive.png 1492w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h2>7.9 docker-compose 环境变量</h2>
+<p>修改 docker-compose.yml 文件，让 redis 的连接密码从环境变量中读取</p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flask</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./flask
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> flask<span class="token punctuation">-</span>demo<span class="token punctuation">:</span>latest
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_HOST=redis<span class="token punctuation">-</span>server
+      <span class="token punctuation">-</span> REDIS_PASS=$<span class="token punctuation">{</span>REDIS_PASS<span class="token punctuation">}</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> backend
+      <span class="token punctuation">-</span> frontend
+  <span class="token key atrule">redis-server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>server <span class="token punctuation">-</span><span class="token punctuation">-</span>requirepass $<span class="token punctuation">{</span>REDIS_PASS<span class="token punctuation">}</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> backend
+
+  <span class="token key atrule">nginx</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>stable<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token datetime number">80:80</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> flask
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./nginx/nginx.conf<span class="token punctuation">:</span>/etc/nginx/conf.d/default.conf<span class="token punctuation">:</span>ro
+      <span class="token punctuation">-</span> ./var/log/nginx<span class="token punctuation">:</span>/var/log/nginx
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> frontend
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">backend</span><span class="token punctuation">:</span>
+  frontend<span class="token punctuation">:</span></code></pre></div>
+<p>创建 .env 文件，并将文件添加到 .gitignore 中。</p>
+<div class="gatsby-highlight" data-language="env"><pre class="language-env"><code class="language-env">REDIS_PASS=abc123</code></pre></div>
+<p>docker-compose config</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  <span class="token number">2.17</span> git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗ <span class="token function">docker-compose</span>  config
+name: <span class="token string">"217"</span>
+services:
+  flask:
+    build:
+      context: /root/docker/2/2.17/flask
+      dockerfile: Dockerfile
+    environment:
+      REDIS_HOST: redis-server
+      REDIS_PASS: abc123
+    image: flask-demo:latest
+    networks:
+      backend: null
+      frontend: null
+  nginx:
+    depends_on:
+      flask:
+        condition: service_started
+    image: nginx:stable-alpine
+    networks:
+      frontend: null
+    ports:
+    - mode: ingress
+      target: <span class="token number">80</span>
+      published: <span class="token string">"80"</span>
+      protocol: tcp
+    volumes:
+    - type: <span class="token builtin class-name">bind</span>
+      source: /root/docker/2/2.17/nginx/nginx.conf
+      target: /etc/nginx/conf.d/default.conf
+      read_only: <span class="token boolean">true</span>
+      bind:
+        create_host_path: <span class="token boolean">true</span>
+    - type: <span class="token builtin class-name">bind</span>
+      source: /root/docker/2/2.17/var/log/nginx
+      target: /var/log/nginx
+      bind:
+        create_host_path: <span class="token boolean">true</span>
+  redis-server:
+    command:
+    - redis-server
+    - <span class="token parameter variable">--requirepass</span>
+    - abc123
+    image: redis:latest
+    networks:
+      backend: null
+networks:
+  backend:
+    name: 217_backend
+  frontend:
+    name: 217_frontend</code></pre></div>
+<p>也可以指定单独的配置文件</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token builtin class-name">echo</span> <span class="token string">'REDIS_PASS=abc123'</span> <span class="token operator">></span> myenv
+<span class="token function">docker-compose</span> --env-file ./myenv config
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> --env-file ./myenv</code></pre></div>
+<h2>7.10 服务依赖和健康检查</h2>
+<p><a href="https://docs.docker.com/engine/reference/builder/">https://docs.docker.com/engine/reference/builder/</a></p>
+<h3>7.10.1 在 dockerfile 中使用 healthcheck</h3>
+<p>将上面 dockerfile 构建镜像中使用健康检查</p>
+<div class="gatsby-highlight" data-language="dockerfile"><pre class="language-dockerfile"><code class="language-dockerfile"><span class="token instruction"><span class="token keyword">FROM</span> python:3.9.5-slim</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> pip install flask redis &amp;&amp; <span class="token operator">\</span>
+    apt-get update &amp;&amp; apt-get install -y curl &amp;&amp; <span class="token operator">\</span>
+    groupadd -r flask &amp;&amp; useradd -r -g flask flask &amp;&amp; <span class="token operator">\</span>
+    mkdir /src &amp;&amp; <span class="token operator">\</span>
+    chown -R flask:flask /src</span>
+
+<span class="token instruction"><span class="token keyword">USER</span> flask</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> app.py /src/app.py</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /src</span>
+
+<span class="token instruction"><span class="token keyword">ENV</span> FLASK=app.py REDIS_HOST=redis</span>
+
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 5000</span>
+
+<span class="token comment"># 健康检查，测试当前容器服务的连通性</span>
+<span class="token instruction"><span class="token keyword">HEALTHCHECK</span> <span class="token options"><span class="token property">--interval</span><span class="token punctuation">=</span><span class="token string">30s</span> <span class="token property">--timeout</span><span class="token punctuation">=</span><span class="token string">3s</span></span><span class="token operator">\</span>
+        <span class="token keyword">CMD</span> curl -f http://localhost:5000/ || exit 1</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"flask"</span>, <span class="token string">"run"</span>, <span class="token string">"-h"</span>, <span class="token string">"0.0.0.0"</span>]</span></code></pre></div>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token comment"># 构建镜像</span>
+<span class="token function">docker</span> image build <span class="token parameter variable">-t</span> flask-demo <span class="token builtin class-name">.</span>
+
+<span class="token comment"># 创建网络</span>
+<span class="token function">docker</span> network create mybridge
+
+<span class="token comment"># 生成容器</span>
+<span class="token function">docker</span> container run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> flask1 <span class="token parameter variable">--env</span> <span class="token assign-left variable">REDIS_HOST</span><span class="token operator">=</span>redis-server flask-demo</code></pre></div>
+<p>由于 redis 服务未启动，服务内部报错，状态为 unhealth</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell">➜  flask git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗ <span class="token function">docker</span> container <span class="token function">ps</span> <span class="token parameter variable">-a</span>
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                     PORTS      NAMES
+ebfaba12bd86   flask-demo   <span class="token string">"flask run -h 0.0.0.0"</span>   <span class="token number">4</span> minutes ago   Up <span class="token number">4</span> minutes <span class="token punctuation">(</span>unhealthy<span class="token punctuation">)</span>   <span class="token number">5000</span>/tcp   flask1
+
+<span class="token comment"># 查看容器详细信息，可看到容器健康检查的日志</span>
+➜  flask git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗ <span class="token function">docker</span> container inspect flask1
+<span class="token punctuation">..</span>.
+<span class="token string">"Health"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"Status"</span><span class="token builtin class-name">:</span> <span class="token string">"unhealthy"</span>,
+                <span class="token string">"FailingStreak"</span><span class="token builtin class-name">:</span> <span class="token number">3</span>,
+                <span class="token string">"Log"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+                   <span class="token punctuation">{</span>
+                        <span class="token string">"Start"</span><span class="token builtin class-name">:</span> <span class="token string">"2022-12-06T20:33:32.959059252+08:00"</span>,
+                        <span class="token string">"End"</span><span class="token builtin class-name">:</span> <span class="token string">"2022-12-06T20:33:33.115911813+08:00"</span>,
+                        <span class="token string">"ExitCode"</span><span class="token builtin class-name">:</span> <span class="token number">1</span>,
+                        <span class="token string">"Output"</span><span class="token builtin class-name">:</span> <span class="token string">"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<span class="token entity" title="\n">\n</span>                                 Dload  Upload   Total   Spent    Left  Speed<span class="token entity" title="\n">\n</span><span class="token entity" title="\r">\r</span>  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<span class="token entity" title="\r">\r</span>  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<span class="token entity" title="\n">\n</span>curl: (22) The requested URL returned error: 500 INTERNAL SERVER ERROR<span class="token entity" title="\n">\n</span>"</span>
+                    <span class="token punctuation">}</span>,
+                    <span class="token punctuation">{</span>
+                        <span class="token string">"Start"</span><span class="token builtin class-name">:</span> <span class="token string">"2022-12-06T20:34:03.129901079+08:00"</span>,
+                        <span class="token string">"End"</span><span class="token builtin class-name">:</span> <span class="token string">"2022-12-06T20:34:03.243209393+08:00"</span>,
+                        <span class="token string">"ExitCode"</span><span class="token builtin class-name">:</span> <span class="token number">1</span>,
+                        <span class="token string">"Output"</span><span class="token builtin class-name">:</span> <span class="token string">"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<span class="token entity" title="\n">\n</span>                                 Dload  Upload   Total   Spent    Left  Speed<span class="token entity" title="\n">\n</span><span class="token entity" title="\r">\r</span>  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<span class="token entity" title="\r">\r</span>  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<span class="token entity" title="\n">\n</span>curl: (22) The requested URL returned error: 500 INTERNAL SERVER ERROR<span class="token entity" title="\n">\n</span>"</span>
+                    <span class="token punctuation">}</span>,
+                    <span class="token punctuation">{</span>
+                        <span class="token string">"Start"</span><span class="token builtin class-name">:</span> <span class="token string">"2022-12-06T20:34:33.253949717+08:00"</span>,
+                        <span class="token string">"End"</span><span class="token builtin class-name">:</span> <span class="token string">"2022-12-06T20:34:33.376348565+08:00"</span>,
+                        <span class="token string">"ExitCode"</span><span class="token builtin class-name">:</span> <span class="token number">1</span>,
+                        <span class="token string">"Output"</span><span class="token builtin class-name">:</span> <span class="token string">"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<span class="token entity" title="\n">\n</span>                                 Dload  Upload   Total   Spent    Left  Speed<span class="token entity" title="\n">\n</span><span class="token entity" title="\r">\r</span>  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<span class="token entity" title="\r">\r</span>  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<span class="token entity" title="\n">\n</span>curl: (22) The requested URL returned error: 500 INTERNAL SERVER ERROR<span class="token entity" title="\n">\n</span>"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">..</span>.</code></pre></div>
+<p>拉取 redis 镜像，构建 redis 容器</p>
+<div class="gatsby-highlight" data-language="shell"><pre class="language-shell"><code class="language-shell"><span class="token function">docker</span> image pull redis:latest
+
+<span class="token function">docker</span> container run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> redis-server <span class="token parameter variable">--env</span> <span class="token assign-left variable">REDIS_PASS</span><span class="token operator">=</span>abc123 redis:latest</code></pre></div>
+<p>重新启动 flask1 容器，状态为 health</p>
+<div class="gatsby-highlight" data-language="log"><pre class="language-log"><code class="language-log">➜  flask git<span class="token operator">:</span><span class="token operator">(</span>master<span class="token operator">)</span> ✗ docker container ps <span class="token operator">-</span>a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         <span class="token level info keyword">STATUS</span>                     PORTS      NAMES
+d1a69c24a087   redis        <span class="token string">"docker-entrypoint.s…"</span>   <span class="token number">2</span> minutes ago   Up <span class="token number">2</span> minutes               <span class="token number">6379</span><span class="token operator">/</span>tcp   redis<span class="token operator">-</span>server
+<span class="token number">8d02dfd1b4fb</span>   flask<span class="token operator">-</span>demo   <span class="token string">"flask run -h 0.0.0.0"</span>   <span class="token number">3</span> minutes ago   Up <span class="token number">3</span> minutes <span class="token operator">(</span>unhealthy<span class="token operator">)</span>   <span class="token number">5000</span><span class="token operator">/</span>tcp   flask1
+
+➜  flask git<span class="token operator">:</span><span class="token operator">(</span>master<span class="token operator">)</span> ✗ docker container restart <span class="token number">8d0</span>
+<span class="token number">8d0</span>
+
+➜  flask git<span class="token operator">:</span><span class="token operator">(</span>master<span class="token operator">)</span> ✗ docker container ps <span class="token operator">-</span>a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         <span class="token level info keyword">STATUS</span>                             PORTS      NAMES
+d1a69c24a087   redis        <span class="token string">"docker-entrypoint.s…"</span>   <span class="token number">3</span> minutes ago   Up <span class="token number">3</span> minutes                       <span class="token number">6379</span><span class="token operator">/</span>tcp   redis<span class="token operator">-</span>server
+<span class="token number">8d02dfd1b4fb</span>   flask<span class="token operator">-</span>demo   <span class="token string">"flask run -h 0.0.0.0"</span>   <span class="token number">4</span> minutes ago   Up <span class="token number">16</span> seconds <span class="token operator">(</span>health<span class="token operator">:</span> starting<span class="token operator">)</span>   <span class="token number">5000</span><span class="token operator">/</span>tcp   flask1</code></pre></div>
+<h3>7.10.2 在 docker-compose.yml 中使用健康检查</h3>
+<p><a href="https://docs.docker.com/compose/compose-file/">https://docs.docker.com/compose/compose-file/</a></p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.8"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flask</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./flask
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> flask<span class="token punctuation">-</span>demo<span class="token punctuation">:</span>latest
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_HOST=redis<span class="token punctuation">-</span>server
+      <span class="token punctuation">-</span> REDIS_PASS=$<span class="token punctuation">{</span>REDIS_PASS<span class="token punctuation">}</span>
+    <span class="token key atrule">healthcheck</span><span class="token punctuation">:</span>
+      <span class="token key atrule">test</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"CMD"</span><span class="token punctuation">,</span> <span class="token string">"curl"</span><span class="token punctuation">,</span> <span class="token string">"-f"</span><span class="token punctuation">,</span> <span class="token string">"http://localhost:5000"</span><span class="token punctuation">]</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 30s
+      <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 3s
+      <span class="token key atrule">retries</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">start_period</span><span class="token punctuation">:</span> 40s
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis<span class="token punctuation">-</span>server
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> backend
+      <span class="token punctuation">-</span> frontend
+
+  <span class="token key atrule">redis-server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>server <span class="token punctuation">-</span><span class="token punctuation">-</span>requirepass $<span class="token punctuation">{</span>REDIS_PASS<span class="token punctuation">}</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> backend
+
+  <span class="token key atrule">nginx</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>stable<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token datetime number">80:80</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token key atrule">flask</span><span class="token punctuation">:</span>
+        <span class="token key atrule">condition</span><span class="token punctuation">:</span> service_healthy
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./nginx/nginx.conf<span class="token punctuation">:</span>/etc/nginx/conf.d/default.conf<span class="token punctuation">:</span>ro
+      <span class="token punctuation">-</span> ./var/log/nginx<span class="token punctuation">:</span>/var/log/nginx
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> frontend
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">backend</span><span class="token punctuation">:</span>
+  <span class="token key atrule">frontend</span><span class="token punctuation">:</span>
+</code></pre></div>
+<p>condition： 只有在 flask 服务健康检测通过之后，才会继续构建 redis 容器。</p>
+<div class="gatsby-highlight" data-language="yml"><pre class="language-yml"><code class="language-yml">    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token key atrule">flask</span><span class="token punctuation">:</span>
+        <span class="token key atrule">condition</span><span class="token punctuation">:</span> service_healthy</code></pre></div>
+<h2>7.11 docker-compose 练习</h2></section></article></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/docker/docker-compose/";window.___webpackCompilationHash="cc678b5060d86c772854";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-aa4692331c0a6f85cb9f.js"],"app":["/app-b936b1db01c7289b9285.js"],"component---src-pages-404-js":["/component---src-pages-404-js-c3871468abfb224bc4ad.js"],"component---src-pages-index-js":["/component---src-pages-index-js-e87c52091029f4f0c19a.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-1a0cadce92c9842c3745.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-d449cb0634d329d6ff1d.js"]};/*]]>*/</script><script src="/polyfill-aa4692331c0a6f85cb9f.js" nomodule=""></script><script src="/app-b936b1db01c7289b9285.js" async=""></script><script src="/framework-50b6e93f049cd7d9e75a.js" async=""></script><script src="/webpack-runtime-b4c8de405e8dc22e4693.js" async=""></script></body></html>
