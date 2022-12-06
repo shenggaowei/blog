@@ -1,5 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Dec 2022 13:51:10 GMT</lastBuildDate><item><title><![CDATA[7.Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介 dokcer-compose 处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;./asset/docker-compose-intro.webp&quot; alt=&quot;dokcer-compose&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Dec 2022 13:53:30 GMT</lastBuildDate><item><title><![CDATA[7.Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介  处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/de848e3a8b74763c678db3ec1e7acc72/b836f/docker-compose-intro.webp&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 53.79746835443038%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoUAAsAPtFWo0uoJKMhsAgBABoJYwCw7B6JHYcfOsQmAAD+9OZzoNiyZDVaCYWcsMnKaa8pfe8NPUx+eJg2Zkrc3b1gQRXmWtg8N07xPzd/8dWrS6Ia/rBTsg4oXU1c+AAAAA==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dokcer-compose&quot;
+        title=&quot;dokcer-compose&quot;
+        src=&quot;/static/de848e3a8b74763c678db3ec1e7acc72/8aab1/docker-compose-intro.webp&quot;
+        srcset=&quot;/static/de848e3a8b74763c678db3ec1e7acc72/81b7c/docker-compose-intro.webp 158w,
+/static/de848e3a8b74763c678db3ec1e7acc72/6ea66/docker-compose-intro.webp 315w,
+/static/de848e3a8b74763c678db3ec1e7acc72/8aab1/docker-compose-intro.webp 630w,
+/static/de848e3a8b74763c678db3ec1e7acc72/a70f5/docker-compose-intro.webp 945w,
+/static/de848e3a8b74763c678db3ec1e7acc72/4ef06/docker-compose-intro.webp 1260w,
+/static/de848e3a8b74763c678db3ec1e7acc72/b836f/docker-compose-intro.webp 2745w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;处理多个容器的启动和关闭。可以不用自己去写脚本处理。&lt;/p&gt;
 &lt;h2&gt;7.2 docker-compose 的安装&lt;/h2&gt;
 &lt;p&gt;mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose。&lt;/p&gt;
