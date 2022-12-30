@@ -1,5 +1,5 @@
 ---
-title: 7.Docker学习之docker-compose
+title: 7 Docker学习之docker-compose
 date: 2022-12-06
 description: docker 学习笔记
 ---
