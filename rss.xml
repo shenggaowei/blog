@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 30 Dec 2022 11:35:01 GMT</lastBuildDate><item><title><![CDATA[11 git和容器-cicd]]></title><description><![CDATA[1 自动化流程 自动化构建和提交镜像
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 30 Dec 2022 12:51:58 GMT</lastBuildDate><item><title><![CDATA[11 git和容器-cicd]]></title><description><![CDATA[1 自动化流程 自动化构建和提交镜像
  自动化部署
  2 自动化流程 2.1 github actions github action 文档地址 2.2 使用 github action 自动构建镜像并上传到 dockerhub 中 项目地址 https://github.com…]]></description><link>https://weishenggao.com/docker/git和容器-cicd/</link><guid isPermaLink="false">https://weishenggao.com/docker/git和容器-cicd/</guid><pubDate>Mon, 26 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 自动化流程&lt;/h2&gt;
 &lt;p&gt;自动化构建和提交镜像
@@ -256,7 +256,67 @@
         &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
           &lt;span class=&quot;token key atrule&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;true&lt;/span&gt;
           &lt;span class=&quot;token key atrule&quot;&gt;platforms&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; linux/arm/v7&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;linux/arm64/v8&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;linux/amd64
-          &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; shenggao/flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[7 Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介  处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; shenggao/flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[10 Docker学习之docker多架构支持]]></title><description><![CDATA[ubuntu-arc.png docker 在拉取镜像的时候，默认会拉取适合本地机器架构的版本，arm 架构的机器拉取 arm 版本的镜像，x86 架构的机器拉取 x86 版本的镜像。 那么我们在构建镜像的时候，就需要生成适用于多种架构的镜像。 使用 buildx…]]></description><link>https://weishenggao.com/docker/asset/docker多架构支持/</link><guid isPermaLink="false">https://weishenggao.com/docker/asset/docker多架构支持/</guid><pubDate>Tue, 20 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;./asset/ubuntu-arc.png&quot; alt=&quot;ubuntu-arc.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;docker 在拉取镜像的时候，默认会拉取适合本地机器架构的版本，arm 架构的机器拉取 arm 版本的镜像，x86 架构的机器拉取 x86 版本的镜像。&lt;/p&gt;
+&lt;p&gt;那么我们在构建镜像的时候，就需要生成适用于多种架构的镜像。&lt;/p&gt;
+&lt;h2&gt;使用 buildx 构建多架构镜像&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/shenggaowei/docker-start&quot;&gt;项目地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;登录 dockerhub&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; login&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下载项目&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone https://github.com/shenggaowei/docker-start
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; docker-start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;构建&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;➜  flask git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; buildx build &lt;span class=&quot;token parameter variable&quot;&gt;--push&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--platform&lt;/span&gt; linux/arm64/v8,linux/amd64 &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt; shenggao/flask-demo:1.0.0 &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Building &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;/0&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ERROR: multiple platforms feature is currently not supported &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; driver. Please switch to a different driver &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;eg. &lt;span class=&quot;token string&quot;&gt;&quot;docker buildx create --use&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;➜  flask git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; buildx create &lt;span class=&quot;token parameter variable&quot;&gt;--name&lt;/span&gt; mybuilder &lt;span class=&quot;token parameter variable&quot;&gt;--use&lt;/span&gt;
+mybuilder
+➜  flask git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; buildx &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+NAME/NODE    DRIVER/ENDPOINT             STATUS   BUILDKIT PLATFORMS
+mybuilder *  docker-container
+  mybuilder0 unix:///var/run/docker.sock inactive
+default      &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;
+  default    default                     running  &lt;span class=&quot;token number&quot;&gt;20.10&lt;/span&gt;.21 linux/amd64, linux/386&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;➜  flask git:&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; ✗ &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; buildx build &lt;span class=&quot;token parameter variable&quot;&gt;--push&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--platform&lt;/span&gt; linux/arm64/v8,linux/amd64 &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt; shenggao/flask-demo:1.0.0 &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; ./Dockerfile.dev &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Building &lt;span class=&quot;token number&quot;&gt;775&lt;/span&gt;.8s &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;/18&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; FINISHED
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load build definition from Dockerfile.dev                                                                          &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring dockerfile: 276B                                                                                              &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load .dockerignore                                                                                                 &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring context: 2B                                                                                                   &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/amd64 internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load metadata &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; docker.io/library/python:3.9.5-slim                                                  &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;.1s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/arm64 internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load metadata &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; docker.io/library/python:3.9.5-slim                                                  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;.9s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;auth&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; library/python:pull token &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; registry-1.docker.io                                                                     &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; CACHED &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/arm64 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; FROM docker.io/library/python:3.9.5-slim@sha256:9828573e6a0b02b6d0ff0bae0716b027aa21cf8e59ac18a7672  &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; resolve docker.io/library/python:3.9.5-slim@sha256:9828573e6a0b02b6d0ff0bae0716b027aa21cf8e59ac18a76724d216bab7ef04        &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;internal&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; load build context                                                                                                 &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; transferring context: 27B                                                                                                  &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; CACHED &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/amd64 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; FROM docker.io/library/python:3.9.5-slim@sha256:9828573e6a0b02b6d0ff0bae0716b027aa21cf8e59ac18a7672  &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.1s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; resolve docker.io/library/python:3.9.5-slim@sha256:9828573e6a0b02b6d0ff0bae0716b027aa21cf8e59ac18a76724d216bab7ef04        &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/arm64 &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; RUN &lt;span class=&quot;token function&quot;&gt;groupadd&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-r&lt;/span&gt; flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;useradd&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-g&lt;/span&gt; flask flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;     &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /src &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;     &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-R&lt;/span&gt; flask:flask /src       &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/amd64 &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; RUN &lt;span class=&quot;token function&quot;&gt;groupadd&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-r&lt;/span&gt; flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;useradd&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-g&lt;/span&gt; flask flask &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;     &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /src &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;     &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-R&lt;/span&gt; flask:flask /src       &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.5s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/amd64 &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; COPY app.py /src/app.py                                                                                     &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.1s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/amd64 &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; WORKDIR /src                                                                                                &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.1s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/arm64 &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; COPY app.py /src/app.py                                                                                     &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.1s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;linux/arm64 &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; WORKDIR /src                                                                                                &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.1s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting to image                                                                                                          &lt;span class=&quot;token number&quot;&gt;772&lt;/span&gt;.3s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting layers                                                                                                           &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.4s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting manifest sha256:364eab607d86ef15cbd5a0e4e9b7877949f9b204ccb39080ea5f24d7ffe98bf1                                 &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting config sha256:37908b2b5235b5b07ca504ed1bd635c7a1442261d45db8062dae6e66b3fec9cb                                   &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting manifest sha256:98e4b523503dfae188929e638b7e7746be797802786191e710d0bdc2bff74761                                 &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting config sha256:c877c97af92475cc4d6d926a408ab6a12357f632546eec380a077631d7eb98b8                                   &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exporting manifest list sha256:ac310a01c54497c10cc5746dc731441330d571086783029c482e2d06d4391ad7                            &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; pushing layers                                                                                                           &lt;span class=&quot;token number&quot;&gt;768&lt;/span&gt;.9s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; pushing manifest &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; docker.io/shenggao/flask-demo:1.0.0@sha256:ac310a01c54497c10cc5746dc731441330d571086783029c482e2d06d  &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;.8s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;auth&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; shenggao/flask-demo:pull,push token &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; registry-1.docker.io                                                           &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;auth&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; shenggao/flask-demo:pull,push token &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; registry-1.docker.io                                                           &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s
+ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;auth&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; shenggao/flask-demo:pull,push token &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; registry-1.docker.io                                                           &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.0s&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;buildx 会拉取 moby/buildkit 镜像，在其生成的容器中进行构建。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;➜  ~ &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; container &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;
+CONTAINER ID   IMAGE                           COMMAND       CREATED         STATUS         PORTS     NAMES
+d48604d7a495   moby/buildkit:buildx-stable-1   &lt;span class=&quot;token string&quot;&gt;&quot;buildkitd&quot;&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt; minutes ago   Up &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt; minutes             buildx_buildkit_mybuilder0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;构建完成后，登陆 dockerhub 查看。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./asset/docker-buildx-ret.png&quot; alt=&quot;docker-buildx-ret.png&quot;&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[7 Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介  处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
@@ -4559,124 +4619,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
  * 1 es5先构建子类的this,然后将父类属性添加到当前this当中。
  * 2 es6先构建父类的this,然后将子类的属性添加到当前this当中。
  *
- * */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[如何发布一个 npm 包]]></title><description><![CDATA[一 背景 在工作时，突然接到经理的一个要求，需要将一个 react 的高阶组件函数封装成一个 npm 包。之前从没弄过，当场还是有些懵逼的，但是这毕竟是工作，不能推脱。于是开始了学习、汤坑之旅。最终包发布，线上项目成功使用，虽然导致了一次线上故障，但还是快速地 fix…]]></description><link>https://weishenggao.com/web/javascript/publish-npm-package/</link><guid isPermaLink="false">https://weishenggao.com/web/javascript/publish-npm-package/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;一 背景&lt;/h2&gt;
-&lt;p&gt;在工作时，突然接到经理的一个要求，需要将一个 react 的高阶组件函数封装成一个 npm 包。之前从没弄过，当场还是有些懵逼的，但是这毕竟是工作，不能推脱。于是开始了学习、汤坑之旅。最终包发布，线上项目成功使用，虽然导致了一次线上故障，但还是快速地 fix 掉。吃一堑长一智，记录一下整个发布的过程和遇到的一些问题。f&lt;/p&gt;
-&lt;h2&gt;二 流程&lt;/h2&gt;
-&lt;p&gt;npm 包可以将可复用逻辑封装成一个工具库，依赖 npm 的强大生态，可以在项目中引入，让代码变得更加简洁，提高效率。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在 npm 官网注册一个账号。&lt;/li&gt;
-&lt;li&gt;在本地登录 npm 账号。&lt;/li&gt;
-&lt;li&gt;编写 npm 包内容。&lt;/li&gt;
-&lt;li&gt;发布包。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;三 开发过程&lt;/h2&gt;
-&lt;h3&gt;1 注册 npm 账号。&lt;/h3&gt;
-&lt;p&gt;附录网站： &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;https://www.npmjs.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;2 在本地登录 npm 账号。&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; login&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;输入在 npm 官网注册的账号密码即可。&lt;/p&gt;
-&lt;h3&gt;3 编写 npm 包&lt;/h3&gt;
-&lt;h4&gt;3.1 执行以下命令，创建一个 npm 模块&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; npmDir
-&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; npmDir
-&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; init &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;3.2 安装 webpack&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; webpack webpack-ci &lt;span class=&quot;token parameter variable&quot;&gt;-D&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;在本地开发时，通常考虑更多的是代码的可读性，以便于在逻辑出错时，可 debug 其源码找到问题。然而发至线上时，则考虑更多的是包的体积，越小即代表着更快的载入。
-同时，一个强大的包应该支持多种方式导入，例如 es module 的 import, commonjs 的 require 以及 amd 的古老方式。
-为做到以上两点，选择了 webpack 作为构建工具。虽然用 webpack 个人感觉稍微有点重，但是它可扩展性强，日后利用 loader 以及 plugin 可以实现更多的编译以及优化需求。&lt;/p&gt;
-&lt;h4&gt;3.3 梳理项目目录&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909328330064.jpg&quot; alt=&quot;&quot;&gt;
-src 下的 index.js 对应着包的内容。
-最外层 index.js 为所暴露的出口文件。
-dist 目录存放 webpack 打包后的文件。&lt;/p&gt;
-&lt;h4&gt;3.4 编写对应内容&lt;/h4&gt;
-&lt;h5&gt;3.4.1 webpack.config.js&lt;/h5&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; TerserPlugin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;terser-webpack-plugin&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token literal-property property&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;none&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token literal-property property&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./src/index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&quot;add.min&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./src/index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token literal-property property&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[name].js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;libraryTarget&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;umd&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;libraryExport&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;globalObject&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;this&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token literal-property property&quot;&gt;optimization&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;minimize&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;minimizer&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TerserPlugin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token literal-property property&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token regex&quot;&gt;&lt;span class=&quot;token regex-delimiter&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token regex-source language-regex&quot;&gt;\.min\.js$&lt;/span&gt;&lt;span class=&quot;token regex-delimiter&quot;&gt;/&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;mode: 支持开发版代码不压缩，线上版本压缩。此处将 mode 设置为’none’，默认全不压缩，然后自己用插件来配置压缩代码文件。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;entry: 两个入口，add 为在开发时导入，add.min 文件为在线上时导入。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;output:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;filename: 设置占位符。默认为 entry 入口文件名字&lt;/li&gt;
-&lt;li&gt;library: 库的返回值赋值给变量或者属性 add。例如 script 引入方式，则可以全局使用 add 函数。此属性和 library 配合使用&lt;/li&gt;
-&lt;li&gt;libraryTarget: 变量暴露的方式。设置为 umd 即可支持 es module、cmd 以及 script 引入脚本的方式使用。&lt;/li&gt;
-&lt;li&gt;libraryExport: 配置要导出的模块中那些子模块需要被导出。只有 output.libraryTarget 被设置成 commonjs 或者 commonjs2 的时候才有效。我的导出方式是 export default，因此我将其直接导出。如果不填此项，则默认引入的是 module 对象。调用方式会是 .default 形式。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;optimization: 利用 TerserPlugin 插件进行压缩代码,默认只压缩.min 结尾的输出文件。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4&gt;3.4.2 模块主要内容 src/index.js&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;rest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;rest&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;哈哈&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; add&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;简单的一个测试函数&lt;/p&gt;
-&lt;h4&gt;3.4.3 main 入口文件 index.js&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;process&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;NODE_ENV&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;production&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;./dist/add.min.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;./dist/add.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;根据环境变量自动引入相关版本。&lt;/p&gt;
-&lt;h4&gt;3.4.4 构建命令。package.json&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;npm test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;build&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;prepublish&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack&quot;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;发布包时可以手动执行 build 命令后后发布，也可通过 prepublish 钩子自动编译然后发布。&lt;/p&gt;
-&lt;h3&gt;4 发布包&lt;/h3&gt;
-&lt;p&gt;修改 package.json 中的 name 字段，即包在 npm 中的名字。小提示，想好名字之后，最好到 npm 官网上搜索一下这个包有没有被别人注册，有的话就要换一个了。
-修改版本号，可手动修改，也可通过 npm version 命令进行更换。个人习惯于后面。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 修改版本号&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; version major &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; minorr &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; patch
-&lt;span class=&quot;token comment&quot;&gt;# 发布包到npm&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; publish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;然后在 npm 官网上搜索一下，便可以找到你发布的包了。开心。&lt;/p&gt;
-&lt;h2&gt;四 遇到的问题&lt;/h2&gt;
-&lt;h3&gt;4.1 在服务端渲染(ssr)的项目中引入该包时，会报错误 ”window is not defined“&lt;/h3&gt;
-&lt;p&gt;本以为是包中代码逻辑错误，把项目中所有引入到 window 的地方全都用 typeof 兼容了一遍，本想完事大吉，结果还是报这个错误。上网搜索各种帖子无效之后，我感觉是 webpack 编译打包后出了问题，于是报着试一试的心态去看编译后的未压缩版本代码，果然发现了问题。
-&lt;img src=&quot;https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909384148354.jpg&quot; alt=&quot;&quot;&gt;
-如图所示，打包后的文件为一个自运行匿名函数，函数第一个实参竟然是 window。
-于是去 webpack 官网查看相关文档，看其是否能配置。果然找到了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909386807183.jpg&quot; alt=&quot;-w728&quot;&gt;&lt;/p&gt;
-&lt;p&gt;修改 globalObject 属性，将第一个参数设置为 this，解决问题。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;附录
-gihub: &lt;a href=&quot;https://github.com/ShengGaoW/shenggao-test-npm&quot;&gt;https://github.com/ShengGaoW/shenggao-test-npm&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[前端本地缓存之 PWA]]></title><description><![CDATA[PWA 简介 PWA，全称 Progressive Web App , (渐进式增强 WEB 应用) 简称 PWA ，是提升 WebApp 的体验的一种新方法，能给用户原生应用的体验。PWA 设想本质上是 Web App ，借助一些新技术也具备了 Native App…]]></description><link>https://weishenggao.com/web/javascript/pwa/</link><guid isPermaLink="false">https://weishenggao.com/web/javascript/pwa/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;PWA 简介&lt;/h2&gt;
+ * */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[前端本地缓存之 PWA]]></title><description><![CDATA[PWA 简介 PWA，全称 Progressive Web App , (渐进式增强 WEB 应用) 简称 PWA ，是提升 WebApp 的体验的一种新方法，能给用户原生应用的体验。PWA 设想本质上是 Web App ，借助一些新技术也具备了 Native App…]]></description><link>https://weishenggao.com/web/javascript/pwa/</link><guid isPermaLink="false">https://weishenggao.com/web/javascript/pwa/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;PWA 简介&lt;/h2&gt;
 &lt;p&gt;PWA，全称 Progressive Web App , (渐进式增强 WEB 应用) 简称 PWA ，是提升 WebApp 的体验的一种新方法，能给用户原生应用的体验。PWA 设想本质上是 Web App ，借助一些新技术也具备了 Native App 的一些特性，兼具 Web App 和 Native App 的优点。&lt;br /&gt;那么既然提到了“web app”，那么它到底具备什么功能敢用这个名词？其实说起来，PWA 并不是一个 api，而是集结了 N 个新兴 html5 api 技术的组合体，其中主要 api 包含：&lt;br /&gt;&lt;/p&gt;
 &lt;h4&gt;1、App Manifest&lt;/h4&gt;
 &lt;p&gt;Manifest 本质是一个 JSON 格式的文件，你可以把它理解为一个指定了 Web App 桌面图标、名称、开屏图标、运行模式等一系列资源的一个清单，通过 html 层&lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot;&gt;引用。其目的是将 Web 应用程序安装到设备的主屏幕，为用户提供更快的访问和更丰富的体验。&lt;br /&gt;&lt;/p&gt;
@@ -4923,7 +4866,124 @@ self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
 &lt;p&gt;&lt;br /&gt;这算起来是一个严重的“事故”，那么我们如何避免？如上代码所示，我们为了防止返回 304，请求时加时间戳；存储时照常使用 event.request，这种情况下，至少有 Service Worker 发出的 fetch 不会有返回 304 的情况出现。&lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-&lt;br /&gt;资料参考：&lt;br /&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[正则表达式]]></title><description><![CDATA[一 定义 1 概念 描述字符模式的对象…]]></description><link>https://weishenggao.com/web/javascript/regexp/</link><guid isPermaLink="false">https://weishenggao.com/web/javascript/regexp/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;一 定义&lt;/h2&gt;
+&lt;br /&gt;资料参考：&lt;br /&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[如何发布一个 npm 包]]></title><description><![CDATA[一 背景 在工作时，突然接到经理的一个要求，需要将一个 react 的高阶组件函数封装成一个 npm 包。之前从没弄过，当场还是有些懵逼的，但是这毕竟是工作，不能推脱。于是开始了学习、汤坑之旅。最终包发布，线上项目成功使用，虽然导致了一次线上故障，但还是快速地 fix…]]></description><link>https://weishenggao.com/web/javascript/publish-npm-package/</link><guid isPermaLink="false">https://weishenggao.com/web/javascript/publish-npm-package/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;一 背景&lt;/h2&gt;
+&lt;p&gt;在工作时，突然接到经理的一个要求，需要将一个 react 的高阶组件函数封装成一个 npm 包。之前从没弄过，当场还是有些懵逼的，但是这毕竟是工作，不能推脱。于是开始了学习、汤坑之旅。最终包发布，线上项目成功使用，虽然导致了一次线上故障，但还是快速地 fix 掉。吃一堑长一智，记录一下整个发布的过程和遇到的一些问题。f&lt;/p&gt;
+&lt;h2&gt;二 流程&lt;/h2&gt;
+&lt;p&gt;npm 包可以将可复用逻辑封装成一个工具库，依赖 npm 的强大生态，可以在项目中引入，让代码变得更加简洁，提高效率。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 npm 官网注册一个账号。&lt;/li&gt;
+&lt;li&gt;在本地登录 npm 账号。&lt;/li&gt;
+&lt;li&gt;编写 npm 包内容。&lt;/li&gt;
+&lt;li&gt;发布包。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;三 开发过程&lt;/h2&gt;
+&lt;h3&gt;1 注册 npm 账号。&lt;/h3&gt;
+&lt;p&gt;附录网站： &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;https://www.npmjs.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2 在本地登录 npm 账号。&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; login&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输入在 npm 官网注册的账号密码即可。&lt;/p&gt;
+&lt;h3&gt;3 编写 npm 包&lt;/h3&gt;
+&lt;h4&gt;3.1 执行以下命令，创建一个 npm 模块&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; npmDir
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; npmDir
+&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; init &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.2 安装 webpack&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; webpack webpack-ci &lt;span class=&quot;token parameter variable&quot;&gt;-D&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在本地开发时，通常考虑更多的是代码的可读性，以便于在逻辑出错时，可 debug 其源码找到问题。然而发至线上时，则考虑更多的是包的体积，越小即代表着更快的载入。
+同时，一个强大的包应该支持多种方式导入，例如 es module 的 import, commonjs 的 require 以及 amd 的古老方式。
+为做到以上两点，选择了 webpack 作为构建工具。虽然用 webpack 个人感觉稍微有点重，但是它可扩展性强，日后利用 loader 以及 plugin 可以实现更多的编译以及优化需求。&lt;/p&gt;
+&lt;h4&gt;3.3 梳理项目目录&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909328330064.jpg&quot; alt=&quot;&quot;&gt;
+src 下的 index.js 对应着包的内容。
+最外层 index.js 为所暴露的出口文件。
+dist 目录存放 webpack 打包后的文件。&lt;/p&gt;
+&lt;h4&gt;3.4 编写对应内容&lt;/h4&gt;
+&lt;h5&gt;3.4.1 webpack.config.js&lt;/h5&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; TerserPlugin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;terser-webpack-plugin&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token literal-property property&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;none&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token literal-property property&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./src/index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string-property property&quot;&gt;&quot;add.min&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./src/index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token literal-property property&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[name].js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;libraryTarget&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;umd&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;libraryExport&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;globalObject&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;this&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token literal-property property&quot;&gt;optimization&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;minimize&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;minimizer&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TerserPlugin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token literal-property property&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token regex&quot;&gt;&lt;span class=&quot;token regex-delimiter&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token regex-source language-regex&quot;&gt;\.min\.js$&lt;/span&gt;&lt;span class=&quot;token regex-delimiter&quot;&gt;/&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;mode: 支持开发版代码不压缩，线上版本压缩。此处将 mode 设置为’none’，默认全不压缩，然后自己用插件来配置压缩代码文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;entry: 两个入口，add 为在开发时导入，add.min 文件为在线上时导入。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;output:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;filename: 设置占位符。默认为 entry 入口文件名字&lt;/li&gt;
+&lt;li&gt;library: 库的返回值赋值给变量或者属性 add。例如 script 引入方式，则可以全局使用 add 函数。此属性和 library 配合使用&lt;/li&gt;
+&lt;li&gt;libraryTarget: 变量暴露的方式。设置为 umd 即可支持 es module、cmd 以及 script 引入脚本的方式使用。&lt;/li&gt;
+&lt;li&gt;libraryExport: 配置要导出的模块中那些子模块需要被导出。只有 output.libraryTarget 被设置成 commonjs 或者 commonjs2 的时候才有效。我的导出方式是 export default，因此我将其直接导出。如果不填此项，则默认引入的是 module 对象。调用方式会是 .default 形式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;optimization: 利用 TerserPlugin 插件进行压缩代码,默认只压缩.min 结尾的输出文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;3.4.2 模块主要内容 src/index.js&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;rest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;rest&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;哈哈&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; add&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;简单的一个测试函数&lt;/p&gt;
+&lt;h4&gt;3.4.3 main 入口文件 index.js&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;process&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;NODE_ENV&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;production&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;./dist/add.min.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;./dist/add.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;根据环境变量自动引入相关版本。&lt;/p&gt;
+&lt;h4&gt;3.4.4 构建命令。package.json&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;npm test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;build&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;prepublish&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;发布包时可以手动执行 build 命令后后发布，也可通过 prepublish 钩子自动编译然后发布。&lt;/p&gt;
+&lt;h3&gt;4 发布包&lt;/h3&gt;
+&lt;p&gt;修改 package.json 中的 name 字段，即包在 npm 中的名字。小提示，想好名字之后，最好到 npm 官网上搜索一下这个包有没有被别人注册，有的话就要换一个了。
+修改版本号，可手动修改，也可通过 npm version 命令进行更换。个人习惯于后面。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 修改版本号&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; version major &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; minorr &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; patch
+&lt;span class=&quot;token comment&quot;&gt;# 发布包到npm&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; publish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后在 npm 官网上搜索一下，便可以找到你发布的包了。开心。&lt;/p&gt;
+&lt;h2&gt;四 遇到的问题&lt;/h2&gt;
+&lt;h3&gt;4.1 在服务端渲染(ssr)的项目中引入该包时，会报错误 ”window is not defined“&lt;/h3&gt;
+&lt;p&gt;本以为是包中代码逻辑错误，把项目中所有引入到 window 的地方全都用 typeof 兼容了一遍，本想完事大吉，结果还是报这个错误。上网搜索各种帖子无效之后，我感觉是 webpack 编译打包后出了问题，于是报着试一试的心态去看编译后的未压缩版本代码，果然发现了问题。
+&lt;img src=&quot;https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909384148354.jpg&quot; alt=&quot;&quot;&gt;
+如图所示，打包后的文件为一个自运行匿名函数，函数第一个实参竟然是 window。
+于是去 webpack 官网查看相关文档，看其是否能配置。果然找到了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://shenggao.oss-cn-beijing.aliyuncs.com/blog/2020/05/31/15909386807183.jpg&quot; alt=&quot;-w728&quot;&gt;&lt;/p&gt;
+&lt;p&gt;修改 globalObject 属性，将第一个参数设置为 this，解决问题。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;附录
+gihub: &lt;a href=&quot;https://github.com/ShengGaoW/shenggao-test-npm&quot;&gt;https://github.com/ShengGaoW/shenggao-test-npm&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[正则表达式]]></title><description><![CDATA[一 定义 1 概念 描述字符模式的对象…]]></description><link>https://weishenggao.com/web/javascript/regexp/</link><guid isPermaLink="false">https://weishenggao.com/web/javascript/regexp/</guid><pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;一 定义&lt;/h2&gt;
 &lt;h3&gt;1 概念&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;描述字符模式的对象&lt;/p&gt;
