@@ -1,4 +1,262 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Dec 2022 13:53:30 GMT</lastBuildDate><item><title><![CDATA[7.Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介  处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[升高的个人博客，记录成长和学习]]></description><link>https://weishenggao.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 30 Dec 2022 11:35:01 GMT</lastBuildDate><item><title><![CDATA[11 git和容器-cicd]]></title><description><![CDATA[1 自动化流程 自动化构建和提交镜像
+ 自动化部署
+ 2 自动化流程 2.1 github actions github action 文档地址 2.2 使用 github action 自动构建镜像并上传到 dockerhub 中 项目地址 https://github.com…]]></description><link>https://weishenggao.com/docker/git和容器-cicd/</link><guid isPermaLink="false">https://weishenggao.com/docker/git和容器-cicd/</guid><pubDate>Mon, 26 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 自动化流程&lt;/h2&gt;
+&lt;p&gt;自动化构建和提交镜像
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/edd86c32c5a1dc982c2896b41ae41d0e/8deec/dev-ops.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.45569620253164%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAABXUlEQVQoz42SzUoDMRSF+4LufQz3go/jRty5UxGRdqMgFCpFKvhTWp3pTKaTyST3L5E0bS1tFc9iGJJ895zc3E7YkffeAUIUIlL6hn3qpPObS0RU66ZUVamqolRqPm+tFb88Q8wOKRERNi0Q8b7SfqtulGAgt3QWH6Yv/Wo2FR8QUTeNc3HvM8svrm9VXaeLRGpRp/s+Px0U7Ffww+XZeDSIkRAJ0XsJIfSHz4dHxx/TrzWcgJPe7OD8FVmWsVOyZHh199S7H4YQdGPexhPnXGwXETPLUkzWbDfM2gjfdAeP/RGh01qDs3meK6W01kqpyWSS53ld69a6lKWz2yURoehFLGKMwXgRj4i8UPrfDzNz29rkZq3NsqyqqpiVf57jL1hEko+IAAARee9F5F9wmpNEZllWluVi2oBXAoBf4bQBAEqpoiiapkHETXidorM72OlhAMAYkzKvK27N9jcZFfTXPi9dcAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dev-ops.png&quot;
+        title=&quot;dev-ops.png&quot;
+        src=&quot;/static/edd86c32c5a1dc982c2896b41ae41d0e/f058b/dev-ops.png&quot;
+        srcset=&quot;/static/edd86c32c5a1dc982c2896b41ae41d0e/c26ae/dev-ops.png 158w,
+/static/edd86c32c5a1dc982c2896b41ae41d0e/6bdcf/dev-ops.png 315w,
+/static/edd86c32c5a1dc982c2896b41ae41d0e/f058b/dev-ops.png 630w,
+/static/edd86c32c5a1dc982c2896b41ae41d0e/40601/dev-ops.png 945w,
+/static/edd86c32c5a1dc982c2896b41ae41d0e/78612/dev-ops.png 1260w,
+/static/edd86c32c5a1dc982c2896b41ae41d0e/8deec/dev-ops.png 2136w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;自动化部署
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4a15c4fcdae553388b933f32c5d80d1c/dec58/dev-ops2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.75949367088608%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVQoz6VSy27TQBTtj/ADiA/gF2DBghX8AFuW/AQCdcMKiQ2wYYGEWBckqqqolCqhITYP2UmauHXG9oztedyZO3OR44YmbDmL0Zw7c+57h/4DO90RAhGJfA6qDR3r6JIVSTpN0mldN7Q29pdAPlC4FPcPn78M54scEY0BJWU6m7fO57z5nUwoBAC4FBNh2Iy8QsZ4qwwRee8RMYp/no7jk+EoSSdEpLV2Ding4/0PT/Z2rc23xLwqwegrynmWZdliIaUkIrDgrOd1dnP30d1nN6LF4ZZYKeWc2+xHCAERnXOwAiIS0cvhr6cHhwbXaXvvy7LMsizPu5r7FiCiUsoYI4RgjAFA0zRSSm+0d3hVs7U2z/MoipIk6d33iQCA1rpp27KspJRa6y4RRL85KraCEKKqSgOwdzRolJJt21cRQvDOglZC1Nbaf+dcFAUXgvOqbeqi4tfuPzwaxeSx//o+Pn81OJMWjdEbUddipdQknYxG49l0drFcXr917/j0u7MWLbz5dnbnxf7t5x8fvP2aMLFeqO0510LE8Q+2ZIh4cHwilertlbbvxuevB7NPKZMW+yX5K/4D3cKmPOBbgN0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dev-ops2.png&quot;
+        title=&quot;dev-ops2.png&quot;
+        src=&quot;/static/4a15c4fcdae553388b933f32c5d80d1c/f058b/dev-ops2.png&quot;
+        srcset=&quot;/static/4a15c4fcdae553388b933f32c5d80d1c/c26ae/dev-ops2.png 158w,
+/static/4a15c4fcdae553388b933f32c5d80d1c/6bdcf/dev-ops2.png 315w,
+/static/4a15c4fcdae553388b933f32c5d80d1c/f058b/dev-ops2.png 630w,
+/static/4a15c4fcdae553388b933f32c5d80d1c/40601/dev-ops2.png 945w,
+/static/4a15c4fcdae553388b933f32c5d80d1c/78612/dev-ops2.png 1260w,
+/static/4a15c4fcdae553388b933f32c5d80d1c/dec58/dev-ops2.png 2133w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;2 自动化流程&lt;/h2&gt;
+&lt;h3&gt;2.1 github actions&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.github.com/zh/actions&quot;&gt;github action 文档地址&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.2 使用 github action 自动构建镜像并上传到 dockerhub 中&lt;/h3&gt;
+&lt;p&gt;项目地址 &lt;a href=&quot;https://github.com/shenggaowei/docker-start&quot;&gt;https://github.com/shenggaowei/docker-start&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在项目 .github/workflows 下创建 docker-build.yml 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Docker image build and push
+&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;push&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;Docker-Build-Push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Check out repository code
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@v2
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker image build
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker image build &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;t shenggao/flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest .
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; list docker image
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker image ls
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; dockerhub login
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker login &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;u $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.DOCKERHUB_USERNAME &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;p $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.DOCKERHUB_PASSWORD &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; push to dockerhub
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker image push shenggao/flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 &lt;a href=&quot;https://hub.docker.com/settings/security&quot;&gt;dockerhub 网站&lt;/a&gt; 申请 access-token 代替密码。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6437d5e1075aa226d6d15f710958d2d5/52fbd/access-token.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.734177215189874%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABoElEQVQoz51SPYsUQRCdX2pg5iV6GImBmIh/wFgUTjxFFPRy0cDYRLhdEQ529mO829np6e/q6idV6yx3iYEFj5p+U/XmVU03D9+vcXy6xKMPazw92+DJpw0evFvh3ukK99/ucfxmhaOTFndOWtx+ucSLry2+/Vjg8ccOd18vcfSqxa3nC5x936Fp+4R1H9D2GZ0p6AxhYwjr4SZW1/LvkXBlb9Ytd4TeRjQVwPnAqEyI3gEQ5v+CC6EhBi5GRi6MlAlUGMwVteKfuB7TOWdCw6WINEphEBXknMHMCuFK4cN54iQbT+iGDJ8IpRRFSglNt7XYGYeUMnwIGAYDItKmWqtCiifByc2X8xHPPm/xcxNQKSOEhBAiGjN6GGNVsDAjxIgQgn4txqiC3nt17pw9iOec9ntjRoxJ+6W+GUeLy8utkiS2deSqAtbuBSbH4kCaZDXCyTvZm/TG+FfQ+4hhGA+EHS2MGbVBYmpWUdk3ph9T9T7ITsXdwaFzHt55OOd0VBlPIM9d12E+n2M2m2n+dbHAVT/oOgQyhbi21im8D/gDtAz796O9HXQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;docker-hub-access-token.png&quot;
+        title=&quot;docker-hub-access-token.png&quot;
+        src=&quot;/static/6437d5e1075aa226d6d15f710958d2d5/f058b/access-token.png&quot;
+        srcset=&quot;/static/6437d5e1075aa226d6d15f710958d2d5/c26ae/access-token.png 158w,
+/static/6437d5e1075aa226d6d15f710958d2d5/6bdcf/access-token.png 315w,
+/static/6437d5e1075aa226d6d15f710958d2d5/f058b/access-token.png 630w,
+/static/6437d5e1075aa226d6d15f710958d2d5/40601/access-token.png 945w,
+/static/6437d5e1075aa226d6d15f710958d2d5/78612/access-token.png 1260w,
+/static/6437d5e1075aa226d6d15f710958d2d5/52fbd/access-token.png 3124w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;在 github 项目的 settings -&gt; secrets 中将 dockerhub 的用户名和 access-token 填进去。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d6486809a5179e50f9796582438f8786/de720/github-secrets.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.632911392405056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABTUlEQVQoz4VSy07EMAzs//8XV26c4IKEAG3fSWyneQ2yl1SV0IpIrpyROxmPPaxO8LUwPmfGuBJEIogjWDQOSEyWE4vlEg/D81GBDERO2JyHDwwfCEO0gmhEzIJt9yBiw0IgjNOCddkQWVBrQy4VaMCnH/H08YzX+R21KF6QUsbQWsP1BCKknC0/joRxmrE7BxEBEYGYISy4uQUv32+40Xz+W2vFoB8l7bHvDs57K9AWx3kzzPsA54O1pUGcQVRQy51MdZ2E/Sjhtu0opZwvavvqWzwSRLo9B9QqH4LhfxReCad5QYzxLMi5oJRqNqhHPRSrrZmv3baHCjuhKr2NE5Z1Q8rFyHUoqor5Pvl/Fapfan7O2e7MDO+9kXclqlB+N0Pzh4S1AdO8QmJEqdXaatZWxXUb2qXV65IYob6sSQ81OqV03vv0rzWPcOX6AU4LD7C6dIwpAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;github-secrets.png&quot;
+        title=&quot;github-secrets.png&quot;
+        src=&quot;/static/d6486809a5179e50f9796582438f8786/f058b/github-secrets.png&quot;
+        srcset=&quot;/static/d6486809a5179e50f9796582438f8786/c26ae/github-secrets.png 158w,
+/static/d6486809a5179e50f9796582438f8786/6bdcf/github-secrets.png 315w,
+/static/d6486809a5179e50f9796582438f8786/f058b/github-secrets.png 630w,
+/static/d6486809a5179e50f9796582438f8786/40601/github-secrets.png 945w,
+/static/d6486809a5179e50f9796582438f8786/78612/github-secrets.png 1260w,
+/static/d6486809a5179e50f9796582438f8786/de720/github-secrets.png 3452w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;push 代码，可在 actions 中看到自动构建的效果。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/505b7225307d306f9dec0885a7338462/e843c/github-actions-ret1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABpElEQVQoz4WS2y4DURSG586VCwmqLekBnZZOp6bnUUoJb+OCpHEqdUgJjyIoLSrxBtopL4B7ghSTNG39snZrQuuwki8zmaz17T9rD/emqlBVFdVqFfcPD8ieXyBzmsXhUQap4/9JZ86QPslibz+FXF4B91QsovjyCqrLnAK74IXVLqLbYv+GkTDXn/V3+m6xuVh/m86EudgiuMenZ7y81oRK4RpeeRw+OYoB0Q/boATe6WHQQT/BO72s12hxYDG+Bq5cLqNSqTBhXinAE4wwocsjw+0fgegLQ5BkNvgpb4SEBjOP+aUEOJLR/qhy+QIEKcSSuX1hyJFpBEYm4R+Oon9gCFbehV672AT1dxp7EVuINwsp2aA7AIfoR5Bk4QkmpCEa7nO4m+CdEnTdJFxpFCosmVCXypGpWsLwxK/Cz4Q1YUPCvHIFKRjRUnpDY2ynUmC0dgFfLun7Dn1shwvL2g7ftd/G1C/AbHNBb7KhXW/R6DAQ1h/p6ulDS2sHZmZj4EqlEgiqm9s7bG7tYiO5g8TGFhLrSY3VP1jb3Mb80ioOUml8AEjKuvy3aux4AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;github-actions-ret1.png&quot;
+        title=&quot;github-actions-ret1.png&quot;
+        src=&quot;/static/505b7225307d306f9dec0885a7338462/f058b/github-actions-ret1.png&quot;
+        srcset=&quot;/static/505b7225307d306f9dec0885a7338462/c26ae/github-actions-ret1.png 158w,
+/static/505b7225307d306f9dec0885a7338462/6bdcf/github-actions-ret1.png 315w,
+/static/505b7225307d306f9dec0885a7338462/f058b/github-actions-ret1.png 630w,
+/static/505b7225307d306f9dec0885a7338462/40601/github-actions-ret1.png 945w,
+/static/505b7225307d306f9dec0885a7338462/78612/github-actions-ret1.png 1260w,
+/static/505b7225307d306f9dec0885a7338462/e843c/github-actions-ret1.png 3890w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;同时登陆 dockerhub，镜像已经被推送上去。&lt;/p&gt;
+&lt;h3&gt;2.3 使用 buildx 方式构建多架构版本的镜像&lt;/h3&gt;
+&lt;p&gt;修改 yml 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Docker image build and push
+&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;push&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;Docker-Build-Push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Check out repository code
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@v2
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Set up QEMU
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;qemu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v2
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Set up Docker Buildx
+        &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; buildx
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;buildx&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v2
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Avaliable platforms
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; echo $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.buildx.outputs.platforms &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; build and push
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+          docker buildx ls
+          docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t shenggao/flask-demo:latest .&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用 QEMU action 添加在 ubuntu 中 docker 所缺失的模拟环境（具体是啥需要再去研究）。使用 buildx action 配置 buildx 环境，能够使用 buildx 进行构建。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/marketplace/actions/docker-setup-buildx&quot;&gt;https://github.com/marketplace/actions/docker-setup-buildx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/marketplace/actions/docker-setup-qemu&quot;&gt;https://github.com/marketplace/actions/docker-setup-qemu&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.4 使用 build and push docker images 进一步简化流程&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/marketplace/actions/build-and-push-docker-images&quot;&gt;https://github.com/marketplace/actions/build-and-push-docker-images&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Docker image build and push
+&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;push&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;Docker-Build-Push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Check out repository code
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@v2
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Set up QEMU
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;qemu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v2
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Set up Docker Buildx
+        &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; buildx
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;buildx&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v2
+		
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Avaliable platforms
+        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; echo $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.buildx.outputs.platforms &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Login to Docker Hub
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker/login&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v2
+        &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.DOCKERHUB_USERNAME &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.DOCKERHUB_PASSWORD &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build and push
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker/build&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;push&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v3
+        &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;true&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;platforms&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; linux/arm/v7&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;linux/arm64/v8&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;linux/amd64
+          &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; shenggao/flask&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;demo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[7 Docker学习之docker-compose]]></title><description><![CDATA[7.1 docker-compose 简介  处理多个容器的启动和关闭。可以不用自己去写脚本处理。 7.2 docker-compose 的安装 mac 和 windows 在装完 docker desktop 后会默认安装 docker-compose…]]></description><link>https://weishenggao.com/docker/docker-compose/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker-compose/</guid><pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;7.1 docker-compose 简介&lt;/h2&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
@@ -736,7 +994,7 @@ d1a69c24a087   redis        &lt;span class=&quot;token string&quot;&gt;&quot;doc
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;&lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token key atrule&quot;&gt;flask&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;token key atrule&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; service_healthy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;7.11 docker-compose 练习&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[6.Docker学习之网络]]></title><description><![CDATA[6.1 网络基础知识 ip、子网掩码、网关、dns、端口号 6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？ 原文：Traffic example, the full picture 6.2 网络常用命令 6.2.1 IP 地址的查看 widows linux 或者…]]></description><link>https://weishenggao.com/docker/docker网络/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker网络/</guid><pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;6.1 网络基础知识&lt;/h2&gt;
+&lt;h2&gt;7.11 docker-compose 练习&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[6 Docker学习之网络]]></title><description><![CDATA[6.1 网络基础知识 ip、子网掩码、网关、dns、端口号 6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？ 原文：Traffic example, the full picture 6.2 网络常用命令 6.2.1 IP 地址的查看 widows linux 或者…]]></description><link>https://weishenggao.com/docker/docker网络/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker网络/</guid><pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;6.1 网络基础知识&lt;/h2&gt;
 &lt;p&gt;ip、子网掩码、网关、dns、端口号&lt;/p&gt;
 &lt;h3&gt;6.1.2 浏览器中输入网址并回车，这个过程都发生了什么？&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.homenethowto.com/advanced-topics/traffic-example-the-full-picture/&quot;&gt;原文：Traffic example, the full picture&lt;/a&gt;&lt;/p&gt;
@@ -1335,7 +1593,7 @@ PING &lt;span class=&quot;token number&quot;&gt;172.17&lt;/span&gt;.1.2 &lt;span
 &lt;p&gt;todo: 不知道为啥 ping 会丢包&lt;/p&gt;
 &lt;h3&gt;对外通信&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.karlrupp.net/en/computer/nat_tutorial&quot;&gt;对外通信： 原文 https://www.karlrupp.net/en/computer/nat_tutorial&lt;/a&gt;&lt;/p&gt;
-&lt;iframe border=0 frameborder=0 height=600 width=&quot;100%&quot; src=&quot;https://www.karlrupp.net/en/computer/nat_tutorial&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[5.Docker学习之存储]]></title><description><![CDATA[5.1 Docker 存储简介 默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层： 如果容器被删除了，则数据也没有了 这个可写的容器层是和特定的容器绑定的，也就是这些数据无法方便的和其他容器共享 Docker 提供两种方式做数据持久化 -Data Volume…]]></description><link>https://weishenggao.com/docker/docker的存储/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker的存储/</guid><pubDate>Fri, 02 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;5.1 Docker 存储简介&lt;/h2&gt;
+&lt;iframe border=0 frameborder=0 height=600 width=&quot;100%&quot; src=&quot;https://www.karlrupp.net/en/computer/nat_tutorial&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[5 Docker学习之存储]]></title><description><![CDATA[5.1 Docker 存储简介 默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层： 如果容器被删除了，则数据也没有了 这个可写的容器层是和特定的容器绑定的，也就是这些数据无法方便的和其他容器共享 Docker 提供两种方式做数据持久化 -Data Volume…]]></description><link>https://weishenggao.com/docker/docker的存储/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker的存储/</guid><pubDate>Fri, 02 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;5.1 Docker 存储简介&lt;/h2&gt;
 &lt;p&gt;默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;如果容器被删除了，则数据也没有了&lt;/li&gt;
@@ -1576,7 +1834,7 @@ root&lt;span class=&quot;token operator&quot;&gt;@&lt;/span&gt;&lt;span class=&q
 &lt;p&gt;特别适用于 windows 系统的电脑，在需要使用 linux 的开发环境下。&lt;/p&gt;
 &lt;h2&gt;5.6 机器之间共享数据&lt;/h2&gt;
 &lt;p&gt;使用 sshfs 的 driver 实现。&lt;/p&gt;
-&lt;p&gt;todo: driver 的使用细节&lt;/p&gt;</content:encoded></item><item><title><![CDATA[4.Docker学习之Dockerfile完全指南]]></title><description><![CDATA[4.1 dockerfile 介绍 4.2 如何选择基础镜像 4.2.1 基础原则 官方镜像优于非官方镜像，如果没有官方镜像，尽量选择开源 dockerfile 镜像。 固定版本 tag，而不是每次都使用 latest。 尽量选择体积小的镜像。（尽量选择基于 alpine…]]></description><link>https://weishenggao.com/docker/dockerfile完全指南/</link><guid isPermaLink="false">https://weishenggao.com/docker/dockerfile完全指南/</guid><pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;4.1 dockerfile 介绍&lt;/h2&gt;
+&lt;p&gt;todo: driver 的使用细节&lt;/p&gt;</content:encoded></item><item><title><![CDATA[4 Docker学习之Dockerfile完全指南]]></title><description><![CDATA[4.1 dockerfile 介绍 4.2 如何选择基础镜像 4.2.1 基础原则 官方镜像优于非官方镜像，如果没有官方镜像，尽量选择开源 dockerfile 镜像。 固定版本 tag，而不是每次都使用 latest。 尽量选择体积小的镜像。（尽量选择基于 alpine…]]></description><link>https://weishenggao.com/docker/dockerfile完全指南/</link><guid isPermaLink="false">https://weishenggao.com/docker/dockerfile完全指南/</guid><pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;4.1 dockerfile 介绍&lt;/h2&gt;
 &lt;h2&gt;4.2 如何选择基础镜像&lt;/h2&gt;
 &lt;h3&gt;4.2.1 基础原则&lt;/h3&gt;
 &lt;ul&gt;
@@ -2092,15 +2350,10 @@ systemd&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;            &l
 ➜  &lt;span class=&quot;token number&quot;&gt;2.12&lt;/span&gt; docker container top flask&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;no&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;root
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
 root                &lt;span class=&quot;token number&quot;&gt;253490&lt;/span&gt;              &lt;span class=&quot;token number&quot;&gt;253462&lt;/span&gt;              &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;                   &lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;53&lt;/span&gt;               &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;                   &lt;span class=&quot;token time number&quot;&gt;00:00:00&lt;/span&gt;            &lt;span class=&quot;token file-path string&quot;&gt;/usr/local/bin/python&lt;/span&gt; &lt;span class=&quot;token file-path string&quot;&gt;/usr/local/bin/flask&lt;/span&gt; run &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;h &lt;span class=&quot;token ip-address constant&quot;&gt;0.0.0.0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;从 docker top 可看出，flask-root 容器中的用户是 root，而 flask-no-root 容器中的用户是 systemd+，也就是普通用户。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[3.Docker学习之镜像的创建管理和发布]]></title><description><![CDATA[1 镜像的获取方式 从 registry 拉取 public private 从 Dockerfile 中构建，需要联网 从文件中导入，可离线使用 2 镜像的 registry docker hub
-quay 推荐使用 docker hub。…]]></description><link>https://weishenggao.com/docker/镜像的创建管理和发布/</link><guid isPermaLink="false">https://weishenggao.com/docker/镜像的创建管理和发布/</guid><pubDate>Wed, 30 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 镜像的获取方式&lt;/h2&gt;
+&lt;p&gt;从 docker top 可看出，flask-root 容器中的用户是 root，而 flask-no-root 容器中的用户是 systemd+，也就是普通用户。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[3 Docker学习之镜像的创建管理和发布]]></title><description><![CDATA[1 镜像的获取方式 从 registry 拉取 从 Dockerfile 中构建，需要联网 从文件中导入，可离线使用 2 镜像的 registry docker hub
+quay 推荐使用 docker hub。 3 镜像的获取查看和删除 docker image 相关命令…]]></description><link>https://weishenggao.com/docker/镜像的创建管理和发布/</link><guid isPermaLink="false">https://weishenggao.com/docker/镜像的创建管理和发布/</guid><pubDate>Wed, 30 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 镜像的获取方式&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;从 registry 拉取
-&lt;ol&gt;
-&lt;li&gt;public&lt;/li&gt;
-&lt;li&gt;private&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
+&lt;li&gt;从 registry 拉取&lt;/li&gt;
 &lt;li&gt;从 Dockerfile 中构建，需要联网&lt;/li&gt;
 &lt;li&gt;从文件中导入，可离线使用&lt;/li&gt;
 &lt;/ol&gt;
@@ -2232,7 +2485,7 @@ total &lt;span class=&quot;token number&quot;&gt;860&lt;/span&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;log&quot;&gt;&lt;pre class=&quot;language-log&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;➜ docker image ls
 REPOSITORY             TAG       IMAGE ID       CREATED          SIZE
 hello                  latest    &lt;span class=&quot;token number&quot;&gt;031882eaa47f&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt; minutes ago   &lt;span class=&quot;token number&quot;&gt;872kB&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;观察可以看到，hello 镜像的大小为 872 kB，和 hello 文件的大小一致。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2.Docker学习之容器]]></title><description><![CDATA[1 docker 基本操作 2 镜像 vs 容器 2.1 image 镜像 docker image 是一个 文件 这个文件包含文件系统、源码、库文件、依赖、工具等一些运行 application 所需要的文件 可以理解成一个模板 docker image 具有分层的概念 2.…]]></description><link>https://weishenggao.com/docker/docker容器/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker容器/</guid><pubDate>Tue, 29 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 docker 基本操作&lt;/h2&gt;
+&lt;p&gt;观察可以看到，hello 镜像的大小为 872 kB，和 hello 文件的大小一致。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2 Docker学习之容器]]></title><description><![CDATA[1 docker 基本操作 2 镜像 vs 容器 2.1 image 镜像 docker image 是一个 文件 这个文件包含文件系统、源码、库文件、依赖、工具等一些运行 application 所需要的文件 可以理解成一个模板 docker image 具有分层的概念 2.…]]></description><link>https://weishenggao.com/docker/docker容器/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker容器/</guid><pubDate>Tue, 29 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 docker 基本操作&lt;/h2&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 查看 docker 版本&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; version 
 
@@ -2330,7 +2583,7 @@ systemd&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span cl
 &lt;li&gt;dcoker engine 分配给这个容器一个虚拟 ip 地址&lt;/li&gt;
 &lt;li&gt;在宿主机上打开 80 端口，把容器的 80 端口转发到宿主机上&lt;/li&gt;
 &lt;li&gt;启动容器，运行指定的命令（这里是一个 shell 脚本去启动 nginx)&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[1.Docker学习之简介]]></title><description><![CDATA[1 容器技术的简介 容器 container 是一种技术，而 Docker 是一个容器技术的实现，它能够把开发的应用程序自动部署到容器的开源引擎。 容器是一种快速的打包技术，具有以下特点： 标准化 轻量级 易移植 1.1 Linux Container Linux…]]></description><link>https://weishenggao.com/docker/docker简介/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker简介/</guid><pubDate>Mon, 28 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 容器技术的简介&lt;/h2&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[1 Docker学习之简介]]></title><description><![CDATA[1 容器技术的简介 容器 container 是一种技术，而 Docker 是一个容器技术的实现，它能够把开发的应用程序自动部署到容器的开源引擎。 容器是一种快速的打包技术，具有以下特点： 标准化 轻量级 易移植 1.1 Linux Container Linux…]]></description><link>https://weishenggao.com/docker/docker简介/</link><guid isPermaLink="false">https://weishenggao.com/docker/docker简介/</guid><pubDate>Mon, 28 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1 容器技术的简介&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;容器 container 是一种技术，而 Docker 是一个容器技术的实现，它能够把开发的应用程序自动部署到容器的开源引擎。&lt;/p&gt;
 &lt;/blockquote&gt;
