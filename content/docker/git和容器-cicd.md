@@ -3,7 +3,6 @@ title: 11 git和容器-cicd
 date: 2022-12-26
 description: docker 学习笔记
 ---
-
 ## 1 自动化流程
 自动化构建和提交镜像
 ![dev-ops.png](./asset/dev-ops.png)
@@ -131,3 +130,33 @@ jobs:
           platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
           tags: shenggao/flask-demo:latest
 ```
+
+### 2.5 部署。使用 ssh 连接服务器，拉取镜像，生成容器。
+
+```yml
+deploy:
+    runs-on: ubuntu-latest
+    needs: Docker-Build-Push
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: start server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            if [[ -n $(docker ps -q -f "name=^flask-demo$") ]]; then
+               echo "停掉旧的镜像 flask-demo"
+               docker container stop flask-demo
+               docker image rm shenggao/flask-demo:latest
+            fi
+            docker image pull shenggao/flask-demo:latest
+            docker container run -d --rm -p 5000:5000 --name flask-demo shenggao/flask-demo:latest
+
+```
+
+服务器的 host 和用户名在 github 的 secrets 中进行配置。 SERVER_SSH_KEY 为服务器的 id_rsa 文件内容。
+
+完整代码在 github https://github.com/shenggaowei/docker-start
