@@ -1,0 +1,56 @@
+# Site Information
+title: ShengGao's Blog
+description: "Hi, I'm Tw93, a Frontend Engineer from China, this is my blog."
+url: https://weishenggao.com
+repo: shenggaowei/blog
+lang: zh-CN
+timezone: Africa/El_Aaiun
+
+# Social Media and External URLs
+github: shenggaowei
+menu:
+  - title: "Categories"
+    url: "/categories.html"
+  - title: "About"
+    url: "/about.html"
+
+# Build Settings
+paginate: 10
+post_ext: md
+page_ext: md
+post_layout: post
+page_layout: page
+titlecase: true
+future: true
+highlighter: rouge
+markdown: kramdown
+permalink: /:year-:month-:day/:title.html
+sass:
+  sass_dir: _sass
+  style: compressed
+
+collections:
+  posts:
+    output: true
+    permalink: /:year-:month-:day/:title.html
+
+include: [".htaccess"]
+exclude:
+  [
+    "Gemfile",
+    "Gemfile.lock",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "node_modules",
+  ]
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-pdf-embed
+  - jekyll-sitemap
+  - jekyll-feed
+
+assetUrl: //weishenggao.com/images/
+defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==

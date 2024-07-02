@@ -1,0 +1,73 @@
+<script>
+  Reveal.initialize({
+    width: '100%',
+    height: '100%',
+    controls: true,
+    progress: true,
+    history: true,
+    transition: 'slide',
+    backgroundTransition: 'none',
+    center: false,
+    pdfSeparateFragments: false,
+    plugins: [RevealMarkdown],
+    keyboard: {
+      27: () => {
+        console.log('esc');
+      }, // do something custom when ESC is pressed
+      13: 'toggleOverview', // go to the next slide when the ENTER key is pressed
+    },
+  });
+
+  function changeAspect () {
+    //缩放控制
+    const defaultAspect = 1536 / 960;
+    const innerHeight = window.innerHeight;
+    const innerWidth = window.innerWidth;
+    const innerAspect = innerWidth / innerHeight;
+    const writeDom = document.getElementById('write');
+    let zoom = 1;
+    if (innerAspect > defaultAspect) {
+      zoom = innerHeight / window.screen.height;
+    } else {
+      zoom = innerWidth / window.screen.width;
+    }
+    if (window.orientation === 180 || window.orientation === 0) {
+      zoom = 0.625 * (innerWidth / 960);
+    }
+    if (window.orientation === 90 || window.orientation === -90) {
+      zoom = 0.6 * (innerWidth / 1536);
+    }
+    writeDom.style.zoom = zoom;
+  }
+
+  const isMobile = 'onorientationchange' in window;
+  window.addEventListener(
+    isMobile ? 'orientationchange' : 'resize',
+    function () {
+      if (isMobile) {
+        location.reload();
+      } else {
+        changeAspect();
+      }
+    },
+  );
+
+  document.addEventListener('DOMContentLoaded', function () {
+    changeAspect();
+    const sections = document.getElementsByTagName('section');
+    if (sections.length < 1) {
+      return;
+    }
+    sections.forEach((item) => {
+      if (item.childElementCount === 1) {
+        item.classList.add('section-center');
+        item.classList.add('center');
+      } else {
+        const option = item.clientHeight / document.body.offsetHeight;
+        if (option > 0.75) {
+          item.classList.add('section-option');
+        }
+      }
+    });
+  });
+</script>

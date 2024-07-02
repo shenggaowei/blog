@@ -1,0 +1,22 @@
+{
+  "name": "tw93",
+  "author": "Tw93<tw93@qq.com>",
+  "homepage": "https://tw93.fun",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tw93/tw93.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/tw93/tw93.github.io/issues"
+  },
+  "scripts": {
+    "prep": "gem install bundler && bundle install",
+    "dev": "bundle exec jekyll serve --watch --trace",
+    "start": "npm run dev",
+    "build": "bundle exec jekyll build",
+    "min": "uglifyjs ./js/index.js -o ./js/index.min.js  --comments all"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.5"
+  }
+}
