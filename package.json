@@ -1,13 +1,13 @@
 {
-  "name": "tw93",
-  "author": "Tw93<tw93@qq.com>",
-  "homepage": "https://tw93.fun",
+  "name": "shenggao",
+  "author": "shenggao<527518190@qq.com>",
+  "homepage": "https://weishenggao.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tw93/tw93.github.io"
+    "url": "https://github.com/shenggaowei/blog"
   },
   "bugs": {
-    "url": "https://github.com/tw93/tw93.github.io/issues"
+    "url": "https://github.com/shenggaowei/blog/issues"
   },
   "scripts": {
     "prep": "gem install bundler && bundle install",
