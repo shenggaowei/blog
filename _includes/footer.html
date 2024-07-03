@@ -1,0 +1,78 @@
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <a href="https://github.com/{{site.github}}" rel="nofollow" target="_blank">
+      <img
+        src="https://gw.alipayobjects.com/zos/k/gp/02.png"
+        class="social-icon github-icon"
+        alt="github"
+      />
+    </a>
+  </footer>
+</div>
+
+<script type="text/javascript" src="{{ site.url }}/js/index.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://gw.alipayobjects.com/os/k/h3/heti-addon.min.js"
+></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    //Optimize letter spacing
+    const heti = new Heti(".heti");
+    heti.autoSpacing();
+
+    // Jump out
+    const links = document.links;
+    for (let i = 0; i < links.length; i++) {
+      if (
+        links[i].hostname != window.location.hostname ||
+        (links[i].href && links[i].href.indexOf("feed.xml") != -1)
+      ) {
+        links[i].target = "_blank";
+      }
+    }
+
+    // The second image is the cover image, both of which could do with some optimization
+    const images = document.querySelectorAll(".entry-content img");
+    images.forEach((img, index) => {
+      img.setAttribute("loading", "lazy");
+      img.setAttribute("decoding", "async");
+    });
+
+    // Full screen button
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    fullscreenBtn &&
+      fullscreenBtn.addEventListener("click", function () {
+        var elem = document.getElementById("postIframe");
+
+        if (!document.fullscreenElement) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      });
+
+    // Select all the links that need to be preloaded
+    const linksToPrefetch = document.querySelectorAll(
+      ".read-more, .header-href, .pagination a, .header-item a"
+    );
+    linksToPrefetch.forEach(function (link) {
+      link.addEventListener("mouseover", function () {
+        if (
+          !document.querySelector(`link[rel="prefetch"][href="${link.href}"]`)
+        ) {
+          var prefetchLink = document.createElement("link");
+          prefetchLink.rel = "prefetch";
+          prefetchLink.href = link.href;
+          prefetchLink.as = "document";
+          document.head.appendChild(prefetchLink);
+        }
+      });
+    });
+  });
+</script>
