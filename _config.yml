@@ -1,5 +1,5 @@
 # Site Information
-title: ShengGao's Blog
+title: 升高的博客
 description: "Hi, I'm ShengGao, a Frontend Engineer from China, this is my blog."
 url: https://weishenggao.com
 repo: shenggaowei/blog
@@ -8,9 +8,9 @@ lang: zh-CN
 # Social Media and External URLs
 github: shenggaowei
 menu:
-  - title: "Categories"
+  - title: "文章分类"
     url: "/categories.html"
-  - title: "About"
+  - title: "关于我"
     url: "/about.html"
 
 # Build Settings
