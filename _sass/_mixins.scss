@@ -53,24 +53,24 @@
 // ------------------------
 @mixin font-size($size) {
   font-size: 0px + $size;
-  font-size: 0rem + math.div($size, $doc-font-size);
+  font-size: math.div($size, $doc-font-size);
   line-height: 0 + math.div(round(math.div($doc-line-height, $size)*10000), 10000);
   margin-bottom: 0px + $doc-line-height;
-  margin-bottom: 0rem + math.div($doc-line-height, $doc-font-size);
+  margin-bottom: math.div($doc-line-height, $doc-font-size);
 }
 
 // Just the REMs
 // -------------
 @mixin font-rem($size) {
   font-size: 0px + $size;
-  font-size: 0rem + math.div($size, $doc-font-size);
+  font-size: math.div($size, $doc-font-size);
 }
 
 // Just font-size and line-height
 // ------------------------------
 @mixin font($size) {
   font-size: 0px + $size;
-  font-size: 0rem + math.div($size, $doc-font-size);
+  font-size: math.div($size, $doc-font-size);
   line-height: 0 + math.div(round(math.div($doc-line-height, $size)*10000), 10000);
 }
 
